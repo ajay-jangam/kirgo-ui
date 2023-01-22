@@ -1,13 +1,27 @@
 @charset "UTF-8";
-body {
-  font-family: "Ubuntu", sans-serif;
-} /******************************************
+/******************************************
     Responsive Rules Using MQ-SASS
     https://github.com/sass-mq/sass-mq
 ******************************************/
+@font-face {
+  font-family: "BlaakLight_personl";
+  src: url("../../fonts/BlaakBlack/BlaakLight_personl.ttf");
+}
+@font-face {
+  font-family: "BlaakRegular_personal";
+  src: url("../../fonts/BlaakBlack/BlaakRegular_personal.ttf");
+}
+@font-face {
+  font-family: "Lekton";
+  src: url("../../fonts/Lekton/Lekton-Regular.ttf");
+}
 /*******************************************
     Variables
 /*******************************************/
+body {
+  font-family: "BlaakRegular_personal";
+}
+
 body:before {
   background-color: #FCF8E3;
   border-bottom: 1px solid #FBEED5;
@@ -45,4 +59,83 @@ body:before {
   body:before {
     content: "wide ≥ 1300px (81.25em)";
   }
+}
+
+.navbar {
+  background-color: #0d0c0c;
+  padding: 0 2rem;
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+.navbar.active .navbar-hamburger span {
+  background: transparent;
+}
+.navbar.active .navbar-hamburger span:before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.navbar.active .navbar-hamburger span:after {
+  bottom: 0;
+  transform: rotate(-45deg);
+  width: 100%;
+}
+.navbar.active .navbar-links {
+  width: 100%;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 1.25rem;
+  z-index: 2;
+}
+
+.navbar-hamburger {
+  width: 40px;
+  height: 31px;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+.navbar-hamburger span {
+  position: absolute;
+  width: 100%;
+  display: block;
+  transition: all 0.2s;
+  background: #ffffff;
+  height: 3px;
+  top: 14px;
+  left: 5px;
+  width: 30px;
+  border-radius: 1px;
+}
+.navbar-hamburger span:before, .navbar-hamburger span:after {
+  border-radius: 1px;
+  position: absolute;
+  background: #ffffff;
+  height: 3px;
+  content: "";
+  display: block;
+  top: -9px;
+  transition: all 0.2s;
+  width: 100%;
+}
+.navbar-hamburger span:after {
+  bottom: -10px;
+  top: auto;
+  width: 70%;
+  right: 0;
+}
+
+.navbar-links {
+  width: 0%;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: cadetblue;
+  transition: all 0.4s ease;
+  padding-top: 100px;
 }

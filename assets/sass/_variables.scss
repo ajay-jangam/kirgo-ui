@@ -1,4 +1,4 @@
-@import './helpers/mq';
+@import "./helpers/mq";
 
 /******************************************
     Responsive Rules Using MQ-SASS
@@ -13,16 +13,18 @@ $mq-responsive: true;
 // Name your breakpoints in a way that creates a ubiquitous language
 // across team members. It will improve communication between
 // stakeholders, designers, developers, and testers.
-$mq-breakpoints: (small: 350px,
-mobile: 500px,
-mini: 769px,
-pro: 1025px,
-desktop: 1280px,
-wide: 1300px,
+$mq-breakpoints: (
+    small: 350px,
+    mobile: 500px,
+    mini: 769px,
+    pro: 1025px,
+    desktop: 1280px,
+    wide: 1300px,
 
-// Tweakpoints
-desktopAd: 810px,
-mobileLandscape: 480px);
+    // Tweakpoints
+    desktopAd: 810px,
+    mobileLandscape: 480px,
+);
 
 // Define the breakpoint from the $mq-breakpoints list that should
 // be used as the target width when outputting a static stylesheet
@@ -34,6 +36,41 @@ $mq-static-breakpoint: desktop;
 // to this list, ordered by width. For example: (mobile, tablet, desktop).
 $mq-show-breakpoints: (mobile, mini, pro, desktop, wide);
 
+// Font Variables
+
+@font-face {
+    font-family: "BlaakLight_personl";
+    src: url("../../fonts/BlaakBlack/BlaakLight_personl.ttf");
+}
+@font-face {
+    font-family: "BlaakRegular_personal";
+    src: url("../../fonts/BlaakBlack/BlaakRegular_personal.ttf");
+}
+@font-face {
+    font-family: "Lekton";
+    src: url("../../fonts/Lekton/Lekton-Regular.ttf");
+}
+
+$lekton: "Lekton";
+$blaak-black-light: "BlaakLight_personl";
+$blaak-black-regular: "BlaakRegular_personal";
+$background-color: #0d0c0c;
+
+// tmm = toggle mobile menu
+$tmm_height: 21px;
+$tmm_stroke_width: 3px;
+
+$tmm_width: 30px;
+$tmm_color: #ffffff;
+$tmm_v_padding: 5px;
+$tmm_h_padding: 5px;
+$tmm_border_radius: 1px;
+
+// Stop editing!
+$tmm_real_height: $tmm_height + ($tmm_v_padding * 2);
+$tmm_real_width: $tmm_width + ($tmm_h_padding * 2);
+$tmm_stroke_space: ($tmm_height - ($tmm_stroke_width * 3)) / 2;
+$tmm_mid_top: $tmm_stroke_space + $tmm_stroke_width + $tmm_v_padding;
 
 /*******************************************
     Variables
