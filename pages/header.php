@@ -6,40 +6,44 @@
     </div>
     <div class="navbar-links">
         <ul class="navbar-menu">
-            <li class="navbar-menu__item">
-                <a href="#" class="navbar-menu__link">classic top</a>
-            </li>
-            <li class="navbar-menu__item">
-                <a href="#" class="navbar-menu__link">classic leggings</a>
-            </li>
-            <li class="navbar-menu__item">
-                <a href="#" class="navbar-menu__link"><span>read</span>our story</a>
-            </li>
-            <li class="navbar-menu__item">
-                <a href="#" class="navbar-menu__link"><span>know more</span>about the fabric</a>
-            </li>
-            <li class="navbar-menu__item">
-                <a href="#" class="navbar-menu__link"><span>read</span>our blogs</a>
-            </li>
-            <li class="navbar-menu__item">
-                <a href="#" class="navbar-menu__link"><span>watch</span>our videos</a>
-            </li>
+            <a href="#" class="navbar-menu__item">
+                <li class="navbar-menu__link product-category top-category">classic top</li>
+            </a>
+            <a href="#" class="navbar-menu__item">
+                <li class="navbar-menu__link product-category leggings-category">
+                    classic leggings
+                </li>
+            </a>
+            <a href="#" class="navbar-menu__item">
+                <li class="navbar-menu__link"><span>read</span>our story</li>
+            </a>
+            <a href="#" class="navbar-menu__item">
+                <li class="navbar-menu__link">
+                    <span>know more</span>about the fabric
+                </li>
+            </a>
+            <a href="#" class="navbar-menu__item">
+                <li class="navbar-menu__link"><span>read</span>our blogs</li>
+            </a>
+            <a href="#" class="navbar-menu__item">
+                <li class="navbar-menu__link"><span>watch</span>our videos</li>
+            </a>
         </ul>
-        <div class="social-link">   
-            <a href="#" class="social-link__items">
-                <img src="" alt="" class="social-link__image">
-            </a>
-            <a href="#" class="social-link__items">
-                <img src="" alt="" class="social-link__image">
-            </a>
-            <a href="#" class="social-link__items">
-                <img src="" alt="" class="social-link__image">
-            </a>
-            <a href="#" class="social-link__items">
-                <img src="" alt="" class="social-link__image">
+        <div class="social-link">
+            <div class="social-links">
+                <a href="#" class="social-link__items">
+                    <img src="./assets/images/youtube.svg" alt="" class="social-link__image" />
+                </a>
+                <a href="#" class="social-link__items">
+                    <img src="./assets/images/youtube.svg" alt="" class="social-link__image" />
+                </a>
+                <a href="#" class="social-link__items">
+                    <img src="./assets/images/youtube.svg" alt="" class="social-link__image" />
+                </a>
+            </div>
+            <a href="#" class="social-link__items get-in-touch">
+                get in touch
             </a>
         </div>
-        <!-- <div class="navbar-wrapper">
-        </div> -->
     </div>
 </nav>

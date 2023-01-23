@@ -34,7 +34,6 @@
 		<?php include 'pages/header.php';?>
 
 		<main class="wrapper container">
-			<h1>Home page start here</h1>
 		</main>
 
 		<script

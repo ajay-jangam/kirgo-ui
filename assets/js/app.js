@@ -1,7 +1,7 @@
 // Navbar Menu
 
-$(".navbar").click(function (e) {
+$(".navbar-hamburger").click(function (e) {
     e.preventDefault()
-    $(this).toggleClass("active")
+    $(".navbar").toggleClass("active")
     return false
 })
