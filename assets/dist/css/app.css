@@ -20,6 +20,7 @@
 /*******************************************/
 body {
   font-family: "BlaakRegular_personal";
+  background-color: #0d0c0c;
 }
 
 body:before {
@@ -61,6 +62,40 @@ body:before {
   }
 }
 
+.carousel .carousel-cell {
+  border-radius: 15px;
+  margin-right: 20px;
+  overflow: hidden;
+}
+.carousel .carousel-cell__data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.carousel .carousel-cell__text {
+  position: absolute;
+  max-width: 150px;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 25.3px;
+  text-align: center;
+  color: #fff;
+}
+.carousel .carousel-cell .slider-image {
+  display: block;
+  height: 200px;
+}
+.carousel .flickity-button {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .carousel .carousel-cell img {
+    height: 400px;
+  }
+}
+
 .navbar {
   background-color: #0d0c0c;
   padding: 0 2rem;
@@ -87,7 +122,7 @@ body:before {
   background: #000;
 }
 .navbar.active .navbar-links {
-  left: 0;
+  right: 0;
 }
 
 .navbar-brand {
@@ -140,7 +175,7 @@ body:before {
   position: absolute;
   z-index: 1;
   top: 0;
-  left: 100%;
+  right: 100%;
   background-color: #fff;
   transition: all 0.4s ease;
   padding-top: 100px;

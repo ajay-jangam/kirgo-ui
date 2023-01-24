@@ -32,7 +32,7 @@
         }
 
         .navbar-links {
-            left: 0;
+            right: 0;
         }
     }
 }
@@ -90,7 +90,7 @@
     position: absolute;
     z-index: 1;
     top: 0;
-    left: 100%;
+    right: 100%;
     background-color: #fff;
     transition: all 0.4s ease;
     padding-top: 100px;
