@@ -1,6 +1,8 @@
         <!-- Header -->
         <nav class="navbar">
-            <span class="navbar-brand">Kirgo</span>
+            <div class="navbar-brand__logo">
+                <?php echo file_get_contents('assets/images/kirgo-logo.svg') ?>
+            </div>
             <div class="navbar-hamburger">
                 <span></span>
             </div>
@@ -32,13 +34,13 @@
                 <div class="social-link">
                     <div class="social-links">
                         <a href="#" class="social-link__items">
-                            <img src="./assets/images/youtube.svg" alt="" class="social-link__image" />
+                            <img src="./assets/images/instagram.svg" alt="Instagram" class="social-link__image" />
                         </a>
                         <a href="#" class="social-link__items">
-                            <img src="./assets/images/youtube.svg" alt="" class="social-link__image" />
+                            <img src="./assets/images/youtube.svg" alt="Youtube" class="social-link__image" />
                         </a>
                         <a href="#" class="social-link__items">
-                            <img src="./assets/images/youtube.svg" alt="" class="social-link__image" />
+                            <img src="./assets/images/facebook.svg" alt="Facebook" class="social-link__image" />
                         </a>
                     </div>
                     <a href="#" class="social-link__items get-in-touch">

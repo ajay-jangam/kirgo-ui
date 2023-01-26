@@ -1,187 +1,221 @@
 .navbar {
-    background-color: $background-color;
-    padding: 0 2rem;
-    position: relative;
-    width: 100%;
-    height: 100px;
+	background-color: $background-color;
+	padding: 0 2rem;
+	position: relative;
+	width: 100%;
+	height: 100px;
+	position: fixed;
+	z-index: 9999;
+	&.active {
+		.navbar-brand__logo {
+			z-index: 99999;
+			svg {
+				g {
+					fill: #000;
+					filter: none;
+				}
+			}
+		}
 
-    &.active {
-        // position: unset;
+		.navbar-hamburger {
+			span {
+				background: transparent;
 
-        .navbar-brand {
-            color: #000;
-            transition: all 0.75s ease;
-        }
+				&:before {
+					top: 0;
+					transform: rotate(45deg);
+					background: $tmm_activ_color;
+				}
+				&:after {
+					bottom: 0;
+					transform: rotate(-45deg);
+					width: 100%;
+					background: $tmm_activ_color;
+				}
+			}
+		}
 
-        .navbar-hamburger {
-            span {
-                background: transparent;
-
-                &:before {
-                    top: 0;
-                    transform: rotate(45deg);
-                    background: $tmm_activ_color;
-                }
-                &:after {
-                    bottom: 0;
-                    transform: rotate(-45deg);
-                    width: 100%;
-                    background: $tmm_activ_color;
-                }
-            }
-        }
-
-        .navbar-links {
-            right: 0;
-        }
-    }
+		.navbar-links {
+			right: 0;
+		}
+	}
 }
-.navbar-brand {
-    color: #fff;
-    font-size: 1.25rem;
-    z-index: 2;
+
+.isFixed {
+	overflow-y: hidden;
 }
 
 .navbar-hamburger {
-    width: $tmm_real_width;
-    height: $tmm_real_height;
-    overflow: hidden;
-    display: inline-block;
-    position: relative;
-    z-index: 2;
+	width: $tmm_real_width;
+	height: $tmm_real_height;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+	z-index: 99999;
+	transform: scale(0.65);
 
-    span {
-        position: absolute;
-        width: 100%;
-        display: block;
-        transition: all 0.2s;
-        background: $tmm_color;
-        height: $tmm_stroke_width;
-        top: $tmm_mid_top;
-        left: $tmm_h_padding;
-        width: $tmm_width;
-        border-radius: $tmm_border_radius;
+	span {
+		position: absolute;
+		width: 100%;
+		display: block;
+		transition: all 0.2s;
+		background: $tmm_color;
+		height: $tmm_stroke_width;
+		top: $tmm_mid_top;
+		left: $tmm_h_padding;
+		width: $tmm_width;
+		border-radius: $tmm_border_radius;
 
-        &:before,
-        &:after {
-            border-radius: $tmm_border_radius;
-            position: absolute;
-            background: $tmm_color;
-            height: $tmm_stroke_width;
-            content: "";
-            display: block;
-            top: -$tmm_stroke_width - $tmm_stroke_space;
-            transition: all 0.2s;
-            width: 100%;
-        }
+		&:before,
+		&:after {
+			border-radius: $tmm_border_radius;
+			position: absolute;
+			background: $tmm_color;
+			height: $tmm_stroke_width;
+			content: "";
+			display: block;
+			top: -$tmm_stroke_width - $tmm_stroke_space;
+			transition: all 0.2s;
+			width: 100%;
+		}
 
-        &:after {
-            bottom: -10px;
-            top: auto;
-            width: 70%;
-            right: 0;
-        }
-    }
+		&:after {
+			bottom: -10px;
+			top: auto;
+			width: 70%;
+			right: 0;
+		}
+	}
 }
 
 .navbar-links {
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 100%;
-    background-color: #fff;
-    transition: all 0.4s ease;
-    padding-top: 100px;
-    display: flex;
-    flex-direction: column;
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	z-index: 9999;
+	top: 0;
+	right: 100%;
+	background-color: #fff;
+	transition: all 0.4s ease;
+	padding-top: 100px;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+
+.active.white-background {
+	position: relative;
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100px;
+		right: 0;
+		top: 0;
+		background-color: #fff;
+		z-index: 99999;
+	}
 }
 // .navbar-wrapper {
 // }
 .navbar-menu {
-    // .navbar-menu__item
-    list-style-type: none;
-    padding: 0 2rem 0 2rem;
-    &__item {
-        text-decoration: none;
-        &:nth-child(2) {
-            margin-bottom: 1.75rem;
-        }
-    }
+	// .navbar-menu__item
+	list-style-type: none;
+	padding: 0 2rem 0 2rem;
+	&__item {
+		text-decoration: none;
+		&:nth-child(2) {
+			margin-bottom: 1.75rem;
+		}
+	}
 
-    // .navbar-menu__link
+	// .navbar-menu__link
 
-    &__link {
-        border: 1px solid #000;
-        border-radius: 9px;
-        padding: 1.3rem 0.8rem 0.8rem;
-        margin-bottom: 1rem;
-        font-family: $blaak-black-regular;
-        font-size: 23px;
-        font-weight: 900;
-        line-height: 21.6px;
-        text-align: left;
-        color: #000;
+	&__link {
+		border: 1px solid #000;
+		border-radius: 9px;
+		padding: 1.3rem 0.8rem 0.8rem;
+		margin-bottom: 1rem;
+		font-family: $blaak-black-regular;
+		font-size: 23px;
+		font-weight: 900;
+		line-height: 21.6px;
+		text-align: left;
+		color: #000;
+		position: relative;
 
-        span {
-            display: block;
-            font-family: $blaak-black-light;
-            font-size: 13px;
-            font-weight: 300;
-            font-style: italic;
-            line-height: 12.2px;
-            text-align: left;
-            color: #0d0c0c;
-            margin-bottom: 5px;
-        }
-    }
+		&::after {
+			content: url("../../images/link-arrow.svg");
+			position: absolute;
+			z-index: 9999;
+			right: 8px;
+			bottom: 3px;
+		}
 
-    .product-category {
-        padding: 3.5rem 1.5rem 0.8rem 0.8rem;
-        background-size: cover;
-        color: #fff;
-    }
+		span {
+			display: block;
+			font-family: $blaak-black-light;
+			font-size: 13px;
+			font-weight: 300;
+			font-style: italic;
+			line-height: 12.2px;
+			text-align: left;
+			color: #0d0c0c;
+			margin-bottom: 5px;
+		}
+	}
 
-    .top-category {
-        background-image: url("../../images/placeholder.jpg");
-    }
+	.product-category {
+		padding: 5rem 1.5rem 0.8rem 0.8rem;
+		background-size: cover;
+		color: #fff;
+		border: none;
+		&::after {
+			display: none;
+		}
+	}
 
-    .leggings-category {
-        background-image: url("../../images/placeholder-1.jpg");
-    }
+	.top-category {
+		background-image: url("../../images/placeholder.jpg");
+	}
+
+	.leggings-category {
+		background-image: url("../../images/placeholder-1.jpg");
+	}
 }
 .social-link {
-    // .social-link__items
-    padding: 0 2rem 0 2rem;
-    margin: auto 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    &__items {
-        text-decoration: none;
-    }
+	// .social-link__items
+	padding: 0 2rem 0 2rem;
+	margin: auto 0 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__items {
+		text-decoration: none;
+	}
 
-    .social-links {
-        min-width: 130px;
-        display: flex;
-        justify-content: space-between;
-    }
+	.social-links {
+		min-width: 130px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-    .get-in-touch {
-        font-family: $blaak-black-regular;
-        font-size: 12.1px;
-        font-weight: 900;
-        line-height: 11.4px;
-        text-align: left;
-        color: #fff;
-        padding: 1.5rem;
-        background-color: #000;
-        border-radius: 9px;
-        color: #fff;
-    }
-    // .social-link__image
+	.get-in-touch {
+		font-family: $blaak-black-regular;
+		font-size: 12.1px;
+		font-weight: 900;
+		line-height: 11.4px;
+		text-align: left;
+		color: #fff;
+		padding: 1.5rem;
+		background-color: #000;
+		border-radius: 9px;
+		color: #fff;
+	}
+	// .social-link__image
 
-    // &__image {
-    // }
+	// &__image {
+	// 	width: 20px;
+	// }
 }
