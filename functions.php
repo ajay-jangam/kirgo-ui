@@ -143,6 +143,9 @@ function kirgo_scripts() {
 
 	wp_enqueue_script( 'kirgo-navigation', get_template_directory_uri() . '/assets/dist/js/navigation.js', array(), _S_VERSION, true );
 
+	// app js
+	wp_enqueue_script( 'kirgo-appjs', get_template_directory_uri() . '/assets/dist/js/app.js', array(), _S_VERSION, true );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

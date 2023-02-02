@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -15,21 +15,13 @@ mix.options({
     processCssUrls: false, // Process/optimize relative stylesheet url()'s. Set to false, if you don't want them touched.
 });
 
-mix.setPublicPath('./');
+mix.setPublicPath("./");
 
-mix.sourceMaps(true, 'source-maps');
+mix.sourceMaps(true, "source-maps");
 
-mix.js('assets/js/app.js', 'assets/dist/js/').version().sourceMaps();
+mix.js("assets/js/app.js", "assets/dist/js/").version().sourceMaps();
 
-mix.sass('assets/sass/app.scss', 'assets/dist/css/').options({
-    autoprefixer: {
-        options: {
-            browsers: [
-                'last 6 versions',
-            ]
-        }
-    }
-}).version().sourceMaps();
+mix.sass("assets/sass/app.scss", "style.css").version().sourceMaps();
 
 // Full API
 // mix.js(src, output);
