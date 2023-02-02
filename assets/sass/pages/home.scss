@@ -27,7 +27,7 @@
 
             &__text {
                 position: absolute;
-                max-width: 150px;
+                max-width: 200px;
                 text-shadow: 0 4px 6px rgb(0 0 0 / 25%);
                 font-size: 26px;
                 font-weight: 900;
@@ -91,9 +91,9 @@
         text-decoration: none;
         border: 1px solid #000;
         border-radius: 10px;
-        padding: 20rem 0.8rem 0.8rem 1rem;
+        padding: 20rem 0.8rem 1.25rem 1rem;
         margin-bottom: 1rem;
-        font-size: 23px;
+        font-size: 18px;
         font-weight: 900;
         line-height: 21.6px;
         text-align: left;
@@ -104,11 +104,11 @@
 
     span {
         display: block;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 300;
         line-height: 13.1px;
+        font-style: italic;
         font-family: $blaak-black-light;
-        margin-bottom: 5px;
     }
 
     &__text {
@@ -162,7 +162,8 @@
             bottom: 3px;
         }
         &__text {
-            color: #000;
+            // color: #000;
+            margin-bottom: 5px;
         }
     }
 
@@ -173,7 +174,7 @@
         padding: 1rem;
         display: flex;
         justify-content: center;
-        -webkit-text-stroke: 0.2px #000;
+        // -webkit-text-stroke: 0.2px #000;
         font-family: $lekton;
         font-size: 16px;
         font-weight: bold;
@@ -230,7 +231,7 @@
     }
 
     &__textIcon {
-        width: 200px;
+        width: 230px;
         z-index: 2;
     }
 

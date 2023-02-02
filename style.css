@@ -108,7 +108,7 @@ body:before {
 }
 .slider-section .home-carousel .carousel-cell__text {
   position: absolute;
-  max-width: 150px;
+  max-width: 200px;
   text-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
   font-size: 26px;
   font-weight: 900;
@@ -151,9 +151,9 @@ body:before {
   text-decoration: none;
   border: 1px solid #000;
   border-radius: 10px;
-  padding: 20rem 0.8rem 0.8rem 1rem;
+  padding: 20rem 0.8rem 1.25rem 1rem;
   margin-bottom: 1rem;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 900;
   line-height: 21.6px;
   text-align: left;
@@ -163,11 +163,11 @@ body:before {
 }
 .classic-section span {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 300;
   line-height: 13.1px;
+  font-style: italic;
   font-family: "BlaakLight_personl";
-  margin-bottom: 5px;
 }
 .classic-section__text {
   color: #fff;
@@ -214,7 +214,7 @@ body:before {
   bottom: 3px;
 }
 .classic-section .primary-link__text {
-  color: #000;
+  margin-bottom: 5px;
 }
 .classic-section .secondary-link {
   text-decoration: none;
@@ -223,7 +223,6 @@ body:before {
   padding: 1rem;
   display: flex;
   justify-content: center;
-  -webkit-text-stroke: 0.2px #000;
   font-family: "Lekton";
   font-size: 16px;
   font-weight: bold;
@@ -269,7 +268,7 @@ body:before {
   background-image: url("/wp-content/themes/kirgo-theme/assets/images/slider-img-3.jpg");
 }
 .quote-section__textIcon {
-  width: 200px;
+  width: 230px;
   z-index: 2;
 }
 

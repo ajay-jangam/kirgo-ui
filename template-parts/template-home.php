@@ -9,7 +9,7 @@
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat never looked so sexy</span
+                    >sweat <br>never looked so sexy</span
                 >
                 <img
                     src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-1.jpg"
@@ -20,7 +20,7 @@
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat never looked so sexy</span
+                    >sweat <br>never looked so sexy</span
                 >
                 <img
                     src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-2.jpg"
@@ -31,7 +31,7 @@
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat never looked so sexy</span
+                    >sweat <br>never looked so sexy</span
                 >
                 <img
                     src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-3.jpg"
@@ -42,7 +42,7 @@
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat never looked so sexy</span
+                    >sweat <br>never looked so sexy</span
                 >
                 <img
                     src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-4.jpg"
@@ -53,7 +53,7 @@
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat never looked so sexy</span
+                    >sweat <br>never looked so sexy</span
                 >
                 <img
                     src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-5.jpg"
