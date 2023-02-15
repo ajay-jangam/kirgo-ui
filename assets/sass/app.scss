@@ -27,5 +27,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "mixins";
 @import "helpers";
 
+@import "components/header";
+@import "components/buttons";
+@import "components/accordion";
+
 @import "pages/home";
-@import "components/header.scss";
+@import "pages/product-single";

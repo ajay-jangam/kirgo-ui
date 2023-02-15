@@ -142,6 +142,7 @@ ul.products li.product .button {
 .single-product div.product .woocommerce-product-gallery {
 	position: relative;
 	float: left;
+	z-index: 10;
 }
 
 .single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__trigger {

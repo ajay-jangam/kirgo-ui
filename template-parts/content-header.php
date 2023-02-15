@@ -1,5 +1,5 @@
 <!-- Header -->
-<nav class="navbar">
+<nav class="navbar <?php echo get_field( 'transparent_navbar' ) == 1 ? 'navbar-transparent' : '' ?>">
     <div class="navbar-brand__logo">
         <?php echo file_get_contents(get_template_directory() .'/assets/images/kirgo-logo.svg') ?>
     </div>

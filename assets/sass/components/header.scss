@@ -1,11 +1,12 @@
 .navbar {
-    background-color: $background-color;
-    padding: 0 2rem;
-    position: relative;
+    background-color: transparent;
+        padding: 0 1.5rem;
     width: 100%;
-    height: 100px;
+    height: 80px;
     position: fixed;
     z-index: 9999;
+    top: 0;
+
     &.active {
         .navbar-brand__logo {
             z-index: 99999;
@@ -207,7 +208,6 @@
         font-weight: 900;
         line-height: 11.4px;
         text-align: left;
-        color: #fff;
         padding: 1.5rem;
         background-color: #000;
         border-radius: 9px;

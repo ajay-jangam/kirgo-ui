@@ -1,0 +1,72 @@
+.accordion {
+    margin-top: 2rem;
+
+    // .accordion-flush
+    &-flush {
+    }
+    // .accordion-item
+    &-item {
+        background-color: $background-color;
+        color: #fff;
+        border-color: #343434;
+    }
+    // .accordion-header
+    &-header {
+    }
+    // .accordion-button
+    &-button {
+        background-color: $background-color;
+        font-family: $blaak;
+        font-size: 17px;
+        font-weight: 900;
+        line-height: 0.94;
+        text-align: left;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        span {
+            display: block;
+            font-family: $lekton;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.37;
+            letter-spacing: 2.16px;
+            text-align: left;
+            color: rgba(255, 255, 255, 0.44);
+            margin-bottom: 0.2rem;
+        }
+
+        svg {
+            position: absolute;
+            right: 6%;
+            top: 42.5%;
+            transition: transform 0.3s ease;
+        }
+
+        &::after {
+            content: unset;
+        }
+
+        &:not(.collapsed) {
+            background-color: $background-color;
+            color: #fff;
+
+            svg {
+                transform: rotate(90deg);
+            }
+        }
+    }
+    // .accordion-collapse
+    &-collapse {
+    }
+    // .accordion-body
+    &-body {
+    }
+}
+.collapsed {
+}
+.collapse {
+}

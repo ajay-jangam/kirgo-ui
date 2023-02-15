@@ -19,9 +19,13 @@ mix.setPublicPath("./");
 
 mix.sourceMaps(true, "source-maps");
 
-mix.js("assets/js/app.js", "assets/dist/js/").version().sourceMaps();
+mix.webpackConfig({
+    devtool: "inline-source-map",
+});
 
-mix.sass("assets/sass/app.scss", "style.css").version().sourceMaps();
+mix.js("assets/js/app.js", "assets/dist/js/").sourceMaps();
+
+mix.sass("assets/sass/app.scss", "style.css").sourceMaps();
 
 // Full API
 // mix.js(src, output);
@@ -41,7 +45,7 @@ mix.sass("assets/sass/app.scss", "style.css").version().sourceMaps();
 // mix.copyDirectory(fromDir, toDir);
 // mix.minify(file);
 // mix.sourceMaps(); // Enable sourcemaps
-// mix.version(); // Enable versioning.
+// mix; // Enable versioning.
 // mix.disableNotifications();
 // mix.setPublicPath('path/to/public');
 // mix.setResourceRoot('prefix/for/resource/locators');

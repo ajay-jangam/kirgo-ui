@@ -185,3 +185,80 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+
+/**
+ * Load Guternberg editor for Woocommerce products
+ */
+// Enable Gutenberg editor for WooCommerce
+// function j0e_activate_gutenberg_product( $can_edit, $post_type ) {
+// 	if ( $post_type == 'product' ) {
+// 		   $can_edit = true;
+// 	   }
+// 	   return $can_edit;
+//    }
+//    add_filter( 'use_block_editor_for_post_type', 'j0e_activate_gutenberg_product', 10, 2 );
+
+//    // enable taxonomy fields for woocommerce with gutenberg on
+//    function j0e_enable_taxonomy_rest( $args ) {
+// 	   $args['show_in_rest'] = true;
+// 	   return $args;
+//    }
+//    add_filter( 'woocommerce_taxonomy_args_product_cat', 'j0e_enable_taxonomy_rest' );
+//    add_filter( 'woocommerce_taxonomy_args_product_tag', 'j0e_enable_taxonomy_rest' );
+
+/***********************
+ * Single Product
+ ***********************/
+
+/**
+ * Extra variations component
+ */
+function woocommerce_single_product_variations_extras() {
+	echo "
+	<div class='woovr-variation__extra'>
+		<span class='woovr-variation__extra-title'>XS & XL coming soon</span>
+		<a class='woovr-variation__extra-link' href='#'>notify me</a>
+	</div>";
+}
+
+add_action('woovr_variations_after', 'woocommerce_single_product_variations_extras', 10, 2);
+
+
+/**
+ * Transform buy now button
+ */
+function tranform_buy_now($output, $atts) {
+	global $product;
+
+	$btn_text = 'Buy Now';
+
+	if ($product) {
+
+		$btn_text = 'buy for ' . wc_price( wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) ) );
+
+		$output = sprintf( '<button type="submit" name="buy-now" value="%d" class="wpcbn-btn wpcbn-btn-single single_add_to_cart_button button alt btn btn-light" data-product_id="%s">%s</button>', $product->get_ID(), $product->get_ID(), $btn_text );
+	}
+
+	return $output;
+}
+
+add_filter('wpcbn_btn_single', 'tranform_buy_now', 10, 3);
+
+/**
+ * Add icon to add to cart
+ */
+add_filter( 'woocommerce_product_single_add_to_cart_text', function() {
+    return __( 'Add to cart 🔥', 'kirgo' );
+} );
+
+
+/**
+ * Product FAQ Accordion
+ */
+function woocommerce_single_product_faq_accordion() {
+	get_template_part( 'template-parts/content', 'product-meta' );
+}
+
+add_action('woocommerce_after_add_to_cart_button', 'woocommerce_single_product_faq_accordion', 10, 2);
+
