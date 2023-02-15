@@ -9,26 +9,21 @@
     <div class="navbar-links">
         <ul class="navbar-menu">
             <a href="#" class="navbar-menu__item">
-                <li class="navbar-menu__link product-category top-category">classic top</li>
+                <li class="navbar-menu__link product-category top-category"><span class="classic">classic</span> top</li>
             </a>
             <a href="#" class="navbar-menu__item">
                 <li class="navbar-menu__link product-category leggings-category">
-                    classic leggings
+                    <span class="classic">classic</span> leggings
                 </li>
             </a>
             <a href="#" class="navbar-menu__item">
-                <li class="navbar-menu__link"><span>read</span>our story</li>
+                <li class="navbar-menu__link"><span>read</span>about kirgo</li>
             </a>
             <a href="#" class="navbar-menu__item">
-                <li class="navbar-menu__link">
-                    <span>know more</span>about the fabric
-                </li>
+                <li class="navbar-menu__link"><span>read</span>our newsletters</li>
             </a>
             <a href="#" class="navbar-menu__item">
-                <li class="navbar-menu__link"><span>read</span>our blogs</li>
-            </a>
-            <a href="#" class="navbar-menu__item">
-                <li class="navbar-menu__link"><span>watch</span>our videos</li>
+                <li class="navbar-menu__link"><span>track</span>your kirgo delivery</li>
             </a>
         </ul>
         <div class="social-link">

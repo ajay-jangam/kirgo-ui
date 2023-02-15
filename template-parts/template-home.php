@@ -4,61 +4,41 @@
 
 <!-- Slider Section -->
 <section class="slider-section">
-    <div
-        class="home-carousel">
+    <div class="home-carousel">
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat <br>never looked so sexy</span
+                    >sweat <br />never looked so sexy</span
                 >
                 <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-1.jpg"
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/home-slider1.jpg"
                     alt="Slider Image"
-                    class="slider-image" />
+                    class="slider-image"
+                />
             </div>
         </div>
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat <br>never looked so sexy</span
+                    >sweat <br />never looked so sexy</span
                 >
                 <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-2.jpg"
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/home-slider2.jpg"
                     alt="Slider Image"
-                    class="slider-image" />
+                    class="slider-image"
+                />
             </div>
         </div>
         <div class="carousel-cell">
             <div class="carousel-cell__data">
                 <span class="carousel-cell__text"
-                    >sweat <br>never looked so sexy</span
+                    >sweat <br />never looked so sexy</span
                 >
                 <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-3.jpg"
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/home-slider3.jpg"
                     alt="Slider Image"
-                    class="slider-image" />
-            </div>
-        </div>
-        <div class="carousel-cell">
-            <div class="carousel-cell__data">
-                <span class="carousel-cell__text"
-                    >sweat <br>never looked so sexy</span
-                >
-                <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-4.jpg"
-                    alt="Slider Image"
-                    class="slider-image" />
-            </div>
-        </div>
-        <div class="carousel-cell">
-            <div class="carousel-cell__data">
-                <span class="carousel-cell__text"
-                    >sweat <br>never looked so sexy</span
-                >
-                <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-5.jpg"
-                    alt="Slider Image"
-                    class="slider-image" />
+                    class="slider-image"
+                />
             </div>
         </div>
     </div>
@@ -90,40 +70,30 @@
 </section>
 <!-- Classic Section -->
 
-<!-- Quote Section -->
-<section class="quote-section">
-    <div class="quote-section__wrappper">
-        <div class="quote-section__single quote-section__img1">
-            <img
-                src="<?php echo get_template_directory_uri() ?>/assets/images/text-icon.svg"
-                alt="Stronger Everyday"
-                class="quote-section__textIcon" />
-        </div>
-        <div class="quote-section__single quote-section__img2">
-            <img
-                src="<?php echo get_template_directory_uri() ?>/assets/images/text-icon.svg"
-                alt="Stronger Everyday"
-                class="quote-section__textIcon" />
-        </div>
-    </div>
-</section>
-<!-- Quote Section -->
-
 <!-- Newsletter Section -->
 
 <section class="newsletter-section">
     <div class="newsletter-section__wrapper">
-        <h2 class="newsletter-section__title">join the crew</h2>
-        <p class="newsletter-section__subTitle">
-            receive exclusive offers, <br>newsletters and sale announcements
-        </p>
-        <form class="newsletter-section__form">
-            <input
-                type="text"
-                name="text"
-                placeholder="enter phone number/e-mail address" />
-            <button type="button">join</button>
-        </form>
+        <img
+            src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/newsletter-image.jpg"
+            alt="Join the Crew"
+            class="newsletter-section__image"
+        />
+        <div class="newsletter-section__content">
+            <h2 class="newsletter-section__title">join the crew</h2>
+            <p class="newsletter-section__subTitle">
+                receive exclusive offers, newsletters and flash sale
+                announcements
+            </p>
+            <form class="newsletter-section__form">
+                <input
+                    type="text"
+                    name="text"
+                    placeholder="enter phone number/e-mail address"
+                />
+                <button type="button">join</button>
+            </form>
+        </div>
     </div>
 </section>
 
@@ -132,26 +102,76 @@
 <!-- Blog Section -->
 <section class="blog-section">
     <div class="blog-section__wrapper">
-        <h3 class="blog-section__title">our blogs</h3>
+        <h3 class="blog-section__title">newsletters</h3>
         <div class="blog-carousel">
             <div class="carousel-cell">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-1.jpg" alt="Blog Image" class="blog-section__sliderImg">
+                <div class="blog-section__cell">
+                    <img
+                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-1.jpg"
+                        alt="Blog Image"
+                        class="blog-section__sliderImg"
+                    />
+                    <div class="blog-section__content">
+                        <p class="blog-section__readTime">1 min read</p>
+                        <p class="blog-section__newsLetterTitle">
+                            an activewear that enables the female body
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="carousel-cell">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-2.jpg" alt="Blog Image" class="blog-section__sliderImg">
+                <div class="blog-section__cell">
+                    <img
+                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-2.jpg"
+                        alt="Blog Image"
+                        class="blog-section__sliderImg"
+                    />
+                    <div class="blog-section__content">
+                        <p class="blog-section__readTime">1 min read</p>
+                        <p class="blog-section__newsLetterTitle">
+                            an activewear that enables the female body
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="carousel-cell">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-3.jpg" alt="Blog Image" class="blog-section__sliderImg">
-            </div>
-            <div class="carousel-cell">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-4.jpg" alt="Blog Image" class="blog-section__sliderImg">
-            </div>
-            <div class="carousel-cell">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/slider-img-5.jpg" alt="Blog Image" class="blog-section__sliderImg">
+                <div class="blog-section__cell">
+                    <img
+                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-3.jpg"
+                        alt="Blog Image"
+                        class="blog-section__sliderImg"
+                    />
+                    <div class="blog-section__content">
+                        <p class="blog-section__readTime">1 min read</p>
+                        <p class="blog-section__newsLetterTitle">
+                            an activewear that enables the female body
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Blog Section -->
+
+<section class="shop-section">
+    <div class="shop-section__wrapper">
+        <img
+            src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg"
+            alt="Kirgo"
+            class="shop-section__shopImage"
+        />
+        <div class="shop-section__category">
+            <a href="#" class="shop-section__link leggings-category">
+                <span class="shop-section__text">shop</span>
+                leggings
+            </a>
+            <a href="#" class="shop-section__link sports-category">
+                <span class="shop-section__text">shop</span>
+                sports bra
+            </a>
+        </div>
+    </div>
+</section>
 
 <?php get_footer() ?>

@@ -52,10 +52,20 @@ jQuery(document).ready(function ($) {
 
     // Blog Slider
 
-    var $blogCarousel = $(".blog-carousel").flickity({
-        pageDots: false,
+    var $blogCarousel = $(".blog-carousel");
+
+    // $blogCarousel.on("scroll.flickity", function () {
+    //     console.log("Flickity ready");
+    // });
+
+    $blogCarousel.flickity({
+        // pageDots: false,
+        wrapAround: true,
         prevNextButtons: false,
         freeScroll: true,
         contain: true,
+        cellAlign: "left",
     });
+
+    // $blogCarousel.flickity();
 });

@@ -1,0 +1,226 @@
+.footer-section {
+    // footer-section__image
+
+    &__image {
+        width: 100%;
+        margin: 2rem 0 1rem;
+    }
+    // .footer-section__main
+    &__main {
+        padding: 2rem;
+    }
+
+    // .footer-section__menu
+
+    &__menu {
+        margin-bottom: 2.5rem;
+    }
+
+    // .footer-section__link
+
+    &__link {
+        font-family: $lekton;
+        font-size: 12px;
+        letter-spacing: 4.8px;
+        text-align: left;
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 1.5rem;
+    }
+
+    // .footer-section__getInTouch
+
+    &__getInTouch {
+        margin-bottom: 2.5rem;
+    }
+
+    // .footer-section__getInTouchTitle
+
+    &__getInTouchTitle {
+        font-size: 17px;
+        font-weight: 900;
+        line-height: 22.4px;
+        letter-spacing: -0.09px;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 0.7rem;
+    }
+
+    // .footer-section__getInTouchLink
+
+    &__getInTouchLink {
+        flex-grow: 0;
+        opacity: 0.7;
+        font-size: 13px;
+        font-weight: 100;
+        line-height: 17.9px;
+        letter-spacing: 0.2px;
+        text-align: left;
+        color: #fff;
+        font-family: BlaakThin;
+        display: block;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+    }
+
+    // .footer-section__getInTouchImg
+
+    &__getInTouchImg {
+        margin-right: 1rem;
+    }
+
+    // .footer-section__note
+
+    &__note {
+    }
+
+    // .footer-section__noteTitle
+
+    &__noteTitle {
+        font-size: 17px;
+        font-weight: 900;
+        line-height: 22.4px;
+        letter-spacing: -0.09px;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 0.7rem;
+    }
+
+    // .footer-section__noteText
+
+    &__noteText {
+        opacity: 0.7;
+        font-family: BlaakThin;
+        font-size: 13px;
+        font-weight: 100;
+        line-height: 17.9px;
+        letter-spacing: 0.2px;
+        text-align: left;
+        color: #fff;
+        max-width: 75%;
+    }
+
+    // .footer-section__noteSign
+
+    &__noteSign {
+        opacity: 0.4;
+        font-family: $blaak-black-light;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 12.2px;
+        letter-spacing: 0.13px;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 0.3rem;
+    }
+
+    // .footer-section__noteSignKirgo
+
+    &__noteSignKirgo {
+    }
+
+    // .footer-section__sub
+
+    &__sub {
+    }
+
+    // .footer-section__subMenu
+
+    &__subMenu {
+        padding: 1rem 2rem 1rem 2rem;
+        background-color: #101010;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    // .footer-section__offer
+
+    &__offer {
+        display: flex;
+        align-items: center;
+    }
+
+    // .footer-section__offerImg
+
+    &__offerImg {
+        margin-right: 10px;
+
+        svg {
+            path:nth-child(3) {
+                stroke: #fff;
+            }
+        }
+    }
+
+    // .footer-section__offerTag
+
+    &__offerTag {
+        font-family: $lekton;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 14.2px;
+        letter-spacing: 2.28px;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 0;
+    }
+
+    // .footer-section__socialLinks
+
+    &__socialLinks {
+        flex-basis: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    // .footer-section__socialLink
+
+    &__socialLink {
+        svg {
+            path {
+                stroke: #fff;
+            }
+        }
+    }
+
+    // .footer-section__socialLinkImg
+
+    &__socialLinkImg {
+    }
+
+    // .footer-section__copyRight
+
+    &__copyRight {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    // .footer-section__copyRightKiro
+
+    &__copyRightKiro {
+        font-family: $lekton;
+        font-size: 8px;
+        font-weight: bold;
+        letter-spacing: 2.84px;
+        color: #fff;
+    }
+
+    // .footer-section__copyRightSecondary
+
+    &__copyRightSecondary {
+        font-family: $lekton;
+        font-size: 10px;
+        text-align: center;
+        color: #fff;
+    }
+}
+.doriame {
+}

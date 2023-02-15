@@ -163,6 +163,9 @@
             color: #0d0c0c;
             margin-bottom: 5px;
         }
+        .classic {
+            color: #fff;
+        }
     }
 
     .product-category {
@@ -176,11 +179,11 @@
     }
 
     .top-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/placeholder.jpg");
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/classic-sport.jpg");
     }
 
     .leggings-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/placeholder-1.jpg");
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/classic-leggings.jpg");
     }
 }
 .social-link {
