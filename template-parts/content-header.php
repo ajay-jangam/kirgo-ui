@@ -1,8 +1,8 @@
 <!-- Header -->
 <nav class="navbar <?php echo get_field( 'transparent_navbar' ) == 1 ? 'navbar-transparent' : '' ?>">
-    <div class="navbar-brand__logo">
+    <a href="/" class="navbar-brand__logo">
         <?php echo file_get_contents(get_template_directory() .'/assets/images/kirgo-logo.svg') ?>
-    </div>
+    </a>
     <div class="navbar-hamburger">
         <span></span>
     </div>
@@ -16,7 +16,7 @@
                     <span class="classic">classic</span> leggings
                 </li>
             </a>
-            <a href="#" class="navbar-menu__item">
+            <a href="/about-us" class="navbar-menu__item">
                 <li class="navbar-menu__link"><span>read</span>about kirgo</li>
             </a>
             <a href="#" class="navbar-menu__item">

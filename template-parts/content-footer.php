@@ -80,11 +80,11 @@
             <p class="footer-section__copyRightKiro">KIRGO ACTIVEWEAR CO.</p>
             <p class="footer-section__copyRightSecondary">
                 designed and developed
-                <a href="#" class="doriame">doriame
-                    <!-- <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/footer/kirgo-sign.svg"
-                    alt="Kirgo"
-                    class="footer-section__noteSignKirgo" /> -->
+                <a href="#" class="doriame">
+                    <img
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/footer/doriame.svg"
+                    alt="Doriame"
+                    class="footer-section__doriameIcon" />
                 </a>
             </p>
         </div>

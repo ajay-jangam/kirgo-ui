@@ -1,0 +1,199 @@
+// About Us Section
+
+.about-us-title {
+    font-family: $black-jack;
+    font-size: 19px;
+    line-height: 17.8px;
+    text-align: left;
+    color: #bbcea8;
+    margin-bottom: 0.3rem;
+}
+
+.about-us-text {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    font-family: BlaakLight;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 17.8px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    color: #fff;
+    padding-left: 10px;
+    width: 285px;
+    margin-bottom: 0;
+}
+
+// Story Section
+
+.story-section {
+    // .story-section__image
+
+    &__image {
+        width: 100%;
+    }
+
+    // .story-section__wrapper
+
+    &__wrapper {
+        padding: 2.5rem 2rem;
+    }
+
+    // .story-section__title
+
+    &__title {
+    }
+
+    // .story-section__text
+
+    &__text {
+    }
+}
+
+// Vision Section
+
+.vistion-section {
+    // .vistion-section__imageWrapper
+
+    &__imageWrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // .vistion-section__image
+
+    &__image {
+        width: 100%;
+    }
+
+    // .vistion-section__imageText
+
+    &__imageText {
+        position: absolute;
+        width: 180px;
+    }
+
+    // .vistion-section__wrapper
+
+    &__wrapper {
+        padding: 3rem 2rem;
+    }
+
+    // .vistion-section__titlePresent
+
+    &__titlePresent {
+    }
+
+    // .vistion-section__text
+
+    &__text {
+        &:nth-child(2) {
+            margin: 0 0 2rem 0;
+        }
+    }
+
+    // .vistion-section__titleFuture
+
+    &__titleFuture {
+    }
+}
+
+// Team Section
+
+.team-section {
+    margin-bottom: 1rem;
+    // .team-section__wrapper
+
+    &__wrapper {
+        padding: 0 2rem;
+    }
+
+    // .team-section__title
+
+    &__title {
+    }
+
+    // .team-section__cards
+
+    &__cards {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 16px 0 0 10px;
+    }
+
+    // .team-section__card
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 30%;
+        height: 130px;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    // .team-section__memberProfile
+
+    &__memberProfile {
+        background-color: #79746a;
+        padding: 0.75rem 0.75rem 0.5rem;
+    }
+
+    // .team-section__memberName
+
+    &__memberName {
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 0.75;
+        color: #fff;
+        margin-bottom: 0;
+    }
+
+    // .team-section__memberPost
+
+    &__memberPost {
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        font-family: $lekton;
+        font-size: 8px;
+        font-weight: bold;
+        line-height: 1;
+        letter-spacing: 0.12px;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 0;
+    }
+
+    // .team-section__memberImage
+
+    &__memberImage {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    // .team-section__joinUs
+
+    &__joinUs {
+        background-color: #000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // .team-section__joinUsIcon
+
+    &__joinUsIcon {
+        width: 45px;
+        margin-bottom: 1rem;
+    }
+
+    // .team-section__joinUsText
+
+    &__joinUsText {
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 13.1px;
+        text-align: center;
+        color: #fff;
+    }
+}

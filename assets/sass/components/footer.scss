@@ -221,6 +221,14 @@
         text-align: center;
         color: #fff;
     }
+
+    // .footer-section__doriameIcon
+
+    &__doriameIcon {
+        width: 50px;
+        height: 10px;
+        object-fit: cover;
+    }
 }
 .doriame {
 }
