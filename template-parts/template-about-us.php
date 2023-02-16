@@ -30,7 +30,7 @@
     <div class="vistion-section__wrapper">
         <p class="vistion-section__titlePresent about-us-title">present</p>
         <p class="vistion-section__text  about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the</p>
-        <p class="vistion-section__titleFuture about-us-title">future</p>
+        <p class="vistion-section__titleFuture about-us-title">the future</p>
         <p class="vistion-section__text  about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the options</p>
     </div>
 </section>
