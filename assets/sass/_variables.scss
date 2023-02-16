@@ -46,14 +46,15 @@ $mq-show-breakpoints: (mobile, mini, pro, desktop, wide);
     font-family: "BlaakRegular_personal";
     src: url("/wp-content/themes/kirgo-theme/assets/fonts/BlaakBlack/BlaakRegular_personal.ttf");
 }
-@font-face {
-    font-family: "Lekton";
-    src: url("/wp-content/themes/kirgo-theme/assets/fonts/Lekton/Lekton-Regular.ttf");
-}
+// @font-face {
+//     font-family: "Lekton";
+//     src: url("/wp-content/themes/kirgo-theme/assets/fonts/Lekton/Lekton-Regular.ttf");
+// }
 
 $lekton: "Lekton";
 $blaak-black-light: "BlaakLight_personl";
 $blaak-black-regular: "BlaakRegular_personal";
+$blaak: "BlaakRegular_personal";
 $background-color: #0d0c0c;
 
 // tmm = toggle mobile menu
