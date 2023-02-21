@@ -1,3 +1,9 @@
+<?php
+/**
+ * Product Details after Buy Button and before Reviews
+ */
+?>
+
 <!-- FAQ Accordion -->
 <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
@@ -100,7 +106,7 @@
 <?php endwhile; ?>
 <?php endif; ?>
 
-<!-- Banner -->
+<!-- Banner Top -->
 <?php if ( have_rows( 'small_banner' ) ) : ?>
 <?php while ( have_rows( 'small_banner' ) ) : the_row(); ?>
 <?php if ( get_sub_field( 'background_image' ) ) : ?>

@@ -206,9 +206,13 @@ body.single-product {
             }
         }
 
+        .woocommerce-tabs {
+            // padding: 0 2rem;
+        }
+
         // .product__features
         &__features {
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             text-align: center;
 
             // .product__features-title
@@ -267,6 +271,11 @@ body.single-product {
             width: calc(100% + 4rem);
             position: relative;
             left: -2rem;
+            margin-top: 3rem;
+
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
 
             // .product__banner-title
             &-title {
@@ -278,6 +287,70 @@ body.single-product {
                 text-transform: uppercase;
                 max-width: 30%;
                 margin-left: 2rem;
+            }
+
+            // .product__banner-title
+            &-bottom {
+                width: 100vw;
+                position: static;
+
+                &-title {
+                    max-width: 42%;
+                    margin-left: auto;
+                    margin-right: 3rem;
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+        // .product__set
+        &__set {
+            position: relative;
+            display: flex;
+            margin: 0 1.5rem;
+            margin-top: 2rem;
+            border-radius: 9px;
+            box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.07);
+            background-color: #fff;
+
+            // .product__set-img
+            &-img {
+                flex-basis: 35%;
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            // .product__set-meta
+            &-meta {
+                padding: 1.2rem;
+            }
+            // .product__set-title
+            &-title {
+                font-family: $blaak;
+                font-size: 20.8px;
+                font-weight: 900;
+                line-height: 0.94;
+                text-align: left;
+                color: #000;
+            }
+            // .product__set-text
+            &-text {
+                font-family: $lekton;
+                font-size: 13px;
+                font-weight: bold;
+                line-height: 1.14;
+                letter-spacing: 0.2px;
+                text-align: left;
+                color: #000;
+            }
+            // .product__set-icon
+            &-icon {
+            }
+            // .product__set-buy
+            &-buy {
+                display: none;
             }
         }
     }
