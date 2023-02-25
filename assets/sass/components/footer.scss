@@ -4,16 +4,38 @@
     &__image {
         width: 100%;
         margin: 2rem 0 1rem;
+
+        @include mq($from: desktop) {
+            max-width: 660px;
+            display: flex;
+            margin: 7rem auto 3rem;
+        }
     }
     // .footer-section__main
     &__main {
         padding: 2rem;
+        @include mq($from: desktop) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     // .footer-section__menu
 
     &__menu {
         margin-bottom: 2.5rem;
+        @include mq($from: desktop) {
+            margin-bottom: 1rem;
+        }
+        @include mq($from: desktop) {
+            order: 2;
+            width: 1100px;
+            height: 200px;
+            display: flex;
+            flex-flow: column;
+            flex-wrap: wrap;
+        }
     }
 
     // .footer-section__link
@@ -27,12 +49,27 @@
         text-decoration: none;
         display: block;
         margin-bottom: 1.5rem;
+        @include mq($from: desktop) {
+            font-size: 19.2px;
+            letter-spacing: 7.68px;
+            width: 550px;
+            padding-left: 30px;
+            margin-bottom: 2rem;
+            &:nth-child(-n + 3) {
+                text-align: right;
+                padding-right: 30px;
+            }
+        }
     }
 
     // .footer-section__getInTouch
 
     &__getInTouch {
         margin-bottom: 2.5rem;
+        @include mq($from: desktop) {
+            order: 3;
+            width: 440px;
+        }
     }
 
     // .footer-section__getInTouchTitle
@@ -45,6 +82,23 @@
         text-align: left;
         color: #fff;
         margin-bottom: 0.7rem;
+
+        @include mq($from: desktop) {
+            font-size: 21px;
+            line-height: 20.3px;
+            opacity: 0.36;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    }
+
+    // .footer-section__getInTouchLinks
+
+    &__getInTouchLinks {
+        @include mq($from: desktop) {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     // .footer-section__getInTouchLink
@@ -62,17 +116,32 @@
         display: block;
         text-decoration: none;
         margin-bottom: 0.5rem;
+
+        @include mq($from: desktop) {
+            font-size: 20.9px;
+            line-height: 28.8px;
+            letter-spacing: 0.31px;
+            opacity: 1;
+        }
     }
 
     // .footer-section__getInTouchImg
 
     &__getInTouchImg {
         margin-right: 1rem;
+        @include mq($from: desktop) {
+            width: 20px;
+        }
     }
 
     // .footer-section__note
 
     &__note {
+        @include mq($from: desktop) {
+            order: 1;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
     }
 
     // .footer-section__noteTitle
@@ -82,9 +151,15 @@
         font-weight: 900;
         line-height: 22.4px;
         letter-spacing: -0.09px;
-        text-align: left;
+        // text-align: left;
         color: #fff;
         margin-bottom: 0.7rem;
+
+        @include mq($from: desktop) {
+            font-size: 21px;
+            line-height: 20.3px;
+            opacity: 0.36;
+        }
     }
 
     // .footer-section__noteText
@@ -96,9 +171,16 @@
         font-weight: 100;
         line-height: 17.9px;
         letter-spacing: 0.2px;
-        text-align: left;
+        // text-align: left;
         color: #fff;
         max-width: 75%;
+        @include mq($from: desktop) {
+            font-size: 16px;
+            line-height: 24.7px;
+            opacity: 1;
+            max-width: 420px;
+            margin: 1.5rem auto;
+        }
     }
 
     // .footer-section__noteSign
@@ -110,14 +192,20 @@
         font-weight: 300;
         line-height: 12.2px;
         letter-spacing: 0.13px;
-        text-align: left;
+        // text-align: left;
         color: #fff;
         margin-bottom: 0;
+        @include mq($from: desktop) {
+            margin: 1rem 0;
+        }
     }
 
     // .footer-section__noteSignKirgo
 
     &__noteSignKirgo {
+        @include mq($from: desktop) {
+            width: 50px;
+        }
     }
 
     // .footer-section__sub
@@ -128,11 +216,24 @@
     // .footer-section__subMenu
 
     &__subMenu {
-        padding: 1rem 2rem 1rem 2rem;
+        padding: 1rem 2rem;
         background-color: #101010;
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        @include mq($from: desktop) {
+            padding: 1rem 3rem;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: url("/wp-content/themes/kirgo-theme/assets/images/kirgo-icon.png");
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.35);
+            }
+        }
     }
 
     // .footer-section__offer
@@ -146,6 +247,11 @@
 
     &__offerImg {
         margin-right: 10px;
+        @include mq($from: desktop) {
+            margin-right: 35px;
+            transform: scale(2.25);
+            display: flex;
+        }
 
         svg {
             path:nth-child(3) {
@@ -165,6 +271,12 @@
         text-align: left;
         color: #fff;
         margin-bottom: 0;
+
+        @include mq($from: desktop) {
+            font-size: 20px;
+            line-height: 23.7px;
+            letter-spacing: 3.81px;
+        }
     }
 
     // .footer-section__socialLinks
@@ -174,11 +286,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include mq($from: desktop) {
+            flex-basis: 150px;
+        }
     }
 
     // .footer-section__socialLink
 
     &__socialLink {
+        @include mq($from: desktop) {
+            transform: scale(1.25);
+        }
         svg {
             path {
                 stroke: #fff;
@@ -198,6 +316,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include mq($from: desktop) {
+            padding: 1rem 3rem;
+        }
         p {
             margin-bottom: 0;
         }
@@ -211,6 +332,10 @@
         font-weight: bold;
         letter-spacing: 2.84px;
         color: #fff;
+        @include mq($from: desktop) {
+            font-size: 14.8px;
+            letter-spacing: 5.25px;
+        }
     }
 
     // .footer-section__copyRightSecondary
@@ -220,6 +345,9 @@
         font-size: 10px;
         text-align: center;
         color: #fff;
+        @include mq($from: desktop) {
+            font-size: 19.2px;
+        }
     }
 
     // .footer-section__doriameIcon
@@ -228,6 +356,10 @@
         width: 50px;
         height: 10px;
         object-fit: cover;
+        @include mq($from: desktop) {
+            width: 92px;
+            height: 18px;
+        }
     }
 }
 .doriame {

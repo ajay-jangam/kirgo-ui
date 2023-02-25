@@ -22,11 +22,8 @@ jQuery(document).ready(function ($) {
     // Home Slider
 
     var $homeCarousel = $(".home-carousel").flickity({
-        // imagesLoaded: true,
-        // percentPosition: false,
         wrapAround: true,
-        pageDots: false,
-        autoPlay: true,
+        autoPlay: false,
     });
 
     // Parallax effect
@@ -59,13 +56,22 @@ jQuery(document).ready(function ($) {
     // });
 
     $blogCarousel.flickity({
-        // pageDots: false,
         wrapAround: true,
         prevNextButtons: false,
         freeScroll: true,
         contain: true,
-        cellAlign: "left",
+        cellAlign: "center",
     });
 
     // $blogCarousel.flickity();
+
+    // Gallery Slider
+
+    var $galleryCarousel = $(".shop-gallery");
+
+    $galleryCarousel.flickity({
+        wrapAround: true,
+        prevNextButtons: true,
+        contain: true,
+    });
 });
