@@ -48,19 +48,22 @@
 <!-- Classic Section -->
 <section class="classic-section">
     <div class="classic-section__wrapper">
-        <a href="#" class="primary-link">
+        <div class="primary-link">
             <span class="primary-link__text">introducing</span>
             the classic collection
-        </a>
+        </div>
         <div class="classic-section__category">
-            <a href="#" class="classic-section__link leggings-category">
+            <div class="classic-section__link leggings-category">
                 <span class="classic-section__text">classic</span>
-                leggings
-            </a>
-            <a href="#" class="classic-section__link top-category">
+                <p>leggings</p>
+                <a href="#" class="product-link">buy for Rs. 1,234</a>
+            </div>
+            <div class="classic-section__link top-category">
                 <span class="classic-section__text">classic</span>
-                sports bra
-            </a>
+                <p>sports bra</p>
+                <a href="#" class="product-link">buy for Rs. 1,234</a>
+
+            </div>
         </div>
         <a href="#" class="secondary-link"> shop kirgo activewear </a>
     </div>
@@ -149,6 +152,36 @@
                     </div>
                 </div>
             </div>
+            <div class="carousel-cell">
+                <div class="blog-section__cell">
+                    <img
+                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-1.jpg"
+                        alt="Blog Image"
+                        class="blog-section__sliderImg"
+                    />
+                    <div class="blog-section__content">
+                        <p class="blog-section__readTime">1 min read</p>
+                        <p class="blog-section__newsLetterTitle">
+                            an activewear that enables the female body
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-cell">
+                <div class="blog-section__cell">
+                    <img
+                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-2.jpg"
+                        alt="Blog Image"
+                        class="blog-section__sliderImg"
+                    />
+                    <div class="blog-section__content">
+                        <p class="blog-section__readTime">1 min read</p>
+                        <p class="blog-section__newsLetterTitle">
+                            an activewear that enables the female body
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -170,6 +203,45 @@
                 <span class="shop-section__text">shop</span>
                 sports bra
             </a>
+        </div>
+    </div>
+    <div class="shop-section__wrapperDesktop">
+        <div class="shop-gallery">
+            <div class="carousel-cell">
+                <img
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg"
+                    alt="Kirgo"
+                    class="shop-section__shopImage"
+                />
+            </div>
+             <div class="carousel-cell">
+                <img
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg"
+                    alt="Kirgo"
+                    class="shop-section__shopImage"
+                />
+            </div>
+             <div class="carousel-cell">
+                <img
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg"
+                    alt="Kirgo"
+                    class="shop-section__shopImage"
+                />
+            </div>
+             <div class="carousel-cell">
+                <img
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg"
+                    alt="Kirgo"
+                    class="shop-section__shopImage"
+                />
+            </div>
+             <div class="carousel-cell">
+                <img
+                    src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg"
+                    alt="Kirgo"
+                    class="shop-section__shopImage"
+                />
+            </div>
         </div>
     </div>
 </section>

@@ -8,6 +8,10 @@
         src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/story-behind-img.jpg"
         alt="Story Behind"
         class="story-section__image" />
+          <img
+        src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/story-behind-img-desktop.jpg"
+        alt="Story Behind"
+        class="story-section__imageDesktop" />
     <div class="story-section__wrapper">
         <p class="story-section__title about-us-title">the  story behind</p>
         <p class="story-section__text about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the options available in the market were priced beyond my budget. Undeterred, I took matters into my own hands and decided to create my own line of affordable activewear. My goal was to empower women everywhere to feel confident, strong, and attractive while they worked out.</p>
@@ -27,9 +31,11 @@
            alt="Vision Text"
            class="vistion-section__imageText" />
     </div>
-    <div class="vistion-section__wrapper">
+    <div class="vistion-section__wrapperPresent">
         <p class="vistion-section__titlePresent about-us-title">present</p>
         <p class="vistion-section__text  about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the</p>
+    </div>
+    <div class="vistion-section__wrapperFuture">
         <p class="vistion-section__titleFuture about-us-title">the future</p>
         <p class="vistion-section__text  about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the options</p>
     </div>

@@ -11,33 +11,35 @@
         <div class="footer-section__menu">
             <a href="#" class="footer-section__link">WHO ARE WE</a>
             <a href="#" class="footer-section__link">ABOUT THE FABRIC</a>
-            <a href="#" class="footer-section__link">SHOP KIRGO</a>
+            <a href="#" class="footer-section__link">SHOP KIRGO ACTIVEWEAR</a>
             <a href="#" class="footer-section__link">TRACK YOUR KIRGO</a>
             <a href="#" class="footer-section__link">READ OUR NEWSLETTERS</a>
             <a href="#" class="footer-section__link">FAQs ABOUT KIRGO</a>
         </div>
         <div class="footer-section__getInTouch">
             <p class="footer-section__getInTouchTitle">get in touch</p>
-            <a
-                href="mailto:hello@kirgo.com"
-                class="footer-section__getInTouchLink"
-            >
-                <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/footer/mail.svg"
-                    alt="Kirgo"
-                    class="footer-section__getInTouchImg"
-                />
-                hello@kirgo.com
-            </a>
-            <a href="tel:+91-810599596" class="footer-section__getInTouchLink"
+            <div class="footer-section__getInTouchLinks">
+                <a
+                    href="mailto:hello@kirgo.com"
+                    class="footer-section__getInTouchLink"
                 >
-                <img
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/footer/tel.svg"
-                    alt="Kirgo"
-                    class="footer-section__getInTouchImg"
-                />
-                +91-810599596</a
-            >
+                    <img
+                        src="<?php echo get_template_directory_uri() ?>/assets/images/footer/mail.svg"
+                        alt="Kirgo"
+                        class="footer-section__getInTouchImg"
+                    />
+                    hello@kirgo.com
+                </a>
+                <a href="tel:+91-810599596" class="footer-section__getInTouchLink"
+                    >
+                    <img
+                        src="<?php echo get_template_directory_uri() ?>/assets/images/footer/tel.svg"
+                        alt="Kirgo"
+                        class="footer-section__getInTouchImg"
+                    />
+                    +91-810599596</a
+                >
+            </div>
         </div>
         <div class="footer-section__note">
             <p class="footer-section__noteTitle">founder's note</p>
