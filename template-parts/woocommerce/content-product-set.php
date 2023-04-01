@@ -7,8 +7,10 @@
 <?php if ( have_rows( 'product_set' ) ) : ?>
 <?php while ( have_rows( 'product_set' ) ) : the_row(); ?>
 
-<?php the_sub_field( 'title' ); ?>
-<?php the_sub_field( 'sub_title' ); ?>
+<div class="product__set-header">
+    <h5><?php the_sub_field( 'title' ); ?></h5>
+    <p><?php the_sub_field( 'sub_title' ); ?></p>
+</div>
 
 <?php $product = get_sub_field( 'product' ); ?>
 <?php if ( $product ) : ?>
@@ -20,7 +22,7 @@
     </div>
     <div class="product__set-meta">
         <span class="product__set-title"><?php the_title(); ?></span>
-        <p class="product__set-text"><?php the_excerpt(); ?></p>
+        <div class="product__set-text"><?php the_excerpt(); ?></div>
         <div class="product__set-icon">
             <?php 
                 require get_template_directory() . '/assets/images/icons/cart_dark.svg';

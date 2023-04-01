@@ -16,6 +16,11 @@
 <?php endwhile; ?>
 <?php endif; ?>
 
+<!-- Owner Words -->
+<p class="product__owner-words">
+    <?php the_field( 'owner_words' ); ?>
+</p>
+
 <!-- Product Set -->
 <?php
 require get_template_directory() . '/template-parts/woocommerce/content-product-set.php';

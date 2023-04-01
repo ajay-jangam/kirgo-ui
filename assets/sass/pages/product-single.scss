@@ -208,6 +208,80 @@ body.single-product {
 
         .woocommerce-tabs {
             // padding: 0 2rem;
+
+            .wc-tabs {
+                display: none;
+            }
+        }
+
+        .woocommerce-Reviews {
+            &-title {
+                flex-grow: 0;
+                font-family: $blaak;
+                font-size: 14px;
+                font-weight: 900;
+                line-height: 0.94;
+                text-align: left;
+                color: #fff;
+                margin-left: 2rem;
+                display: block;
+                margin-top: 2rem;
+            }
+
+            .commentlist {
+                padding: 0;
+                margin-left: 1.5rem;
+                margin-top: 2rem;
+
+                .comment {
+                    list-style-type: none;
+                    text-align: center;
+                    width: 50%;
+                    margin-right: 1rem;
+
+                    img {
+                        display: none;
+                    }
+
+                    &-text {
+                        display: flex;
+                        flex-direction: column;
+
+                        .meta {
+                            order: 2;
+                        }
+
+                        .description {
+                            font-family: $blaak;
+                            font-size: 20px;
+                            font-weight: 900;
+                            line-height: 1.18;
+                            text-align: center;
+                            color: #fff;
+                            margin: 0 auto;
+                        }
+                    }
+
+                    .woocommerce-review {
+                        &__dash {
+                            display: none;
+                        }
+
+                        &__published-date {
+                            display: none;
+                        }
+
+                        &__author {
+                            font-size: 13px;
+                            font-weight: bold;
+                            line-height: 1.37;
+                            letter-spacing: 0.2px;
+                            text-align: left;
+                            color: rgba(255, 255, 255, 0.5);
+                        }
+                    }
+                }
+            }
         }
 
         // .product__features
@@ -303,6 +377,37 @@ body.single-product {
             }
         }
 
+        // .product__owner
+        &__owner {
+            &-words {
+                opacity: 0.7;
+                font-family: $blaakLight;
+                font-size: 13px;
+                font-weight: 100;
+                line-height: 1.37;
+                letter-spacing: 0.2px;
+                text-align: center;
+                color: #fff;
+                max-width: 73%;
+                margin: 0 auto;
+                margin-top: 4rem;
+                display: block;
+                position: relative;
+
+                &::after {
+                    content: "";
+                    width: 40%;
+                    height: 5px;
+                    border: solid 1px #fff;
+                    display: block;
+                    margin: 0 auto;
+                    margin-top: 3rem;
+                    border-radius: 5px;
+                    opacity: 1;
+                }
+            }
+        }
+
         // .product__set
         &__set {
             position: relative;
@@ -312,28 +417,45 @@ body.single-product {
             border-radius: 9px;
             box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.07);
             background-color: #fff;
+            height: 200px;
+            overflow: hidden;
 
             // .product__set-img
             &-img {
-                flex-basis: 35%;
+                flex-basis: 40%;
 
                 img {
                     height: 100%;
+                    width: 100%;
                     object-fit: cover;
                 }
             }
             // .product__set-meta
             &-meta {
                 padding: 1.2rem;
+                flex-basis: 60%;
             }
             // .product__set-title
             &-title {
                 font-family: $blaak;
                 font-size: 20.8px;
                 font-weight: 900;
-                line-height: 0.94;
+                line-height: 1;
                 text-align: left;
                 color: #000;
+                position: relative;
+                margin-bottom: 0.5rem;
+                display: block;
+
+                &::after {
+                    content: "";
+                    width: 40%;
+                    border: 1px solid #000;
+                    height: 3px;
+                    display: block;
+                    border-radius: 5px;
+                    margin-top: 0.4rem;
+                }
             }
             // .product__set-text
             &-text {
@@ -347,10 +469,44 @@ body.single-product {
             }
             // .product__set-icon
             &-icon {
+                position: absolute;
+                top: 5%;
+                right: 4%;
             }
             // .product__set-buy
             &-buy {
-                display: none;
+                position: absolute;
+                bottom: 10px;
+                width: 89%;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+
+            // .product__set-header
+            &-header {
+                text-align: center;
+                padding: 0 5rem;
+                margin-top: 4rem;
+
+                h5 {
+                    font-family: $blaak;
+                    font-size: 20px;
+                    font-weight: 900;
+                    line-height: 0.77;
+                    text-align: center;
+                    color: #fff;
+                }
+
+                p {
+                    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+                    font-size: 13px;
+                    font-weight: bold;
+                    line-height: 1;
+                    letter-spacing: 0.2px;
+                    text-align: center;
+                    color: rgba(255, 255, 255, 0.5);
+                }
             }
         }
     }

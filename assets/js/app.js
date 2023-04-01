@@ -64,8 +64,17 @@ jQuery(document).ready(function ($) {
         prevNextButtons: false,
         freeScroll: true,
         contain: true,
-        cellAlign: "left",
+        // cellAlign: "left",
     });
 
     // $blogCarousel.flickity();
+
+    /**
+     * Product Page
+     */
+    $(".woocommerce-Reviews .commentlist").flickity({
+        pageDots: false,
+        prevNextButtons: false,
+        cellAlign: "left",
+    });
 });
