@@ -1,4 +1,7 @@
 jQuery(document).ready(function ($) {
+    /**
+     * Navbar
+     */
     // Navbar Menu
 
     $(".navbar-hamburger").click(function (e) {
@@ -19,6 +22,11 @@ jQuery(document).ready(function ($) {
             $(".active").toggleClass("white-background");
         }
     });
+
+    /**
+     * Home Page
+     */
+
     // Home Slider
 
     var $homeCarousel = $(".home-carousel").flickity({
@@ -83,4 +91,35 @@ jQuery(document).ready(function ($) {
         prevNextButtons: true,
         contain: true,
     });
+
+    /**
+     * Product Page
+     **/
+
+    // Toggle Review Form
+    $("#review_form .comment-reply-title").click(function () {
+        $(".woocommerce #review_form .comment-form").toggle();
+    });
+
+    // Change the Review Title text
+    const element = $("#reply-title");
+    const newText = "send your review";
+    element.text(newText);
+
+    // Add double qoutes to Reviews
+    // const reviewDescriptionElement = document.querySelector(".description p");
+    // const reviewDescriptionText = reviewDescriptionElement.innerText;
+    // console.log("reviewDescriptionText", reviewDescriptionText);
+
+    // const reviewDescriptionElement = document.querySelector(
+    //     ".review .description p"
+    // );
+
+    // console.log("reviewDescriptionElement", reviewDescriptionElement);
+
+    // reviewDescriptionElement.forEach(function (el) {
+    //     el.innerHTML = '"' + reviewDescriptionElement + '"';
+    // });
+
+    // reviewDescriptionElement.replaceWith('"' + reviewDescriptionText + '"');
 });

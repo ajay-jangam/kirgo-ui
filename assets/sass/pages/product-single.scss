@@ -1,10 +1,12 @@
 body.single-product {
     font-family: $lekton;
     color: #fff;
-    padding-bottom: 10rem;
 
     .site-main {
         margin-top: 0rem;
+        @include mq($from: desktop) {
+            margin-top: 6rem;
+        }
     }
 
     .woocommerce-breadcrumb {
@@ -12,6 +14,11 @@ body.single-product {
     }
 
     .product {
+        @include mq($from: desktop) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
         .woocommerce-product {
             &-side__note {
                 position: absolute;
@@ -24,6 +31,10 @@ body.single-product {
                 text-align: left;
                 transform-origin: left;
                 z-index: 10;
+                @include mq($from: desktop) {
+                    left: -20px;
+                    bottom: 15px;
+                }
             }
 
             &-details {
@@ -35,16 +46,39 @@ body.single-product {
                     letter-spacing: 0.2px;
                     text-align: left;
                     color: #fff;
+                    @include mq($from: desktop) {
+                        font-size: 18px;
+                        margin-bottom: 2rem;
+                    }
                 }
             }
         }
 
         .woocommerce-product-gallery {
+            width: 100%;
+            margin-bottom: 1rem;
+            @include mq($from: desktop) {
+                margin-bottom: 0;
+                flex-basis: 40%;
+                width: unset;
+            }
+            @include mq($from: desktop-lg) {
+                flex-basis: 45%;
+            }
+
             .flex-viewport {
-                .wp-post-image {
+                @include mq($from: desktop) {
+                    height: 100% !important;
+                }
+                .wp-post-image,
+                img {
                     object-fit: cover;
+                    object-position: center;
                     width: 100%;
                     height: 500px;
+                    @include mq($from: desktop) {
+                        overflow: visible;
+                    }
                 }
             }
 
@@ -54,6 +88,12 @@ body.single-product {
                 bottom: 20px;
                 display: flex;
                 flex-direction: column;
+                @include mq($from: desktop) {
+                    top: 0;
+                    left: -60px;
+                    right: unset;
+                    bottom: unset;
+                }
 
                 li {
                     img {
@@ -64,6 +104,10 @@ body.single-product {
                         background-color: rgba(255, 255, 255, 0.31);
                         border-radius: 6px;
                         margin-bottom: 1rem;
+                        @include mq($from: desktop) {
+                            width: 45px;
+                            height: 45px;
+                        }
                     }
                 }
             }
@@ -71,6 +115,12 @@ body.single-product {
 
         .summary {
             padding: 0 2rem;
+            @include mq($from: desktop) {
+                flex-basis: 40%;
+            }
+            @include mq($from: desktop-lg) {
+                max-width: 500px;
+            }
 
             .product_title {
                 font-size: 36px;
@@ -79,10 +129,14 @@ body.single-product {
                 text-align: left;
                 color: #fff;
                 font-family: $blaak;
-
                 margin-bottom: 1.7rem;
                 position: relative;
-
+                text-transform: lowercase;
+                max-width: 80%;
+                @include mq($from: desktop) {
+                    font-size: 50px;
+                    margin-bottom: 2.2rem;
+                }
                 &::after {
                     position: relative;
                     content: "";
@@ -93,6 +147,11 @@ body.single-product {
                     border: 1px solid #fff;
                     display: block;
                     border-radius: 5px;
+                    @include mq($from: desktop) {
+                        height: 8px;
+                        width: 120px;
+                        bottom: -20px;
+                    }
                 }
             }
 
@@ -121,7 +180,6 @@ body.single-product {
                             letter-spacing: 0.27px;
                             text-align: left;
                             color: #fff;
-
                             border-radius: 3px;
                             border: solid 2px #fff;
                             width: 40px;
@@ -130,10 +188,13 @@ body.single-product {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-
                             padding-top: 3px;
-
                             transition: all 0.5s ease;
+                            @include mq($from: desktop) {
+                                font-size: 26px;
+                                width: 50px;
+                                height: 50px;
+                            }
                         }
 
                         &__extra {
@@ -150,6 +211,9 @@ body.single-product {
                                 letter-spacing: 0.2px;
                                 text-align: left;
                                 color: #7b7b7b;
+                                @include mq($from: desktop) {
+                                    font-size: 18px;
+                                }
                             }
 
                             &-link {
@@ -162,7 +226,9 @@ body.single-product {
                                 text-align: left;
                                 color: #fff;
                                 text-decoration: none;
-
+                                @include mq($from: desktop) {
+                                    font-size: 23px;
+                                }
                                 &::after {
                                     content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
                                     display: inline-block;
@@ -199,6 +265,18 @@ body.single-product {
                 .single_add_to_cart_button:not(.wpcbn-btn-single) {
                     display: none;
                 }
+
+                [name="buy-now"].single_add_to_cart_button {
+                    flex-grow: 0;
+                    font-family: $lekton;
+                    font-size: 15px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: #000;
+                    @include mq($from: desktop) {
+                        font-size: 23.1px;
+                    }
+                }
             }
 
             .product_meta {
@@ -208,13 +286,24 @@ body.single-product {
 
         .woocommerce-tabs {
             // padding: 0 2rem;
-
+            display: flex;
+            flex-direction: column;
+            @include mq($from: desktop) {
+                flex-basis: 100%;
+            }
             .wc-tabs {
                 display: none;
+            }
+
+            .woocommerce-Tabs-panel {
+                order: 3;
             }
         }
 
         .woocommerce-Reviews {
+            @include mq($from: desktop) {
+                margin: 5rem 0 2rem;
+            }
             &-title {
                 flex-grow: 0;
                 font-family: $blaak;
@@ -226,18 +315,40 @@ body.single-product {
                 margin-left: 2rem;
                 display: block;
                 margin-top: 2rem;
+                text-transform: lowercase;
+                @include mq($from: desktop) {
+                    text-align: center;
+                    margin-left: 0;
+                    font-size: 35.4px;
+                }
             }
 
             .commentlist {
                 padding: 0;
                 margin-left: 1.5rem;
-                margin-top: 2rem;
-
-                .comment {
+                margin-top: 1rem;
+                @include mq($from: desktop) {
+                    margin-top: 2rem;
+                    margin-left: 20rem;
+                }
+                .comment,
+                .review {
                     list-style-type: none;
                     text-align: center;
-                    width: 50%;
-                    margin-right: 1rem;
+                    width: 70%;
+                    margin-right: 0.7rem;
+                    border-radius: 8px;
+                    border: solid 1px #050505;
+                    background-color: #050505;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.5rem 1rem;
+                    @include mq($from: desktop) {
+                        max-width: 450px;
+                        min-height: 225px;
+                        padding: 2rem 2.5rem;
+                    }
 
                     img {
                         display: none;
@@ -258,7 +369,13 @@ body.single-product {
                             line-height: 1.18;
                             text-align: center;
                             color: #fff;
-                            margin: 0 auto;
+                            margin: 1rem auto 0;
+                            @include mq($from: desktop) {
+                                font-size: 36.3px;
+                            }
+                            p {
+                                margin-bottom: 0.5rem;
+                            }
                         }
                     }
 
@@ -278,6 +395,91 @@ body.single-product {
                             letter-spacing: 0.2px;
                             text-align: left;
                             color: rgba(255, 255, 255, 0.5);
+                            @include mq($from: desktop) {
+                                font-size: 23.6px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #review_form_wrapper {
+                margin: 3rem 0 0;
+            }
+
+            .comment-respond {
+                .comment-reply-title {
+                    border-radius: 4.7px;
+                    box-shadow: 0 5px 9px 0 rgb(0 0 0 / 25%);
+                    background-color: #fff;
+                    display: flex;
+                    margin: 0 2rem;
+                    padding: 0.7rem 0;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: $lekton;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: #000;
+                    cursor: pointer;
+                    @include mq($from: desktop) {
+                        max-width: 550px;
+                        margin: auto;
+                        font-size: 29.1px;
+                        box-shadow: 0 9.1px 16.3px 0 rgb(0 0 0 / 25%);
+                        border: solid 1px #fff;
+                        background-color: #0000;
+                        color: #fff;
+                        border-radius: 8.6px;
+                    }
+                }
+                .comment-form {
+                    display: none;
+                    padding: 0 2rem;
+                    margin-top: 1rem;
+                    @include mq($from: desktop) {
+                        max-width: 550px;
+                        margin: 1rem auto;
+                    }
+
+                    .comment-form-author input,
+                    .comment-form-email input,
+                    textarea {
+                        width: 100%;
+                        border-radius: 5px;
+                        @include mq($from: desktop) {
+                            font-size: 24px;
+                        }
+                    }
+
+                    .comment-form-author input,
+                    .comment-form-email input {
+                        @include mq($from: desktop) {
+                            height: 40px;
+                        }
+                    }
+
+                    .submit {
+                        border-radius: 4.7px;
+                        box-shadow: 0 5px 9px 0 rgb(0 0 0 / 25%);
+                        background-color: #fff;
+                        padding: 0.7rem 0;
+                        font-family: $lekton;
+                        font-size: 16px;
+                        font-weight: bold;
+                        text-align: center;
+                        color: #000;
+                        width: 100%;
+                        @include mq($from: desktop) {
+                            font-size: 26px;
+                        }
+                    }
+
+                    span,
+                    label {
+                        @include mq($from: desktop) {
+                            font-size: 24px;
                         }
                     }
                 }
@@ -288,6 +490,13 @@ body.single-product {
         &__features {
             margin-top: 3rem;
             text-align: center;
+            order: 1;
+            padding: 0 2rem;
+            @include mq($from: desktop) {
+                max-width: fit-content;
+                margin: 5rem auto;
+                padding: unset;
+            }
 
             // .product__features-title
             &-title {
@@ -297,6 +506,11 @@ body.single-product {
                 line-height: 0.77;
                 text-align: center;
                 color: #fff;
+                margin-bottom: 0.5rem;
+                @include mq($from: desktop) {
+                    font-size: 35.4px;
+                    line-height: 27.4px;
+                }
             }
             // .product__features-text
             &-text {
@@ -307,6 +521,10 @@ body.single-product {
                 letter-spacing: 0.2px;
                 text-align: center;
                 color: rgba(255, 255, 255, 0.5);
+                @include mq($from: desktop) {
+                    font-size: 23px;
+                    line-height: 31.6px;
+                }
             }
             // .product__features-list
             &-list {
@@ -315,14 +533,33 @@ body.single-product {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                padding: 0;
+                gap: 0.5rem;
+                @include mq($from: desktop) {
+                    gap: 1rem;
+                    margin-top: 2rem;
+                }
             }
             // .product__features-item
             &-item {
+                border-radius: 8.7px;
+                background-color: #050505;
+                padding: 1rem 0.5rem;
+                min-width: 100px;
+                @include mq($from: desktop) {
+                    min-width: 160px;
+                    padding: 2.5rem 0.5rem 1.5rem;
+                }
                 img {
-                    margin-bottom: 0.3rem;
+                    margin-bottom: 1rem;
                     height: 50px;
                     width: 45px;
                     object-fit: contain;
+                    @include mq($from: desktop) {
+                        margin-bottom: 2rem;
+                        height: 55px;
+                        width: 75px;
+                    }
                 }
             }
             // .product__features-itemtitle
@@ -334,6 +571,11 @@ body.single-product {
                 line-height: 0.77;
                 text-align: center;
                 color: #fff;
+                display: block;
+                @include mq($from: desktop) {
+                    font-size: 23px;
+                    line-height: 17.8px;
+                }
             }
         }
 
@@ -342,37 +584,56 @@ body.single-product {
             min-height: 130px;
             display: flex;
             align-items: center;
-            width: calc(100% + 4rem);
+            width: 100%;
             position: relative;
-            left: -2rem;
+            left: 0;
             margin-top: 3rem;
-
+            order: 2;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-
+            @include mq($from: desktop) {
+                padding: 6rem 0;
+            }
             // .product__banner-title
             &-title {
                 text-shadow: 0 4.4px 6.6px rgba(0, 0, 0, 0.25);
-                font-family: $blaak;
-                font-size: 1.3rem;
-                line-height: 1;
+                font-family: $bebas;
+                font-size: 26.6px;
+                line-height: 0.81;
+                letter-spacing: 1px;
                 text-align: left;
                 text-transform: uppercase;
                 max-width: 30%;
                 margin-left: 2rem;
+                @include mq($from: desktop) {
+                    letter-spacing: 3px;
+                    font-size: 105px;
+                    margin-left: 10rem;
+                    max-width: 430px;
+                }
+                @include mq($from: desktop-md) {
+                    margin-left: 15rem;
+                }
             }
 
             // .product__banner-title
             &-bottom {
-                width: 100vw;
+                width: 100%;
                 position: static;
+                order: 4;
 
                 &-title {
                     max-width: 42%;
                     margin-left: auto;
-                    margin-right: 3rem;
-                    font-size: 1.3rem;
+                    margin-right: 1rem;
+                    font-size: 26.6px;
+                    line-height: 0.81;
+                    @include mq($from: desktop) {
+                        font-size: 120px;
+                        text-shadow: 0 16.4px 24.6px rgb(0 0 0 / 25%);
+                        max-width: 650px;
+                    }
                 }
             }
         }
@@ -393,6 +654,12 @@ body.single-product {
                 margin-top: 4rem;
                 display: block;
                 position: relative;
+                order: 5;
+                @include mq($from: desktop) {
+                    font-size: 32.6px;
+                    max-width: 700px;
+                    margin: 7rem auto 4rem;
+                }
 
                 &::after {
                     content: "";
@@ -404,6 +671,11 @@ body.single-product {
                     margin-top: 3rem;
                     border-radius: 5px;
                     opacity: 1;
+                    @include mq($from: desktop) {
+                        width: 250px;
+                        height: 12px;
+                        margin-top: 6rem;
+                    }
                 }
             }
         }
@@ -417,23 +689,39 @@ body.single-product {
             border-radius: 9px;
             box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.07);
             background-color: #fff;
-            height: 200px;
+            min-height: 200px;
             overflow: hidden;
-
+            order: 7;
+            @include mq($from: desktop) {
+                width: 700px;
+                margin: 2rem auto;
+                min-height: 350px;
+            }
             // .product__set-img
             &-img {
                 flex-basis: 40%;
+                @include mq($from: desktop) {
+                    flex-basis: 45%;
+                }
 
                 img {
-                    height: 100%;
+                    height: 200px;
                     width: 100%;
                     object-fit: cover;
+                    overflow: visible;
+                    @include mq($from: desktop) {
+                        height: 350px;
+                    }
                 }
             }
             // .product__set-meta
             &-meta {
                 padding: 1.2rem;
                 flex-basis: 60%;
+                @include mq($from: desktop) {
+                    flex-basis: 55%;
+                    padding: 4rem 2rem;
+                }
             }
             // .product__set-title
             &-title {
@@ -446,7 +734,11 @@ body.single-product {
                 position: relative;
                 margin-bottom: 0.5rem;
                 display: block;
-
+                text-transform: lowercase;
+                width: 80%;
+                @include mq($from: desktop) {
+                    font-size: 42px;
+                }
                 &::after {
                     content: "";
                     width: 40%;
@@ -455,6 +747,10 @@ body.single-product {
                     display: block;
                     border-radius: 5px;
                     margin-top: 0.4rem;
+                    @include mq($from: desktop) {
+                        height: 6px;
+                        margin-top: 1.25rem;
+                    }
                 }
             }
             // .product__set-text
@@ -466,12 +762,24 @@ body.single-product {
                 letter-spacing: 0.2px;
                 text-align: left;
                 color: #000;
+                @include mq($from: desktop) {
+                    font-size: 28px;
+                }
             }
             // .product__set-icon
             &-icon {
                 position: absolute;
                 top: 5%;
                 right: 4%;
+                @include mq($from: desktop) {
+                    top: 8%;
+                }
+
+                svg {
+                    @include mq($from: desktop) {
+                        transform: scale(1.75);
+                    }
+                }
             }
             // .product__set-buy
             &-buy {
@@ -481,6 +789,17 @@ body.single-product {
                 left: 0;
                 right: 0;
                 margin: auto;
+
+                a {
+                    @include mq($from: desktop) {
+                        flex-grow: 0;
+                        font-family: $lekton;
+                        font-size: 33.4px;
+                        font-weight: bold;
+                        text-align: center;
+                        color: #fff;
+                    }
+                }
             }
 
             // .product__set-header
@@ -488,6 +807,12 @@ body.single-product {
                 text-align: center;
                 padding: 0 5rem;
                 margin-top: 4rem;
+                order: 6;
+
+                @include mq($from: desktop) {
+                    max-width: 650px;
+                    margin: 4rem auto 2rem;
+                }
 
                 h5 {
                     font-family: $blaak;
@@ -496,6 +821,11 @@ body.single-product {
                     line-height: 0.77;
                     text-align: center;
                     color: #fff;
+
+                    @include mq($from: desktop) {
+                        font-size: 35.4px;
+                        margin-bottom: 2rem;
+                    }
                 }
 
                 p {
@@ -506,6 +836,9 @@ body.single-product {
                     letter-spacing: 0.2px;
                     text-align: center;
                     color: rgba(255, 255, 255, 0.5);
+                    @include mq($from: desktop) {
+                        font-size: 27.5px;
+                    }
                 }
             }
         }

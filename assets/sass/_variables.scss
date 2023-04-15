@@ -50,6 +50,10 @@ $mq-show-breakpoints: (mobile, mini, pro, desktop, wide);
     font-family: "BlackJack";
     src: url("/wp-content/themes/kirgo-theme/assets/fonts/BlackJack/BLACKJAR.TTF");
 }
+@font-face {
+    font-family: "Bebas";
+    src: url("/wp-content/themes/kirgo-theme/assets/fonts/Bebas_Neue/BebasNeue-Regular.ttf");
+}
 
 $lekton: "Lekton";
 $blaak-black-light: "BlaakLight_personl";
@@ -57,6 +61,7 @@ $blaak-black-regular: "BlaakRegular_personal";
 $blaak: $blaak-black-regular;
 $blaakLight: $blaak-black-light;
 $black-jack: "BlackJack";
+$bebas: "Bebas";
 $background-color: #0d0c0c;
 
 // tmm = toggle mobile menu
