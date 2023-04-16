@@ -107,19 +107,12 @@ jQuery(document).ready(function ($) {
     element.text(newText);
 
     // Add double qoutes to Reviews
-    // const reviewDescriptionElement = document.querySelector(".description p");
-    // const reviewDescriptionText = reviewDescriptionElement.innerText;
-    // console.log("reviewDescriptionText", reviewDescriptionText);
+    const reviewDescriptionElements =
+        document.querySelectorAll(".description p");
 
-    // const reviewDescriptionElement = document.querySelector(
-    //     ".review .description p"
-    // );
-
-    // console.log("reviewDescriptionElement", reviewDescriptionElement);
-
-    // reviewDescriptionElement.forEach(function (el) {
-    //     el.innerHTML = '"' + reviewDescriptionElement + '"';
-    // });
-
-    // reviewDescriptionElement.replaceWith('"' + reviewDescriptionText + '"');
+    for (let i = 0; i < reviewDescriptionElements.length; i++) {
+        let originalText = reviewDescriptionElements[i].textContent;
+        let quotedText = `"${originalText}"`;
+        reviewDescriptionElements[i].textContent = quotedText;
+    }
 });
