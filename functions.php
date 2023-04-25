@@ -212,3 +212,42 @@ if ( class_exists( 'WooCommerce' ) ) {
  ***********************/
 
 require get_template_directory() . '/inc/woocommerce/single-product.php';
+
+// Show Buttons on Cart quantity input
+add_action( 'woocommerce_before_quantity_input_field', 'display_quantity_plus' );
+function display_quantity_plus() {
+   echo '<button type="button" class="plus" >+</button>';
+}
+add_action( 'woocommerce_after_quantity_input_field', 'display_quantity_minus' );
+function display_quantity_minus() {
+   echo '<button type="button" class="minus" >-</button>';
+}
+
+
+/***********************
+ * Cart Page
+ ***********************/
+
+// Chnaged the cart total title text
+add_filter( 'gettext', 'custom_cart_totals_title', 10, 3 );
+
+function custom_cart_totals_title( $translated_text, $text, $domain ) {
+    if ( $text == 'Cart totals' && $domain == 'woocommerce' ) {
+        $translated_text = __( 'your receipt', $domain );
+    }
+    return $translated_text;
+}
+
+// Add custom text with hyperlink before "Proceed to Checkout" button on cart page
+add_action( 'woocommerce_proceed_to_checkout', 'add_custom_text_with_hyperlink_before_checkout_button', 5 );
+
+function add_custom_text_with_hyperlink_before_checkout_button() {
+    $custom_text = '<strong>You can still save a total of Rs. <span>300</span>/-</strong> <a href="/product/classic-sports-bra">add the sports bra</a> to avail';
+    echo '<p class="discount-text">' . $custom_text . '</p>';
+}
+
+
+/***********************
+ * Checkout Page
+ ***********************/
+

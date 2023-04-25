@@ -105,12 +105,12 @@
 
 // Vision Section
 
-.vistion-section {
+.vision-section {
     @include mq($from: tablet) {
         display: flex;
         flex-wrap: wrap;
     }
-    // .vistion-section__imageWrapper
+    // .vision-section__imageWrapper
 
     &__imageWrapper {
         position: relative;
@@ -123,7 +123,7 @@
         }
     }
 
-    // .vistion-section__image
+    // .vision-section__image
 
     &__image {
         width: 100%;
@@ -131,7 +131,7 @@
         object-fit: cover;
     }
 
-    // .vistion-section__imageText
+    // .vision-section__imageText
 
     &__imageText {
         position: absolute;
@@ -142,7 +142,7 @@
         }
     }
 
-    // .vistion-section__text
+    // .vision-section__text
 
     &__text {
         &:nth-child(2) {
@@ -154,7 +154,7 @@
         }
     }
 
-    // .vistion-section__wrapperPresent
+    // .vision-section__wrapperPresent
 
     &__wrapperPresent {
         padding: 2rem 2rem 0;
@@ -172,7 +172,7 @@
             align-items: center;
         }
 
-        .vistion-section__text {
+        .vision-section__text {
             @include mq($from: tablet) {
                 margin: unset;
                 max-width: 300px;
@@ -188,7 +188,7 @@
         }
     }
 
-    // .vistion-section__wrapperFuture
+    // .vision-section__wrapperFuture
 
     &__wrapperFuture {
         padding: 0 2rem 1rem;
@@ -199,7 +199,7 @@
         }
     }
 
-    // .vistion-section__titlePresent
+    // .vision-section__titlePresent
 
     &__titlePresent {
         @include mq($from: tablet) {
@@ -210,7 +210,7 @@
         }
     }
 
-    // .vistion-section__titleFuture
+    // .vision-section__titleFuture
 
     &__titleFuture {
     }
@@ -238,15 +238,18 @@
 
     &__cards {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         margin: 16px 0 0 10px;
+        flex-wrap: wrap;
+        gap: 0.5rem;
 
         @include mq($from: tablet) {
             // width: 1000px;
+            gap: 1rem;
             margin: 0 auto;
         }
         @include mq($from: desktop) {
+            gap: 1.7rem;
             width: 1000px;
         }
     }

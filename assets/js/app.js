@@ -115,4 +115,51 @@ jQuery(document).ready(function ($) {
         let quotedText = `"${originalText}"`;
         reviewDescriptionElements[i].textContent = quotedText;
     }
+
+    // Remove WooCommerce messages after 5 seconds
+    const wooCommerceMessage = $(".woocommerce-message");
+
+    if (wooCommerceMessage) {
+        setTimeout(() => {
+            wooCommerceMessage.slideUp(100, function () {
+                $(this).remove();
+            });
+        }, 5000);
+    }
+
+    // Update the cart quantity bu clicling plus/minus on Cart page
+    $(".quantity").on("click", ".plus, .minus", function (e) {
+        e.preventDefault();
+
+        // Get the input field and current quantity value for this cart item
+        var $input = $(this).closest(".quantity").find("input.qty"),
+            currentVal = parseInt($input.val());
+
+        // Determine the new quantity value based on the button clicked
+        if ($(this).hasClass("plus")) {
+            var newVal = currentVal + 1;
+        } else {
+            var newVal = currentVal > 1 ? currentVal - 1 : 1;
+        }
+
+        // Update the input field value and trigger the "change" event to update the cart
+        $input.val(newVal).trigger("change");
+    });
+
+    // Replace placeholder name of coupon input
+    $(".woocommerce-cart .coupon .input-text").attr(
+        "placeholder",
+        "enter coupon code"
+    );
+
+    // Replace the labels to thier respective placeholders
+    $(".woocommerce-billing-fields__field-wrapper label").each(function () {
+        var labelVal = $(this).text();
+        var inputName = $(this).attr("for");
+        var inputPlaceholder = $("#" + inputName).attr("placeholder");
+        if (labelVal !== "") {
+            $(this).text(inputPlaceholder);
+            $("#" + inputName).attr("placeholder", labelVal);
+        }
+    });
 });

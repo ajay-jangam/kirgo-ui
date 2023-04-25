@@ -4,41 +4,74 @@
 
 <!-- Story Section -->
 <section class="story-section">
-    <img
-        src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/story-behind-img.jpg"
-        alt="Story Behind"
-        class="story-section__image" />
-          <img
-        src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/story-behind-img-desktop.jpg"
-        alt="Story Behind"
-        class="story-section__imageDesktop" />
+    <?php if ( have_rows( 'banner_images' ) ) : ?>
+        <?php while ( have_rows( 'banner_images' ) ) : the_row(); ?>
+            <?php if ( get_sub_field( 'mobile_banner_image' ) ) : ?>
+                <img src="<?php the_sub_field( 'mobile_banner_image' ); ?>" alt="Story Behind"
+            class="story-section__image" />
+            <?php endif ?>
+            <?php if ( get_sub_field( 'desktop_banner_image' ) ) : ?>
+                <img src="<?php the_sub_field( 'desktop_banner_image' ); ?>" alt="Story Behind"
+            class="story-section__imageDesktop"/>
+            <?php endif ?>
+        <?php endwhile; ?>
+    <?php endif; ?>
+  
     <div class="story-section__wrapper">
-        <p class="story-section__title about-us-title">the  story behind</p>
-        <p class="story-section__text about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the options available in the market were priced beyond my budget. Undeterred, I took matters into my own hands and decided to create my own line of affordable activewear. My goal was to empower women everywhere to feel confident, strong, and attractive while they worked out.</p>
+        <?php if ( have_rows( 'story_section' ) ) : ?>
+            <?php while ( have_rows( 'story_section' ) ) : the_row(); ?>
+                <p class="story-section__title about-us-title"><?php the_sub_field( 'section_title' ); ?></p>
+                <p class="story-section__text about-us-text"><?php the_sub_field( 'section_description' ); ?></p>
+            <?php endwhile; ?>
+        <?php endif; ?>
     </div>
 </section>
 <!-- Story Section -->
 
 <!-- Vision Section -->
-<section class="vistion-section">
-    <div class="vistion-section__imageWrapper">
-        <img
-           src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/vision-img.jpg"
-           alt="Vision"
-           class="vistion-section__image" />
-        <img
-           src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/text-icon.svg"
-           alt="Vision Text"
-           class="vistion-section__imageText" />
-    </div>
-    <div class="vistion-section__wrapperPresent">
-        <p class="vistion-section__titlePresent about-us-title">present</p>
-        <p class="vistion-section__text  about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the</p>
-    </div>
-    <div class="vistion-section__wrapperFuture">
-        <p class="vistion-section__titleFuture about-us-title">the future</p>
-        <p class="vistion-section__text  about-us-text">As a 18-year-old woman, I embarked on a journey to the gym to improve my physical fitness. However, my dream of purchasing fashionable activewear was dashed when I realized that most of the options</p>
-    </div>
+<section class="vision-section">
+    <?php if ( have_rows( 'vision_section' ) ) : ?>
+        <?php while ( have_rows( 'vision_section' ) ) : the_row(); ?>
+          
+            <?php if ( have_rows( 'image_wrapper' ) ) : ?>
+                <?php while ( have_rows( 'image_wrapper' ) ) : the_row(); ?>
+                <div class="vision-section__imageWrapper">
+                    <?php if ( get_sub_field( 'section_banner' ) ) : ?>
+                        <img src="<?php the_sub_field( 'section_banner' ); ?>" alt="Vision"
+                    class="vision-section__image"/>
+                    <?php endif ?>
+                    <?php if ( get_sub_field( 'vision_text_icon' ) ) : ?>
+                        <img src="<?php the_sub_field( 'vision_text_icon' ); ?>" alt="Vision Text"
+                    class="vision-section__imageText"/>
+                    <?php endif ?>
+                </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
+
+            <?php if ( have_rows( 'present_subsection' ) ) : ?>
+                <?php while ( have_rows( 'present_subsection' ) ) : the_row(); ?>
+                    
+                <div class="vision-section__wrapperPresent">
+                    <p class="vision-section__titlePresent about-us-title"><?php the_sub_field( 'present_title' ); ?></p>
+                    <p class="vision-section__text  about-us-text"><?php the_sub_field( 'present_description' ); ?></p>
+                </div>
+                    
+                <?php endwhile; ?>
+            <?php endif; ?>
+  
+            <?php if ( have_rows( 'future_subsection' ) ) : ?>
+                <?php while ( have_rows( 'future_subsection' ) ) : the_row(); ?>
+                    
+                <div class="vision-section__wrapperFuture">
+                    <p class="vision-section__titleFuture about-us-title"><?php the_sub_field( 'future_title' ); ?></p>
+                    <p class="vision-section__text  about-us-text"><?php the_sub_field( 'future_description' ); ?></p>
+                </div>
+                    
+                <?php endwhile; ?>
+            <?php endif; ?>
+
+        <?php endwhile; ?>
+    <?php endif; ?>
 </section>
 <!-- Vision Section -->
 
@@ -47,26 +80,19 @@
     <div class="team-section__wrapper">
         <p class="team-section__title about-us-title">people behind</p>
         <div class="team-section__cards">
-            <div class="team-section__card">
-                <div class="team-section__memberProfile">
-                    <p class="team-section__memberName">Kanika R</p>
-                    <p class="team-section__memberPost">founder</p>
-                </div>
-                <img 
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/member-1.jpg" 
-                    alt="Team Member" 
-                    class="team-section__memberImage">
-            </div>
-            <div class="team-section__card">
-                <div class="team-section__memberProfile">
-                    <p class="team-section__memberName">Siddharth B</p>
-                    <p class="team-section__memberPost">co-founder</p>
-                </div>
-                <img 
-                    src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/member-2.jpg" 
-                    alt="Team Member" 
-                    class="team-section__memberImage">
-            </div>
+            <?php if( have_rows('team_section') ): ?>
+                <?php while( have_rows('team_section') ): the_row(); ?>
+                    <div class="team-section__card">
+                        <div class="team-section__memberProfile">
+                            <p class="team-section__memberName"><?php the_sub_field('name'); ?></p>
+                            <p class="team-section__memberPost"><?php the_sub_field('position'); ?></p>
+                        </div>
+                        <img src="<?php the_sub_field('profile_image'); ?>" alt="<?php the_sub_field('name'); ?>" alt="Team Member" 
+                            class="team-section__memberImage"/>
+                    </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
+
             <div class="team-section__card team-section__joinUs">
                 <img 
                 src="<?php echo get_template_directory_uri() ?>/assets/images/about-us/join-us.svg" 

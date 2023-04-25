@@ -32,7 +32,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "components/accordion";
 
 @import "pages/home";
-@import "components/header.scss";
+@import "comman-style";
 @import "components/footer.scss";
 @import "pages/product-single";
 @import "pages/about-us";
+@import "pages/cart";
+@import "pages/checkout";

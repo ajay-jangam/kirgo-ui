@@ -3,6 +3,12 @@
     <a href="/" class="navbar-brand__logo">
         <?php echo file_get_contents(get_template_directory() .'/assets/images/kirgo-logo.svg') ?>
     </a>
+    <a href="/my-account" class="navbar-admin">
+        <?php require get_template_directory() . '/assets/images/icons/admin.svg'; ?>
+    </a>
+    <a href="/cart" class="navbar-cart">
+        <?php require get_template_directory() . '/assets/images/icons/cart_dark.svg'; ?>
+    </a>
     <div class="navbar-hamburger">
         <span></span>
     </div>

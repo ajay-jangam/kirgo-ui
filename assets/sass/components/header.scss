@@ -50,6 +50,28 @@
     overflow-y: hidden;
 }
 
+.navbar-admin {
+    margin: 0 20px 0 auto;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        path {
+            fill: #fff;
+        }
+    }
+}
+
+.navbar-cart {
+    margin-right: 10px;
+
+    svg {
+        path {
+            fill: #fff;
+        }
+    }
+}
+
 .navbar-hamburger {
     width: $tmm_real_width;
     height: $tmm_real_height;

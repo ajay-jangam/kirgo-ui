@@ -146,7 +146,7 @@
                 justify-content: end;
                 align-items: center;
                 bottom: 15px;
-                left: 82%;
+                left: 78%;
             }
 
             @include mq($from: desktop-lg) {
@@ -206,7 +206,7 @@
         @include mq($from: desktop) {
             border-radius: 18px;
             max-width: 420px;
-            padding: 15rem 2.5rem 2rem 2.5rem;
+            padding: 10rem 2.5rem 2rem 2.5rem;
             background-size: 160% 110%;
             background-position: center 0;
         }
@@ -258,21 +258,6 @@
         color: #fff;
         @include mq($from: desktop) {
             display: none;
-        }
-    }
-
-    .top-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/sports1.jpg");
-        @include mq($from: desktop) {
-            background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/sportsNew.jpg");
-        }
-    }
-
-    .leggings-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/leggings1.jpg");
-        @include mq($from: desktop) {
-            background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/leggingsNew.jpg");
-            margin-right: 1rem;
         }
     }
 
