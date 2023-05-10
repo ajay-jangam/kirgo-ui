@@ -34,7 +34,7 @@
                     </style>
                 <?php endif ?>
             <?php endwhile; ?>
-        <?php endif ?>; 
+        <?php endif ?>
 
 
         <?php if ( have_rows( 'product_image_2' ) ) : ?>
@@ -68,13 +68,18 @@
 
 <!-- Slider Section -->
 <section class="slider-section">
+    <div class="collection-introduction">
+        <h2 class="title">introducing</br> <strong>our first collection</strong></h2>
+        <p class="subTitle">sports bra and leggings made to move</p>
+        <button class="buy-button">buy the complete set</button>
+    </div>
     <div class="home-carousel">
         <?php if( have_rows('slider') ): ?>
             <?php while( have_rows('slider') ): the_row(); ?>
                 <div class="carousel-cell">
                     <div class="carousel-cell__data">
                         <span class="carousel-cell__text"
-                            ><?php the_sub_field('slider_text'); ?></span
+                            ><?php// the_sub_field('slider_text'); ?></span
                         >
                         <img
                             src="<?php the_sub_field('slider_image'); ?>"
@@ -100,22 +105,30 @@
                 </div>
 
                 <div class="classic-section__category">
-                    <div class="classic-section__link leggings-category">
-                        <span class="classic-section__text">classic</span>
-                        <p><?php the_sub_field( 'product_name_1' ); ?></p>
-                        <?php $product_detail_page_link_1 = get_sub_field( 'product_detail_page_link_1' ); ?>
-                        <?php if ( $product_detail_page_link_1 ) : ?>
-                            <a href="<?php echo esc_url( $product_detail_page_link_1['url'] ); ?>" target="<?php echo esc_attr( $product_detail_page_link_1['target'] ); ?>"  class="product-link"><?php echo esc_html( $product_detail_page_link_1['title'] ); ?></a>
+                    <div class="motto-image">
+                        <?php $motto_image = get_sub_field( 'motto_image' ); ?>
+                        <?php if ( $motto_image ) : ?>
+                            <img src="<?php the_sub_field( 'motto_image' ); ?>" alt=""  class="motto-img"/>
                         <?php endif; ?>
                     </div>
-                    <div class="classic-section__link top-category">
-                        <span class="classic-section__text">classic</span>
-                        <p><?php the_sub_field( 'product_name_2' ); ?></p>
-                        <?php $product_detail_page_link_2 = get_sub_field( 'product_detail_page_link_2' ); ?>
-                        <?php if ( $product_detail_page_link_2 ) : ?>
-                            <a href="<?php echo esc_url( $product_detail_page_link_2['url'] ); ?>" target="<?php echo esc_attr( $product_detail_page_link_2['target'] ); ?>" class="product-link" ><?php echo esc_html( $product_detail_page_link_2['title'] ); ?></a>
-                        <?php endif; ?>
-                    </div>
+                    <?php $product_detail_page_link_1 = get_sub_field( 'product_detail_page_link_1' ); ?>
+                    <?php if ( $product_detail_page_link_1 ) : ?>
+                        <a href="<?php echo esc_url( $product_detail_page_link_1['url'] ); ?>" class="classic-section__link leggings-category">
+                            <span class="classic-section__text">classic</span>
+                            <p><?php the_sub_field( 'product_name_1' ); ?></p>
+                                <!-- <a href="<?php echo esc_url( $product_detail_page_link_1['url'] ); ?>" target="<?php echo esc_attr( $product_detail_page_link_1['target'] ); ?>"  class="product-link"><?php echo esc_html( $product_detail_page_link_1['title'] ); ?></a> -->
+                                <p class="product-link"><?php echo esc_html( $product_detail_page_link_1['title'] ); ?></p>
+                        </a>
+                    <?php endif; ?>
+                    <?php $product_detail_page_link_2 = get_sub_field( 'product_detail_page_link_2' ); ?>
+                    <?php if ( $product_detail_page_link_2 ) : ?>
+                        <a href="<?php echo esc_url( $product_detail_page_link_2['url'] ); ?>" class="classic-section__link top-category">
+                            <span class="classic-section__text">classic</span>
+                            <p><?php the_sub_field( 'product_name_2' ); ?></p>
+                                <!-- <a href="<?php echo esc_url( $product_detail_page_link_2['url'] ); ?>" target="<?php echo esc_attr( $product_detail_page_link_2['target'] ); ?>" class="product-link" ><?php echo esc_html( $product_detail_page_link_2['title'] ); ?></a> -->
+                                <p class="product-link"><?php echo esc_html( $product_detail_page_link_2['title'] ); ?></p>
+                        </a>
+                    <?php endif; ?>
                 </div>
 
                 <?php $shop_page_link = get_sub_field( 'shop_page_link' ); ?>
@@ -215,6 +228,17 @@
 </section>
 
 <!-- Newsletter Section -->
+<!-- Banner Bottom -->
+<?php if ( have_rows( 'small_banner_2' ) ) : ?>
+    <?php while ( have_rows( 'small_banner_2' ) ) : the_row(); ?>
+        <?php if ( get_sub_field( 'background_image' ) ) : ?>
+            <div class="product__banner product__banner product__banner-bottom"
+                style="background-image: url('<?php the_sub_field( 'background_image' ); ?>')">
+                <div class="product__banner-title product__banner-bottom-title"><?php the_sub_field( 'title' ); ?></div>
+            </div>
+        <?php endif ?>
+    <?php endwhile; ?>
+<?php endif; ?>
 
 <!-- Blog Section -->
 <section class="blog-section">
@@ -325,17 +349,21 @@
             </a>
         </div>
     </div>
-    <div class="shop-section__wrapperDesktop">
+    <div class="shop-section__wrapperDesktop rdfcd">
         <div class="shop-gallery">
-            <?php if( have_rows('shop_gallery_slider') ): ?>
-                <?php while( have_rows('shop_gallery_slider') ): the_row(); ?>
-                    <div class="carousel-cell">
-                        <img
-                            src="<?php the_sub_field('gallery_image'); ?>"
-                            alt="Kirgo"
-                            class="shop-section__shopImage"
-                        />
-                    </div>
+            <?php if( have_rows('shop_section') ): ?>
+                <?php while( have_rows('shop_section') ): the_row(); ?>
+                    <?php if( have_rows('shop_gallery_slider') ): ?>
+                        <?php while( have_rows('shop_gallery_slider') ): the_row(); ?>
+                            <div class="carousel-cell">
+                                <img
+                                    src="<?php the_sub_field('gallery_image'); ?>"
+                                    alt="Kirgo"
+                                    class="shop-section__shopImage"
+                                />
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
                 <?php endwhile; ?>
             <?php endif; ?>
         </div>

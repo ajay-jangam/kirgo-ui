@@ -19,6 +19,11 @@ body.single-product {
         top: 6rem;
         right: 3%;
         width: 300px;
+        @include mq($from: desktop) {
+            top: 8rem;
+            right: unset;
+            left: 70%;
+        }
         div {
             font-size: 1em;
             background: #fff;
@@ -34,6 +39,181 @@ body.single-product {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+        }
+        .duplicate-elements {
+            position: sticky;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            background-color: #040404;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 0;
+            display: none;
+            @include mq($from: desktop) {
+                display: flex;
+            }
+            .product-image-side {
+                margin-right: 2rem;
+
+                img {
+                    height: 160px;
+                    width: 150px;
+                    object-fit: cover;
+                }
+            }
+
+            .product-details-side {
+                flex-basis: 40%;
+            }
+
+            .buy-button {
+                .variations_form {
+                    display: flex;
+
+                    .woovr-variations {
+                        .woovr-variation-info {
+                            height: 55px;
+                        }
+                    }
+                }
+            }
+            .product_title {
+                font-size: 14px;
+                margin-bottom: 1rem;
+                font-weight: 400;
+                max-width: unset;
+                line-height: 0.94;
+                text-align: left;
+                color: #fff;
+                font-family: $blaak;
+                position: relative;
+                text-transform: lowercase;
+                @include mq($from: desktop) {
+                    font-size: 28px;
+                }
+            }
+
+            .product-short-description {
+                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+                font-size: 13px;
+                font-weight: bold;
+                line-height: 16px;
+                height: 32px;
+                letter-spacing: 0.2px;
+                text-align: left;
+                color: #fff;
+                max-width: 500px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                @include mq($from: desktop) {
+                    font-size: 18px;
+                    margin-bottom: 0.8rem;
+                }
+            }
+
+            .price {
+                display: none;
+            }
+
+            .cart {
+                .woovr-variations {
+                    display: flex;
+
+                    .woovr-variation {
+                        &[data-id="0"],
+                        &-selector,
+                        &-image,
+                        &-price {
+                            display: none;
+                        }
+
+                        &-name {
+                            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+                            font-family: Lekton;
+                            font-size: 18px;
+                            font-weight: bold;
+                            line-height: 1.37;
+                            letter-spacing: 0.27px;
+                            text-align: left;
+                            color: #fff;
+                            border-radius: 3px;
+                            border: solid 2px #fff;
+                            width: 40px;
+                            height: 40px;
+                            margin-right: 1rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding-top: 3px;
+                            transition: all 0.5s ease;
+                            @include mq($from: desktop) {
+                                font-size: 26px;
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+
+                        &__extra {
+                            display: none;
+                        }
+
+                        &:hover {
+                            background-color: unset;
+
+                            .woovr-variation-name {
+                                background-color: #fff;
+                                color: #000;
+                                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+                            }
+                        }
+
+                        &-active {
+                            .woovr-variation-name {
+                                background-color: #fff;
+                                color: #000;
+                                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+                            }
+                        }
+                    }
+                }
+
+                .quantity {
+                    display: none !important;
+                }
+
+                .single_add_to_cart_button:not(.wpcbn-btn-single) {
+                    display: none;
+                }
+
+                [name="buy-now"].single_add_to_cart_button {
+                    flex-grow: 0;
+                    font-family: $lekton;
+                    font-size: 15px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: #000;
+                    width: 250px;
+                    margin: -5rem 0 0 25rem;
+                    position: absolute;
+                    bottom: 0;
+                    top: 0;
+                    left: 70%;
+                    margin: auto;
+                    height: 70px;
+                    @include mq($from: desktop) {
+                        font-size: 23.1px;
+                    }
+                }
+
+                .accordion {
+                    display: none;
+                }
+            }
         }
         .woocommerce-product {
             &-side__note {
@@ -297,7 +477,7 @@ body.single-product {
                     height: 25px;
 
                     @include mq($from: desktop) {
-                        top: -2.5rem;
+                        top: -3rem;
                         color: #fff;
                         right: 0;
                         width: unset;
@@ -351,6 +531,7 @@ body.single-product {
             flex-direction: column;
             @include mq($from: desktop) {
                 flex-basis: 100%;
+                margin-bottom: 3rem;
             }
             .wc-tabs {
                 display: none;
@@ -391,6 +572,13 @@ body.single-product {
                 @include mq($from: desktop) {
                     margin-top: 2rem;
                     margin-left: 20rem;
+                }
+
+                .flickity-viewport {
+                    .flickity-slider {
+                        display: flex;
+                        align-items: center;
+                    }
                 }
                 .comment,
                 .review {
@@ -598,7 +786,7 @@ body.single-product {
             border-radius: 9px;
             box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.07);
             background-color: #fff;
-            min-height: 200px;
+            min-height: 240px;
             overflow: hidden;
             order: 7;
             @include mq($from: desktop) {
@@ -614,22 +802,22 @@ body.single-product {
                 }
 
                 img {
-                    height: 200px;
+                    height: 100%;
                     width: 100%;
                     object-fit: cover;
-                    overflow: visible;
-                    @include mq($from: desktop) {
-                        height: 350px;
-                    }
+                    // overflow: visible;
+                    // @include mq($from: desktop) {
+                    //     height: 350px;
+                    // }
                 }
             }
             // .product__set-meta
             &-meta {
-                padding: 1.2rem;
+                padding: 1.2rem 1.2rem 4rem;
                 flex-basis: 60%;
                 @include mq($from: desktop) {
                     flex-basis: 55%;
-                    padding: 4rem 2rem;
+                    padding: 4rem 2rem 5rem;
                 }
             }
             // .product__set-title
@@ -751,5 +939,8 @@ body.single-product {
                 }
             }
         }
+    }
+    .footer-section__image {
+        margin: 9rem auto 3rem;
     }
 }

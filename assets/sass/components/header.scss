@@ -7,6 +7,15 @@
     z-index: 9999;
     top: 0;
 
+    .navbar-brand__logo {
+        svg {
+            @include mq($from: desktop) {
+                transform: scale(1.5);
+                margin-left: 1rem;
+            }
+        }
+    }
+
     &.active {
         .navbar-brand__logo {
             z-index: 99999;
@@ -18,6 +27,19 @@
                 g {
                     fill: #000;
                     filter: none;
+                    @include mq($from: desktop) {
+                        fill: #fff;
+                    }
+                }
+            }
+        }
+
+        .navbar-admin,
+        .navbar-cart {
+            svg {
+                path {
+                    stroke: #000;
+                    fill: #000;
                 }
             }
         }
@@ -44,6 +66,90 @@
             right: 0;
         }
     }
+
+    .home-arrow {
+        svg {
+            width: 10px;
+            height: 15px;
+        }
+    }
+    .woocommerce-page-title {
+        font-style: inherit;
+        font-weight: 900;
+        font-size: 26.3464px;
+        line-height: 1;
+        margin: 0 0 0 0.5rem;
+        text-transform: lowercase;
+    }
+}
+
+.woocommerce-cart {
+    .navbar {
+        .navbar-cart.disabled {
+            opacity: 0.3;
+            // pointer-events: none;
+            .cart-count {
+                display: none;
+            }
+        }
+    }
+}
+
+.page-template-template-about-us {
+    .navbar {
+        svg {
+            fill: #000;
+            path {
+                fill: #000;
+            }
+            g {
+                fill: #000;
+            }
+        }
+        .navbar-hamburger {
+            span {
+                background: #000;
+
+                &:before,
+                &:after {
+                    background: #000;
+                }
+            }
+        }
+    }
+
+    .navbar.active {
+        .navbar-hamburger {
+            span {
+                background: #0000;
+            }
+        }
+    }
+    .navbar.scrolled-screen {
+        svg {
+            fill: #fff;
+            path {
+                fill: #fff;
+            }
+            g {
+                fill: #fff;
+            }
+        }
+        .navbar-hamburger {
+            span {
+                background: #fff;
+
+                &:before,
+                &:after {
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+.scrolled-screen {
+    background-color: #0d0c0c;
 }
 
 .isFixed {
@@ -51,8 +157,8 @@
 }
 
 .navbar-admin {
-    margin: 0 20px 0 auto;
-
+    margin: 0 0 0 auto;
+    z-index: 99999;
     svg {
         width: 20px;
         height: 20px;
@@ -63,7 +169,26 @@
 }
 
 .navbar-cart {
-    margin-right: 10px;
+    margin: 0 10px 0 20px;
+    text-decoration: none;
+    position: relative;
+    z-index: 99999;
+    .cart-count {
+        font-family: $lekton;
+        color: #000;
+        font-size: 16px;
+        background-color: #fff;
+        border-radius: 50%;
+        line-height: 1;
+        position: absolute;
+        top: -13px;
+        left: 8px;
+        display: flex;
+        width: 25px;
+        height: 25px;
+        justify-content: center;
+        align-items: center;
+    }
 
     svg {
         path {
@@ -80,7 +205,7 @@
     position: relative;
     z-index: 99999;
     transform: scale(0.65);
-
+    cursor: pointer;
     span {
         position: absolute;
         width: 100%;
@@ -125,9 +250,92 @@
     background-color: #fff;
     transition: all 0.4s ease;
     padding-top: 100px;
-    display: flex;
-    flex-direction: column;
     overflow-y: auto;
+    @include mq($from: desktop) {
+        display: flex;
+        flex-direction: column;
+        padding-top: 0;
+        flex-direction: row;
+    }
+
+    .product-nav-links-left {
+        flex-basis: 65%;
+        display: none;
+        @include mq($from: desktop) {
+            display: flex;
+        }
+        .product-nav-link {
+            background-repeat: no-repeat;
+            flex-basis: 50%;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+
+            .product-prefix {
+                font-family: $blaak-black-regular;
+                font-style: italic;
+                font-weight: 400;
+                font-size: 38.403px;
+                line-height: 93.9%;
+                color: #ffffff;
+            }
+            .product-title {
+                font-family: $blaak-black-regular;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 53.1734px;
+                line-height: 103.9%;
+                color: #ffffff;
+            }
+            .menu-buy-link {
+                margin-bottom: 3rem;
+                font-family: $lekton;
+                background: #ffffff;
+                box-shadow: 0px 7.20548px 12.9699px rgb(0 0 0 / 25%);
+                border-radius: 6.82624px;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 18px;
+                text-align: center;
+                color: #000000;
+                padding: 1rem 4rem;
+                text-decoration: none;
+            }
+        }
+    }
+    .product-nav-links-right {
+        flex-basis: 35%;
+        height: calc(100vh - 100px);
+        display: flex;
+        flex-direction: column;
+        @include mq($from: desktop) {
+            height: unset;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+
+        .navbar-menu {
+            padding: 0 2rem;
+            @include mq($from: desktop) {
+                padding: 0 3rem;
+                margin: auto 0 0;
+                gap: 3rem;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .navbar-menu__item {
+                .navbar-menu__link {
+                    @include mq($from: desktop) {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .active.white-background {
@@ -149,6 +357,13 @@
     // .navbar-menu__item
     list-style-type: none;
     padding: 0 2rem 0 2rem;
+
+    .hidden-link-desktop {
+        @include mq($from: desktop) {
+            display: none;
+        }
+    }
+
     &__item {
         text-decoration: none;
         &:nth-child(2) {
@@ -211,11 +426,12 @@
 
     .leggings-category {
         background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/classic-leggings.jpg");
+        margin-right: 0;
     }
 }
 .social-link {
     // .social-link__items
-    padding: 0 2rem 0 2rem;
+    padding: 0 2rem;
     margin: auto 0 2rem;
     display: flex;
     align-items: center;

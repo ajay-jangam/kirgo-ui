@@ -251,3 +251,49 @@ function add_custom_text_with_hyperlink_before_checkout_button() {
  * Checkout Page
  ***********************/
 
+// Chnaged the checkout order title text
+add_filter( 'gettext', 'woocommerce_checkout_before_order_review_heading', 10, 3 );
+
+function woocommerce_checkout_before_order_review_heading( $translated_text, $text, $domain ) {
+    if ( $text == 'Your order' && $domain == 'woocommerce' ) {
+        $translated_text = __( 'your receipt', $domain );
+    }
+    return $translated_text;
+}
+
+add_action( 'woocommerce_single_product_summary', 'add_duplicate_content', 25 );
+
+function add_duplicate_content() {
+   global $product;
+   echo '<div class="duplicate-elements">';
+  
+   // Product Image
+   echo '<div class="product-image-side">';
+   echo $product->get_image();
+   echo '</div>';
+
+   echo '<div class="product-details-side">';
+ 
+   echo '<div class="product-text-content">';
+
+   // Product Title
+   echo '<div class="product-title-div">';
+   echo '<h1 class="product_title">'.$product->get_name().'</h1>';
+   echo '</div>';
+ 
+   // Short Description
+   echo '<div class="product-short-description">';
+   echo $product->get_short_description();
+   echo '</div>';
+
+   echo '</div>';
+   
+   // Buy Button
+   echo '<div class="buy-button">';
+   woocommerce_template_single_add_to_cart();
+   echo '</div>';
+   
+   echo '</div>';
+
+   echo '</div>';
+}

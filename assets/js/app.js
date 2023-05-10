@@ -13,8 +13,30 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
+    // set the target element and the class name to toggle
+    var navbar = $(".navbar");
+    var className = "scrolled-screen";
+    $(window).on("scroll", function () {
+        // get the current scroll position
+        var scrollPosition = $(window).scrollTop();
+
+        // check if the scroll position is greater than or equal to the height of the navbar
+        if (scrollPosition >= navbar.outerHeight()) {
+            // toggle the class on the navbar with animation
+            navbar
+                .toggleClass(className, true)
+                .animate({ backgroundColor: "#f8f8f8" }, 500);
+        } else {
+            // toggle the class on the navbar with animation
+            navbar
+                .toggleClass(className, false)
+                .animate({ backgroundColor: "transparent" }, 500);
+        }
+    });
+
     $(".navbar-links").scroll(function () {
-        var scroll = $(".navbar-links").scrollTop();
+        console.log("ejhsgb");
+        let scroll = $(".navbar-links").scrollTop();
         if (
             (scroll > 10 && !$(".active").hasClass("white-background")) ||
             (scroll === 0 && $(".active").hasClass("white-background"))
@@ -29,39 +51,16 @@ jQuery(document).ready(function ($) {
 
     // Home Slider
 
-    var $homeCarousel = $(".home-carousel").flickity({
+    let $homeCarousel = $(".home-carousel");
+
+    $homeCarousel.flickity({
         wrapAround: true,
-        autoPlay: false,
+        autoPlay: true,
     });
-
-    // Parallax effect
-    // var $slideImages = $homeCarousel.find(".slider-image")
-    // var $slideText = $homeCarousel.find(".carousel-cell__text")
-
-    // // get transform property
-    // var docStyle = document.documentElement.style
-    // var transformProp =
-    // 	typeof docStyle.transform == "string" ? "transform" : "WebkitTransform"
-    // // get Flickity instance
-    // var flkty = $homeCarousel.data("flickity")
-
-    // $homeCarousel.on("scroll.flickity", function () {
-    // 	flkty.slides.forEach(function (slide, i) {
-    // 		var img = $slideImages[i]
-    // 		var text = $slideText[i]
-    // 		var x = ((slide.target + flkty.x) * -1) / 3
-    // 		img.style[transformProp] = "translateX(" + x + "px)"
-    // 		text.style[transformProp] = "translateX(" + x + "px)"
-    // 	})
-    // })
 
     // Blog Slider
 
-    var $blogCarousel = $(".blog-carousel");
-
-    // $blogCarousel.on("scroll.flickity", function () {
-    //     console.log("Flickity ready");
-    // });
+    let $blogCarousel = $(".blog-carousel");
 
     $blogCarousel.flickity({
         wrapAround: true,
@@ -70,8 +69,6 @@ jQuery(document).ready(function ($) {
         contain: true,
         cellAlign: "center",
     });
-
-    // $blogCarousel.flickity();
 
     /**
      * Product Page
@@ -84,7 +81,7 @@ jQuery(document).ready(function ($) {
 
     // Gallery Slider
 
-    var $galleryCarousel = $(".shop-gallery");
+    let $galleryCarousel = $(".shop-gallery");
 
     $galleryCarousel.flickity({
         wrapAround: true,
@@ -116,20 +113,25 @@ jQuery(document).ready(function ($) {
         reviewDescriptionElements[i].textContent = quotedText;
     }
 
-    // Remove WooCommerce messages after 5 seconds
-    const wooCommerceMessage = $(".woocommerce-message");
+    // Hide WooCommerce notices after 5 seconds
+    setTimeout(function () {
+        $(".woocommerce-notices-wrapper").fadeOut("slow");
+    }, 5000);
 
-    if (wooCommerceMessage) {
-        setTimeout(() => {
-            wooCommerceMessage.slideUp(100, function () {
-                $(this).remove();
-            });
-        }, 5000);
-    }
+    // Remove WooCommerce notices when clicked
+    $(document).on(
+        "click",
+        ".woocommerce-message, .woocommerce-error, .woocommerce-info",
+        function () {
+            $(this).fadeOut("slow");
+        }
+    );
 
     // Update the cart quantity bu clicling plus/minus on Cart page
     $(".quantity").on("click", ".plus, .minus", function (e) {
         e.preventDefault();
+
+        console.log("ewjsgb");
 
         // Get the input field and current quantity value for this cart item
         var $input = $(this).closest(".quantity").find("input.qty"),
@@ -152,14 +154,149 @@ jQuery(document).ready(function ($) {
         "enter coupon code"
     );
 
-    // Replace the labels to thier respective placeholders
-    $(".woocommerce-billing-fields__field-wrapper label").each(function () {
-        var labelVal = $(this).text();
-        var inputName = $(this).attr("for");
-        var inputPlaceholder = $("#" + inputName).attr("placeholder");
-        if (labelVal !== "") {
-            $(this).text(inputPlaceholder);
-            $("#" + inputName).attr("placeholder", labelVal);
-        }
+    // Replace the labels to their respective placeholders
+
+    let inputElementsOnCheckout = $(
+        ".woocommerce-billing-fields__field-wrapper label"
+    );
+    let inputElementsOnSignIn = $(
+        ".woocommerce-account .woocommerce-form-row label"
+    );
+    let inputElementsForShippingAddress = $(
+        ".woocommerce-address-fields__field-wrapper label"
+    );
+    let inputElementsOnRegister = $(".custom-registration label");
+
+    const replacePlaceholderWithLabel = (inputElement) => {
+        inputElement.each(function () {
+            let labelVal = $(this).text();
+            let inputName = $(this).attr("for");
+            let inputPlaceholder = $("#" + inputName).attr("placeholder");
+            if (labelVal !== "") {
+                $(this).text(inputPlaceholder);
+                $("#" + inputName).attr("placeholder", labelVal);
+            }
+        });
+    };
+    replacePlaceholderWithLabel(inputElementsOnCheckout);
+    replacePlaceholderWithLabel(inputElementsOnSignIn);
+    replacePlaceholderWithLabel(inputElementsOnRegister);
+    replacePlaceholderWithLabel(inputElementsForShippingAddress);
+
+    // added Shipment text on checkout page
+    const container = $(".woocommerce-billing-fields__field-wrapper");
+    const newElement = $(
+        "<p id='shipment-text'>enter your <br><span>shipping details</span></p>"
+    );
+    container.find(">:nth-child(3)").after(newElement);
+
+    // Added image on account page
+    const accountPageElement = $(".woocommerce-account #page");
+    const newAccountPageElement = $(
+        '<img class="account-banner-image" src="/wp-content/themes/kirgo-theme/assets/images/account/sign-in-banner.png" alt="Banner Image" />'
+    );
+    if (!$("body.woocommerce-page").hasClass("logged-in")) {
+        // Remove banner image when logged in
+        accountPageElement.find(">:nth-child(1)").after(newAccountPageElement);
+
+        // Keep full height when logged in
+        $(
+            ".woocommerce-account .woocommerce, .page-id-237 .custom-registration"
+        ).css("height", "calc(100vh - 250px)");
+    }
+
+    // Change the Sign In Title text
+    if ($("body").not("woocommerce-account.logged-in")) {
+        const signInTextElement = $(
+            ".woocommerce-account #page .woocommerce h2"
+        );
+        const signInNewText = "sign in";
+        signInTextElement.text(signInNewText);
+    }
+
+    // Change the Sign In Title text on Register
+    const registerTextElement = $(".page-id-237 .custom-registration h2");
+    const registerNewText = "create an account";
+    registerTextElement.text(registerNewText);
+
+    // Change the Sign In Button Title text
+    const signInTextButtonElement = $(
+        ".woocommerce-account .woocommerce-form-login .woocommerce-form-login__submit"
+    );
+    const signInButtonNewText = "sign in";
+    signInTextButtonElement.text(signInButtonNewText);
+
+    // Hide footer when user logout and show when login in
+    if ($("body").hasClass("woocommerce-account")) {
+        $(".footer-section").hide();
+
+        // if ($("body.woocommerce-account").hasClass("logged-in")) {
+        //     $("footer-section").show();
+        // } else {
+        //     $(".footer-section").hide();
+        // }
+    }
+
+    // loop through all elements with the class name "woovr-variation-name"
+    $(".woovr-variation-name").each(function () {
+        var words = $(this).text().split(" ");
+        var lastWord = words[words.length - 1];
+        var firstChar = lastWord.charAt(0);
+        $(this).text(firstChar);
     });
+
+    if ($("body").hasClass("woocommerce-checkout")) {
+        const checkoutButtonAncestor = document.querySelector(
+            ".checkout.woocommerce-checkout"
+        );
+        const checkoutNestedButton = document.querySelector("#place_order");
+        checkoutButtonAncestor.appendChild(checkoutNestedButton);
+
+        const requiredInputFields = $(
+            ".checkout.woocommerce-checkout .validate-required input"
+        );
+        const button = $("#place_order");
+
+        checkRequiredFields();
+        requiredInputFields.on("input", function () {
+            checkRequiredFields();
+        });
+
+        function checkRequiredFields() {
+            let allValid = true;
+            requiredInputFields.each(function () {
+                let inputVal = $(this).val();
+                if (!inputVal || inputVal.trim() === "") {
+                    allValid = false;
+                }
+            });
+
+            if (allValid) {
+                button.prop("disabled", false);
+            } else {
+                button.prop("disabled", true);
+            }
+        }
+    }
+
+    if ($("body").hasClass("woocommerce-cart")) {
+        const cartButtonAncestor = document.querySelector(
+            ".woocommerce-cart .woocommerce"
+        );
+        const cartNestedButton = document.querySelector(
+            ".woocommerce-cart .checkout-button"
+        );
+        cartButtonAncestor.appendChild(cartNestedButton);
+    }
+
+    if (window.location.href.indexOf("/cart/") > -1) {
+        $("a.navbar-cart").click(function (event) {
+            event.preventDefault();
+        });
+        $("a.navbar-cart").addClass("disabled");
+    }
+
+    $(".duplicate-elements").appendTo(
+        $(".woocommerce-product-details__short-description").parent().parent()
+    );
 });

@@ -1,0 +1,104 @@
+.page-id-237 {
+    .account-banner-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        // object-position: center -2rem;
+    }
+    .custom-registration {
+        font-family: $lekton;
+        padding: 2rem;
+        color: #000;
+        background-color: #fff;
+
+        h2 {
+            font-family: $blaak-black-regular;
+            font-size: 26.3px;
+            font-weight: 900;
+            line-height: 24.7px;
+            text-align: left;
+            color: #0d0c0c;
+            position: relative;
+            margin-bottom: 1rem;
+            text-transform: lowercase;
+            &::before {
+                content: url("/wp-content/themes/kirgo-theme/assets/images/icons/left-arrow.svg");
+                margin-right: 10px;
+            }
+        }
+
+        label {
+            display: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            line-height: 1;
+            border-radius: 6px;
+            font-family: $lekton;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: -0.14px;
+            text-align: left;
+            color: #000;
+            text-transform: lowercase;
+            -webkit-backdrop-filter: blur(4.9px);
+            backdrop-filter: blur(4.9px);
+            border: solid 0.3px rgb(13 12 12 / 60%);
+            background-color: rgba(13, 12, 12, 0);
+        }
+
+        .woocommerce-Button.button {
+            border-radius: 6px;
+            border: solid 0 #000;
+            background-color: #0d0c0c;
+            font-family: $blaak-black-regular;
+            font-size: 12.1px;
+            font-weight: 900;
+            line-height: 11.4px;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            padding: 1rem 0;
+            text-transform: lowercase;
+        }
+
+        .woocommerce-privacy-policy-text {
+            opacity: 0.7;
+            font-family: $blaak-black-regular;
+            font-size: 12px;
+            font-weight: 100;
+            line-height: 16.5px;
+            letter-spacing: 0.18px;
+            text-align: left;
+            color: #0d0c0c;
+            a {
+                color: #0d0c0c;
+                text-transform: capitalize;
+            }
+        }
+
+        .sign-in-btn {
+            border-radius: 6px;
+            border: solid 1px #000;
+            font-family: "BlaakRegular_personal";
+            font-size: 12.1px;
+            font-weight: 900;
+            line-height: 11.4px;
+            text-align: center;
+            width: 100%;
+            padding: 1rem 0;
+            color: #000;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .footer-section {
+        display: none;
+    }
+}

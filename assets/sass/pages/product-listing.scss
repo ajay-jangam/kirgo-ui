@@ -1,0 +1,32 @@
+.woocommerce-shop {
+    .site-main {
+        padding: 0 2rem;
+        font-family: $lekton;
+        .orderby {
+            backdrop-filter: blur(4.9px);
+            border: solid 0.3px rgb(255 255 255 / 60%);
+            background-color: rgba(255, 255, 255, 0);
+            width: 100%;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: "Lekton";
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: -0.14px;
+            text-align: left;
+            color: #fff;
+            height: unset;
+        }
+
+        .select2-selection__rendered {
+            line-height: 1;
+            color: #fff;
+        }
+
+        .select2-selection__arrow {
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+}

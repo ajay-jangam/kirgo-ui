@@ -118,7 +118,7 @@
             letter-spacing: 1px;
             text-align: left;
             text-transform: uppercase;
-            max-width: 30%;
+            max-width: 120px;
             margin-left: 2rem;
             @include mq($from: desktop) {
                 letter-spacing: 3px;
@@ -138,15 +138,15 @@
             order: 4;
 
             &-title {
-                max-width: 42%;
+                max-width: 150px;
                 margin-left: auto;
                 margin-right: 1rem;
                 font-size: 26.6px;
                 line-height: 0.81;
                 @include mq($from: desktop) {
-                    font-size: 120px;
+                    font-size: 100px;
                     text-shadow: 0 16.4px 24.6px rgb(0 0 0 / 25%);
-                    max-width: 650px;
+                    max-width: 500px;
                 }
             }
         }
@@ -165,5 +165,44 @@
                 display: none;
             }
         }
+    }
+}
+
+.woocommerce-notices-wrapper,
+.woocommerce-NoticeGroup {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    font-family: "Lekton";
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    width: 80%;
+    margin: auto;
+    z-index: 2;
+    ul,
+    div {
+        padding: 1rem;
+        margin: 0;
+
+        li {
+            list-style: none;
+            margin-bottom: 1rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.error404 {
+    .error-404.not-found {
+        padding: 0 2rem;
+        font-family: "Lekton";
+        margin: 10rem 0 5rem;
+    }
+    .page-content {
+        display: none;
     }
 }
