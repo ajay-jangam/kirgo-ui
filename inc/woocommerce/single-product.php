@@ -8,7 +8,13 @@ function woocommerce_single_product_variations_extras() {
 	echo "
 	<div class='woovr-variation__extra'>
 		<span class='woovr-variation__extra-title'>XS & XL coming soon</span>
-		<a class='woovr-variation__extra-link' href='#'>notify me</a>
+		<!-- <a class='woovr-variation__extra-link' href='#'>notify me</a> -->
+
+		<button type='button' class='woovr-variation__extra-link' data-bs-toggle='modal' data-bs-target='#notifyMePopup'>
+		notify me
+		</button>
+
+		
 	</div>";
 }
 

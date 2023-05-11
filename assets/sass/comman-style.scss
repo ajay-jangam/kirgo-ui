@@ -206,3 +206,75 @@
         display: none;
     }
 }
+
+#notifyMePopup {
+    opacity: 1;
+    .modal-content {
+        background-color: #fff;
+
+        .modal-body {
+            padding: 1.5rem;
+            @include mq($from: desktop) {
+                padding: 2rem;
+            }
+        }
+    }
+    .btn-close {
+        opacity: 1;
+        position: absolute;
+        font-size: 1rem;
+        z-index: 1;
+        top: 5px;
+        right: 7px;
+        font-weight: 700;
+    }
+    .model-title {
+        font-family: $blaak-black-regular;
+        font-size: 14px;
+        color: #000;
+        @include mq($from: desktop) {
+            font-size: 24px;
+        }
+    }
+    .notify-me-form {
+        display: flex;
+        border: 1px solid #000;
+        border-radius: 6px;
+        input {
+            padding: 0.5rem 0.8rem;
+            font-family: $lekton;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.12px;
+            text-align: left;
+            color: #fff;
+            background-color: #0d0c0c;
+            min-width: 200px;
+            flex-basis: 80%;
+            border: none;
+            @include mq($from: desktop) {
+                font-size: 20px;
+            }
+        }
+
+        .notify-me-button {
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            background-color: #fff;
+            -webkit-text-stroke: 0.2px #000;
+            font-family: $lekton;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: -0.16px;
+            text-align: center;
+            color: #000;
+            flex-basis: 20%;
+            border: none;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            @include mq($from: desktop) {
+                font-size: 24px;
+            }
+        }
+    }
+}

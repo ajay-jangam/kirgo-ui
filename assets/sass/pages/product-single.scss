@@ -134,7 +134,7 @@ body.single-product {
 
                         &-name {
                             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-                            font-family: Lekton;
+                            font-family: $lekton;
                             font-size: 18px;
                             font-weight: bold;
                             line-height: 1.37;
@@ -371,7 +371,7 @@ body.single-product {
 
                         &-name {
                             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-                            font-family: Lekton;
+                            font-family: $lekton;
                             font-size: 18px;
                             font-weight: bold;
                             line-height: 1.37;
@@ -403,7 +403,7 @@ body.single-product {
 
                             &-title {
                                 text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-                                font-family: Lekton;
+                                font-family: $lekton;
                                 font-size: 13px;
                                 line-height: 1.37;
                                 letter-spacing: 0.2px;
@@ -416,7 +416,7 @@ body.single-product {
 
                             &-link {
                                 text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-                                font-family: Lekton;
+                                font-family: $lekton;
                                 font-size: 16px;
                                 font-weight: bold;
                                 line-height: 1.37;
@@ -424,6 +424,9 @@ body.single-product {
                                 text-align: left;
                                 color: #fff;
                                 text-decoration: none;
+                                background-color: #0000;
+                                border: none;
+                                padding: 0;
                                 @include mq($from: desktop) {
                                     font-size: 23px;
                                 }
@@ -469,7 +472,7 @@ body.single-product {
                     top: 33rem;
                     color: #0000;
                     right: 2rem;
-                    z-index: 1111;
+                    z-index: 11;
                     font-size: 0;
                     background-color: #0000;
                     padding: unset;
@@ -786,17 +789,18 @@ body.single-product {
             border-radius: 9px;
             box-shadow: 0 1px 32px 0 rgba(0, 0, 0, 0.07);
             background-color: #fff;
-            min-height: 240px;
+            // min-height: 240px;
             overflow: hidden;
             order: 7;
             @include mq($from: desktop) {
                 width: 700px;
                 margin: 2rem auto;
-                min-height: 350px;
+                // min-height: 350px;
             }
             // .product__set-img
             &-img {
                 flex-basis: 40%;
+                max-height: 500px;
                 @include mq($from: desktop) {
                     flex-basis: 45%;
                 }
@@ -815,6 +819,9 @@ body.single-product {
             &-meta {
                 padding: 1.2rem 1.2rem 4rem;
                 flex-basis: 60%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 @include mq($from: desktop) {
                     flex-basis: 55%;
                     padding: 4rem 2rem 5rem;
@@ -943,4 +950,9 @@ body.single-product {
     .footer-section__image {
         margin: 9rem auto 3rem;
     }
+}
+#popover-form {
+    display: none;
+    // .hide {
+    // }
 }

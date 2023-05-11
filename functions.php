@@ -297,3 +297,27 @@ function add_duplicate_content() {
 
    echo '</div>';
 }
+
+add_action( 'woocommerce_single_product_summary', 'add_modal_content', 35 );
+
+function add_modal_content() {
+ 	echo "
+	<div class='modal fade' id='notifyMePopup' tabindex='-1' aria-labelledby='notifyMePopupLabel' aria-hidden='true'>
+		<div class='modal-dialog modal-dialog-centered'>
+			<div class='modal-content'>
+				<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+				<div class='modal-body'>
+					<p class='model-title'>enter e-mail address to get notify</p>
+					<form class='notify-me-form'>
+						<input
+							type='email'
+							name='email'
+							placeholder='enter e-mail address'
+						/>
+						<button type='button' class='notify-me-button'>send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>";
+}

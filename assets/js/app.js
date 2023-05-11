@@ -299,4 +299,14 @@ jQuery(document).ready(function ($) {
     $(".duplicate-elements").appendTo(
         $(".woocommerce-product-details__short-description").parent().parent()
     );
+
+    $("#subscribe").popover({
+        title: "<h4>Newsletter Subscription</h4>",
+        container: "body",
+        placement: "bottom",
+        html: true,
+        content: function () {
+            return $("#popover-form").html();
+        },
+    });
 });
