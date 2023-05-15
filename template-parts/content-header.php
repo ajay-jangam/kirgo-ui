@@ -16,12 +16,13 @@
         <?php require get_template_directory() . '/assets/images/icons/admin.svg'; ?>
     </a>
     <a href="/cart" class="navbar-cart">
-        <?php require get_template_directory() . '/assets/images/icons/cart_dark.svg'; ?>
+        <?php echo do_shortcode("[xoo_wsc_cart]") ?>
+        <?php //require get_template_directory() . '/assets/images/icons/cart_dark.svg'; ?>
         <?php
-            $count = WC()->cart->get_cart_contents_count();
-            if ( $count > 0 ) {
-                echo '<span class="cart-count">' . esc_html( $count ) . '</span>';
-            }
+            // $count = WC()->cart->get_cart_contents_count();
+            // if ( $count > 0 ) {
+            //     echo '<span class="cart-count">' . esc_html( $count ) . '</span>';
+            // }
         ?>
     </a>
     <div class="navbar-hamburger">

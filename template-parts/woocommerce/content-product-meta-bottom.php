@@ -8,7 +8,7 @@
 <!-- Features -->
 <?php if ( have_rows( 'features' ) ) : ?>
 <?php while ( have_rows( 'features' ) ) : the_row(); ?>
-<div class="product__features">
+<div class="wow animate__animated animate__fadeInUp product__features">
     <div class="product__features-title"><?php the_sub_field( 'features_section_title' ); ?></div>
     <span class="product__features-text"><?php the_sub_field( 'features_section_subtitle' ); ?></span>
 
@@ -44,7 +44,7 @@
 <?php if ( have_rows( 'small_banner' ) ) : ?>
 <?php while ( have_rows( 'small_banner' ) ) : the_row(); ?>
 <?php if ( get_sub_field( 'background_image' ) ) : ?>
-<div class="product__banner" style="background-image: url('<?php the_sub_field( 'background_image' ); ?>')">
+<div class="wow animate__animated animate__fadeInUp product__banner" style="background-image: url('<?php the_sub_field( 'background_image' ); ?>')">
     <div class="product__banner-title"><?php the_sub_field( 'title' ); ?></div>
 </div>
 <?php endif ?>
@@ -56,7 +56,7 @@
 <?php if ( have_rows( 'small_banner_2' ) ) : ?>
 <?php while ( have_rows( 'small_banner_2' ) ) : the_row(); ?>
 <?php if ( get_sub_field( 'background_image' ) ) : ?>
-<div class="product__banner product__banner product__banner-bottom"
+<div class="wow animate__animated animate__fadeInUp product__banner product__banner product__banner-bottom"
     style="background-image: url('<?php the_sub_field( 'background_image' ); ?>')">
     <div class="product__banner-title product__banner-bottom-title"><?php the_sub_field( 'title' ); ?></div>
 </div>
@@ -65,7 +65,7 @@
 <?php endif; ?>
 
 <!-- Owner Words -->
-<p class="product__owner-words">
+<p class="wow animate__animated animate__fadeInUp product__owner-words">
     <?php the_field( 'owner_words' ); ?>
 </p>
 

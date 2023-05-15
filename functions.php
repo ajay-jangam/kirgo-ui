@@ -265,39 +265,42 @@ add_action( 'woocommerce_single_product_summary', 'add_duplicate_content', 25 );
 
 function add_duplicate_content() {
    global $product;
-   echo '<div class="duplicate-elements">';
+   
+   echo '<div class="wow animate__animated animate__fadeInUp duplicate-elements">';
   
-   // Product Image
-   echo '<div class="product-image-side">';
-   echo $product->get_image();
-   echo '</div>';
+	   // Product Image
+	   echo '<div class="product-image-side">';
+	   echo $product->get_image();
+	   echo '</div>';
 
-   echo '<div class="product-details-side">';
- 
-   echo '<div class="product-text-content">';
+	   echo '<div class="product-details-side">';
+	
+		   echo '<div class="product-text-content">';
 
-   // Product Title
-   echo '<div class="product-title-div">';
-   echo '<h1 class="product_title">'.$product->get_name().'</h1>';
-   echo '</div>';
- 
-   // Short Description
-   echo '<div class="product-short-description">';
-   echo $product->get_short_description();
-   echo '</div>';
+			   // Product Title
+			   echo '<div class="product-title-div">';
+			   echo '<h1 class="product_title">'.$product->get_name().'</h1>';
+			   echo '</div>';
+		
+			   // Short Description
+			   echo '<div class="product-short-description">';
+			   echo $product->get_short_description();
+			   echo '</div>';
 
-   echo '</div>';
-   
-   // Buy Button
-   echo '<div class="buy-button">';
-   woocommerce_template_single_add_to_cart();
-   echo '</div>';
-   
-   echo '</div>';
+		   echo '</div>';
+	
+		   // Buy Button
+		   echo '<div class="buy-button">';
+		   woocommerce_template_single_add_to_cart();
+		   echo '</div>';
+	
+	   echo '</div>';
 
    echo '</div>';
 }
 
+
+// Notify me modal on detail page 
 add_action( 'woocommerce_single_product_summary', 'add_modal_content', 35 );
 
 function add_modal_content() {
@@ -320,4 +323,96 @@ function add_modal_content() {
 			</div>
 		</div>
 	</div>";
+}
+
+// Show Alternate Products on Cart Page
+// add_action( 'woocommerce_cart_collaterals', 'display_related_products_on_cart_page' );
+
+// Display related products on the cart page
+add_action( 'woocommerce_cart_collaterals', 'display_related_products_on_cart_page' );
+
+function display_related_products_on_cart_page() {
+	display_related_products();
+}
+
+// Display related products on the checkout page
+add_action( 'woocommerce_after_checkout_form', 'display_related_products_on_checkout_page' );
+
+function display_related_products_on_checkout_page() {
+	display_related_products();
+}
+
+
+function display_related_products() {
+	// Get the current product IDs from the cart
+	$product_ids = array();
+
+	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+		$product_ids[] = $cart_item['product_id'];
+	}
+
+	// Query for related products based on the current product IDs
+	$related_args = array(
+		'post_type' => 'product',
+		'posts_per_page' => 4,
+		'post__not_in' => $product_ids,
+		'orderby' => 'rand',
+		'meta_query' => array(
+			array(
+				'key' => '_stock_status',
+				'value' => 'instock',
+			),
+		),
+	);
+	$related_query = new WP_Query( $related_args );
+
+	// Display the related products
+	if ( $related_query->have_posts() ) {
+
+		echo '<div class="alternate-cart-products">';
+			echo '<h2 class="cart-product-set-text">make it a set and</br> <span>get free shipping</span></h2>';
+			echo '<p class="add-alternate-product-to-cart-text">Add our bra to your cart for a complete kirgo experience</p>';
+			echo '<ul class="products">';
+
+			while ( $related_query->have_posts() ) {
+
+				$related_query->the_post();
+				global $product;
+				echo '<li class="product">';
+					echo '<a href="' . esc_url( get_permalink() ) . '" class="cart-product-img">' . $product->get_image() . '</a>';
+					echo '<div class="cart-product-details">';
+						echo '<h3 class="cart-product-title"><a href="' . esc_url( get_permalink() ) . '">' . get_the_title() . '</a></h3>';
+						echo '<div class="woocommerce-product-details__short-description">' . get_the_excerpt() . '</div>';
+					echo '</div>';
+					echo '<button href="#" class="product-size-modal-button" data-bs-toggle="modal" data-bs-target="#product-size-modal-' . get_the_ID() . '">Add for&nbsp;' . $product->get_price_html() . '</button>';
+				echo '</li>';
+				// Product size modal
+				echo '<div class="modal fade cart-product-size-modal" id="product-size-modal-' . get_the_ID() . '" tabindex="-1" role="dialog" aria-labelledby="product-size-modal-label-' . get_the_ID() . '" aria-hidden="true">';
+					echo '<div class="modal-dialog modal-dialog-centered" role="document">';
+						echo '<div class="modal-content">';
+							
+							echo '<div class="modal-body">';
+								echo '<p class="modal-title">select</br> <span>' . get_the_title() . ' size</span></p>';
+									
+								// Buy Button
+								echo '<div class="buy-button">';
+									woocommerce_template_single_add_to_cart();
+								echo '</div>';
+							echo '</div>';
+						echo '</div>';
+					echo '</div>';
+				echo '</div>';
+			}
+			echo '</ul>';
+		echo '</div>';
+	}
+
+	// Reset the post data
+	wp_reset_postdata();
+
+}
+
+function get_variation_price( $variation_id ) {
+	$variation = wc_get_product( $variation_id );
+	return $variation->get_price_html();
 }

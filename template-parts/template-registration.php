@@ -10,7 +10,7 @@
 <?php do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 <img class="account-banner-image" src="/wp-content/themes/kirgo-theme/assets/images/account/create-accont-banner.png" alt="Banner Image" />
-<div class="custom-registration">
+<div class="wow animate__animated animate__fadeInUp custom-registration">
 	<h2><?php esc_html_e( 'Register', 'woocommerce' ); ?></h2>
 	<form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
 		<?php do_action( 'woocommerce_register_form_start' ); ?>

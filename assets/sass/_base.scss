@@ -2,6 +2,9 @@ body {
     font-family: $blaak-black-regular;
     background-color: $background-color;
     color: #fff;
+    &::before {
+        display: none;
+    }
     .site-main {
         margin-top: 6rem;
     }

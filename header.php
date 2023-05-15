@@ -28,6 +28,12 @@
 		crossorigin="anonymous"
 	/>
 
+	<!-- Animation CSS -->
+
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+	/>
 	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
 	<link rel="profile" href="https://gmpg.org/xfn/11">

@@ -65,7 +65,7 @@
         &:not(.collapsed) {
             background-color: #050505;
             color: #fff;
-
+            box-shadow: none;
             svg {
                 transform: rotate(90deg);
             }

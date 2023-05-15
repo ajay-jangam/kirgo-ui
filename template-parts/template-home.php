@@ -67,7 +67,7 @@
 
 
 <!-- Slider Section -->
-<section class="slider-section">
+<section class="wow animate__animated animate__fadeInUp slider-section">
     <div class="collection-introduction">
         <h2 class="title">introducing</br> <strong>our first collection</strong></h2>
         <p class="subTitle">sports bra and leggings made to move</p>
@@ -95,10 +95,10 @@
 <!-- Slider Section -->
 
 <!-- Classic Section -->
-<section class="classic-section">
+<section class="wow animate__animated animate__fadeInUp classic-section">
     <?php if ( have_rows( 'product_collection' ) ) : ?>
         <?php while ( have_rows( 'product_collection' ) ) : the_row(); ?>
-            <div class="classic-section__wrapper">
+            <div class="wow animate__animated animate__fadeInUp-section__wrapper">
                 <div class="primary-link">
                     <span class="primary-link__text">introducing</span>
                     the classic collection
@@ -150,7 +150,7 @@
 <!-- Features Section -->
 <?php if ( have_rows( 'features' ) ) : ?>
     <?php while ( have_rows( 'features' ) ) : the_row(); ?>
-        <div class="product__features">
+        <div class="wow animate__animated animate__fadeInUp product__features">
             <div class="product__features-title"><?php the_sub_field( 'features_section_title' ); ?></div>
             <span class="product__features-text"><?php the_sub_field( 'features_section_subtitle' ); ?></span>
 
@@ -188,7 +188,7 @@
 <?php if ( have_rows( 'small_banner' ) ) : ?>
     <?php while ( have_rows( 'small_banner' ) ) : the_row(); ?>
         <?php if ( get_sub_field( 'background_image' ) ) : ?>
-            <div class="product__banner" style="background-image: url('<?php the_sub_field( 'background_image' ); ?>')">
+            <div class="wow animate__animated animate__fadeInUp product__banner" style="background-image: url('<?php the_sub_field( 'background_image' ); ?>')">
                 <div class="product__banner-title"><?php the_sub_field( 'title' ); ?></div>
             </div>
         <?php endif ?>
@@ -200,7 +200,7 @@
 <!-- Newsletter Section -->
 
 <section class="newsletter-section">
-    <div class="newsletter-section__wrapper">
+    <div class="wow animate__animated animate__fadeInUp newsletter-section__wrapper">
         <?php if ( have_rows( 'join_us' ) ) : ?>
             <?php while ( have_rows( 'join_us' ) ) : the_row(); ?>
                 <?php if ( get_sub_field( 'join_us_banner' ) ) : ?>
@@ -232,7 +232,7 @@
 <?php if ( have_rows( 'small_banner_2' ) ) : ?>
     <?php while ( have_rows( 'small_banner_2' ) ) : the_row(); ?>
         <?php if ( get_sub_field( 'background_image' ) ) : ?>
-            <div class="product__banner product__banner product__banner-bottom"
+            <div class="wow animate__animated animate__fadeInUp product__banner product__banner product__banner-bottom"
                 style="background-image: url('<?php the_sub_field( 'background_image' ); ?>')">
                 <div class="product__banner-title product__banner-bottom-title"><?php the_sub_field( 'title' ); ?></div>
             </div>
@@ -241,7 +241,7 @@
 <?php endif; ?>
 
 <!-- Blog Section -->
-<section class="blog-section">
+<section class="wow animate__animated animate__fadeInUp blog-section">
     <div class="blog-section__wrapper">
         <h3 class="blog-section__title">newsletters</h3>
         <div class="blog-carousel">
@@ -326,7 +326,7 @@
 <!-- Blog Section -->
 
 <!-- Shop Section -->
-<section class="shop-section">
+<section class="wow animate__animated animate__fadeInUp shop-section">
     <div class="shop-section__wrapper">
         <?php if( have_rows('shop_section') ): ?>
             <?php while( have_rows('shop_section') ): the_row(); ?>
@@ -338,7 +338,7 @@
             <?php endwhile; ?>
         <?php endif; ?>
 
-        <div class="shop-section__category">
+        <div class="wow animate__animated animate__fadeInUp shop-section__category">
             <a href="/product/classic-legging" class="shop-section__link leggings-category">
                 <span class="shop-section__text">shop</span>
                 leggings
@@ -349,7 +349,7 @@
             </a>
         </div>
     </div>
-    <div class="shop-section__wrapperDesktop rdfcd">
+    <div class="wow animate__animated animate__fadeInUp shop-section__wrapperDesktop rdfcd">
         <div class="shop-gallery">
             <?php if( have_rows('shop_section') ): ?>
                 <?php while( have_rows('shop_section') ): the_row(); ?>

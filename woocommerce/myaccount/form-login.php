@@ -19,7 +19,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 		<h2><?php esc_html_e( 'Login', 'woocommerce' ); ?></h2>
 
-		<form class="woocommerce-form woocommerce-form-login login kudhgilak" method="post">
+		<form class="wow animate__animated animate__fadeInUp woocommerce-form woocommerce-form-login login kudhgilak" method="post">
 
 			<?php do_action( 'woocommerce_login_form_start' ); ?>
 

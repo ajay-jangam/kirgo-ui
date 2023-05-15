@@ -239,9 +239,9 @@ jQuery(document).ready(function ($) {
 
     // loop through all elements with the class name "woovr-variation-name"
     $(".woovr-variation-name").each(function () {
-        var words = $(this).text().split(" ");
-        var lastWord = words[words.length - 1];
-        var firstChar = lastWord.charAt(0);
+        let words = $(this).text().split(" ");
+        let lastWord = words[words.length - 1];
+        let firstChar = lastWord.charAt(0);
         $(this).text(firstChar);
     });
 
@@ -300,13 +300,46 @@ jQuery(document).ready(function ($) {
         $(".woocommerce-product-details__short-description").parent().parent()
     );
 
-    $("#subscribe").popover({
-        title: "<h4>Newsletter Subscription</h4>",
-        container: "body",
-        placement: "bottom",
-        html: true,
-        content: function () {
-            return $("#popover-form").html();
-        },
-    });
+    const wow = new WOW();
+    wow.init();
+
+    $(
+        "body.single-product .product .summary.entry-summary, body.single-product .product .woocommerce-Tabs-panel, body.single-product .product #reviews"
+    ).addClass("wow animate__animated animate__fadeInUp");
+
+    // Disable the click event on the cart icon
+    $(".navbar-cart, .xoo-wsc-sc-cont").off("click");
+
+    if (!$("body").hasClass(".woocommerce-cart")) {
+        // Redirect the user to the cart page when they click on the cart icon
+        $(".navbar-cart, .xoo-wsc-sc-cont").click(function (e) {
+            e.preventDefault();
+            window.location.href = "/cart";
+        });
+        console.log("not cart page");
+    } else {
+        $(".navbar-cart").click(function (e) {
+            e.preventDefault();
+        });
+        console.log("cart page");
+    }
+
+    // Redirect the user to the cart page when they click on the cart icon
+
+    $("body.single-product .wpcbn-btn-single.single_add_to_cart_button").click(
+        function () {
+            setTimeout(() => {
+                window.location.href = "/checkout";
+            }, 1000);
+        }
+    );
+
+    $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").text(
+        "Add to Checkout"
+    );
+    $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").click(
+        () => {
+            $(".cart-product-size-modal").modal("hide");
+        }
+    );
 });

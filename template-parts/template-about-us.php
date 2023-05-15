@@ -3,7 +3,7 @@
 <?php get_header() ?>
 
 <!-- Story Section -->
-<section class="story-section">
+<section class="wow animate__animated animate__fadeInUp story-section">
     <?php if ( have_rows( 'banner_images' ) ) : ?>
         <?php while ( have_rows( 'banner_images' ) ) : the_row(); ?>
             <?php if ( get_sub_field( 'mobile_banner_image' ) ) : ?>
@@ -35,7 +35,7 @@
           
             <?php if ( have_rows( 'image_wrapper' ) ) : ?>
                 <?php while ( have_rows( 'image_wrapper' ) ) : the_row(); ?>
-                <div class="vision-section__imageWrapper">
+                <div class="wow animate__animated animate__fadeInRight vision-section__imageWrapper">
                     <?php if ( get_sub_field( 'section_banner' ) ) : ?>
                         <img src="<?php the_sub_field( 'section_banner' ); ?>" alt="Vision"
                     class="vision-section__image"/>
@@ -51,7 +51,7 @@
             <?php if ( have_rows( 'present_subsection' ) ) : ?>
                 <?php while ( have_rows( 'present_subsection' ) ) : the_row(); ?>
                     
-                <div class="vision-section__wrapperPresent">
+                <div class="wow animate__animated animate__fadeInLeft vision-section__wrapperPresent">
                     <p class="vision-section__titlePresent about-us-title"><?php the_sub_field( 'present_title' ); ?></p>
                     <p class="vision-section__text  about-us-text"><?php the_sub_field( 'present_description' ); ?></p>
                 </div>
@@ -62,7 +62,7 @@
             <?php if ( have_rows( 'future_subsection' ) ) : ?>
                 <?php while ( have_rows( 'future_subsection' ) ) : the_row(); ?>
                     
-                <div class="vision-section__wrapperFuture">
+                <div class="wow animate__animated animate__fadeInUp vision-section__wrapperFuture">
                     <p class="vision-section__titleFuture about-us-title"><?php the_sub_field( 'future_title' ); ?></p>
                     <p class="vision-section__text  about-us-text"><?php the_sub_field( 'future_description' ); ?></p>
                 </div>
@@ -76,7 +76,7 @@
 <!-- Vision Section -->
 
 <!-- Team Section -->
-<section class="team-section">
+<section class="wow animate__animated animate__fadeInUp team-section">
     <div class="team-section__wrapper">
         <p class="team-section__title about-us-title">people behind</p>
         <div class="team-section__cards">

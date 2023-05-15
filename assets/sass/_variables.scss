@@ -68,7 +68,7 @@ $background-color: #0d0c0c;
 $tmm_height: 21px;
 $tmm_stroke_width: 3px;
 
-$tmm_width: 30px;
+$tmm_width: 25px;
 $tmm_color: #ffffff;
 $tmm_activ_color: #000;
 $tmm_v_padding: 5px;
@@ -77,7 +77,7 @@ $tmm_border_radius: 1px;
 
 // Stop editing!
 $tmm_real_height: $tmm_height + ($tmm_v_padding * 2);
-$tmm_real_width: $tmm_width + ($tmm_h_padding * 2);
+$tmm_real_width: $tmm_width + ($tmm_h_padding * 1);
 $tmm_stroke_space: ($tmm_height - ($tmm_stroke_width * 3)) / 2;
 $tmm_mid_top: $tmm_stroke_space + $tmm_stroke_width + $tmm_v_padding;
 

@@ -18,6 +18,7 @@
 
 <?php wp_footer(); ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
 <!-- Bootstrap JS -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -25,6 +26,5 @@
 	crossorigin="anonymous">
 </script>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
 </body>
 </html>
