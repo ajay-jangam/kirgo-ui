@@ -35,6 +35,11 @@
             font-size: 22px;
         }
 
+        &:focus {
+            border-color: unset;
+            box-shadow: unset;
+        }
+
         span {
             display: block;
             font-family: $lekton;

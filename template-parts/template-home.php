@@ -245,81 +245,54 @@
     <div class="blog-section__wrapper">
         <h3 class="blog-section__title">newsletters</h3>
         <div class="blog-carousel">
-            <div class="carousel-cell">
-                <div class="blog-section__cell">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-1.jpg"
-                        alt="Blog Image"
-                        class="blog-section__sliderImg"
-                    />
-                    <div class="blog-section__content">
-                        <p class="blog-section__readTime">1 min read</p>
-                        <p class="blog-section__newsLetterTitle">
-                            an activewear that enables the female body
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-cell">
-                <div class="blog-section__cell">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-2.jpg"
-                        alt="Blog Image"
-                        class="blog-section__sliderImg"
-                    />
-                    <div class="blog-section__content">
-                        <p class="blog-section__readTime">1 min read</p>
-                        <p class="blog-section__newsLetterTitle">
-                            an activewear that enables the female body
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-cell">
-                <div class="blog-section__cell">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-3.jpg"
-                        alt="Blog Image"
-                        class="blog-section__sliderImg"
-                    />
-                    <div class="blog-section__content">
-                        <p class="blog-section__readTime">1 min read</p>
-                        <p class="blog-section__newsLetterTitle">
-                            an activewear that enables the female body
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-cell">
-                <div class="blog-section__cell">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-1.jpg"
-                        alt="Blog Image"
-                        class="blog-section__sliderImg"
-                    />
-                    <div class="blog-section__content">
-                        <p class="blog-section__readTime">1 min read</p>
-                        <p class="blog-section__newsLetterTitle">
-                            an activewear that enables the female body
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-cell">
-                <div class="blog-section__cell">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/slider-img-2.jpg"
-                        alt="Blog Image"
-                        class="blog-section__sliderImg"
-                    />
-                    <div class="blog-section__content">
-                        <p class="blog-section__readTime">1 min read</p>
-                        <p class="blog-section__newsLetterTitle">
-                            an activewear that enables the female body
-                        </p>
-                    </div>
-                </div>
-            </div>
+
+        <?php
+        // Function for reading time
+			function readingTime() {
+				$content = get_the_content();
+				$words_per_minute = 200;
+				$word_count = str_word_count(strip_tags($content));
+				
+				return $reading_time = ceil($word_count / $words_per_minute);
+			}
+		?>
+
+        <?php if ( have_rows( 'blog_slider' ) ) : ?>
+            <?php while ( have_rows( 'blog_slider' ) ) : the_row(); ?>
+                <?php $blogs = get_sub_field( 'blogs' ); ?>
+                <?php if ( $blogs ) : ?>
+                    <?php $post = $blogs; ?>
+                    <?php setup_postdata( $post ); ?> 
+                        <div class="carousel-cell">
+                            <div class="blog-section__cell">
+                                <a href="<?php the_permalink(); ?>" class="">
+                                    <div class="blog-section__sliderImg">
+                                        <?php
+                                            if (has_post_thumbnail()) {
+                                                // Display the featured image
+                                                kirgo_post_thumbnail(); 
+                                            } else {
+                                                // Display a placeholder image
+                                                echo 
+                                                '<div class="post-thumbnail">
+                                                    <img class="placeholder-image" src="' . get_template_directory_uri() . '/assets/images/blog_placeholder.jpg" alt="Placeholder Image">
+                                                </div>';
+                                            }		
+                                        ?>
+                                    </div>
+                                    <div class="blog-section__content">
+                                        <p class="blog-section__readTime"><?php echo readingTime() . ' min read'?></p>
+                                        <p class="blog-section__newsLetterTitle">
+                                            <?php the_title(); ?>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    <?php wp_reset_postdata(); ?>
+                <?php endif; ?>
+            <?php endwhile; ?>
+        <?php endif; ?>
         </div>
     </div>
 </section>

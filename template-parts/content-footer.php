@@ -1,12 +1,12 @@
 <!-- Footer -->
 
-<section class="footer-section">
+<section class="wow animate__animated animate__fadeInUp footer-section">
     <img
         src="<?php echo get_template_directory_uri() ?>/assets/images/footer/kirgo-product.svg"
         alt="Kirgo"
-        class="wow animate__animated animate__fadeInUp footer-section__image"
+        class="footer-section__image"
     />
-    <div class="wow animate__animated animate__fadeInUp footer-section__main">
+    <div class="footer-section__main">
 
         <div class="footer-section__menu">
             <a href="#" class="footer-section__link">WHO ARE WE</a>
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="footer-section__sub">
-        <div class="wow animate__animated animate__fadeInUp footer-section__subMenu">
+        <div class="footer-section__subMenu">
             <div class="footer-section__offer">
                 <div class="footer-section__offerImg">
                     <?php echo file_get_contents(get_template_directory() .'/assets/images/footer/offer.svg') ?>

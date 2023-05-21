@@ -147,6 +147,7 @@
                     font-size: 100px;
                     text-shadow: 0 16.4px 24.6px rgb(0 0 0 / 25%);
                     max-width: 500px;
+                    margin-right: 6%;
                 }
             }
         }
@@ -408,7 +409,9 @@
 }
 
 #notifyMePopup {
-    opacity: 1;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    background-color: rgba(217, 217, 217, 0.02);
     .modal-content {
         background-color: #fff;
 
@@ -424,9 +427,13 @@
         position: absolute;
         font-size: 1rem;
         z-index: 1;
-        top: 5px;
-        right: 7px;
+        top: 10px;
+        right: 10px;
         font-weight: 700;
+        @include mq($from: desktop) {
+            top: 12px;
+            right: 12px;
+        }
     }
     .model-title {
         font-family: $blaak-black-regular;
@@ -772,4 +779,84 @@
 body.xoo-wsc-cart-active,
 html.xoo-wsc-cart-active {
     overflow: unset !important;
+}
+
+/********
+* Blog Page
+*********/
+
+.single-post {
+    article.post {
+        font-family: $lekton;
+    }
+    .entry-header {
+        padding: 0 2rem 2rem;
+        @include mq($from: desktop) {
+            width: 75%;
+            margin: auto;
+        }
+        h1 {
+            font-weight: 600;
+        }
+        .entry-meta {
+            margin-top: 1rem;
+            @include mq($from: desktop) {
+                font-size: 24px;
+            }
+            a {
+                color: #fff;
+                pointer-events: none;
+                text-decoration: none;
+            }
+            .posted-on {
+                .updated {
+                    display: none;
+                }
+            }
+        }
+    }
+    .post-thumbnail {
+        width: 100%;
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            @include mq($from: desktop) {
+                height: 300px;
+            }
+        }
+
+        .placeholder-image {
+            opacity: 0.6;
+        }
+    }
+    .entry-content {
+        padding: 2rem;
+        @include mq($from: desktop) {
+            width: 75%;
+            margin: auto;
+            font-size: 24px;
+        }
+    }
+    .navigation {
+        padding: 0 2rem;
+        font-family: $lekton;
+        @include mq($from: desktop) {
+            width: 75%;
+            margin: auto;
+            font-size: 24px;
+        }
+        .nav-links {
+            a {
+                font-weight: 700;
+            }
+        }
+        a {
+            color: #fff;
+        }
+    }
+    #comments,
+    .entry-footer {
+        display: none;
+    }
 }

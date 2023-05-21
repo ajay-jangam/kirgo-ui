@@ -648,14 +648,16 @@ body.single-product {
             }
             // .product__set-meta
             &-meta {
-                padding: 1.2rem 1.2rem 4rem;
+                padding: 1rem;
                 flex-basis: 60%;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: flex-start;
+                margin-bottom: 4rem;
                 @include mq($from: desktop) {
                     flex-basis: 55%;
-                    padding: 3rem 2rem 7rem;
+                    padding: 2rem;
+                    margin-bottom: 6rem;
                 }
             }
             // .product__set-title
@@ -702,6 +704,10 @@ body.single-product {
                 letter-spacing: 0.2px;
                 text-align: left;
                 color: #000;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
                 @include mq($from: desktop) {
                     font-size: 28px;
                 }
@@ -724,15 +730,15 @@ body.single-product {
             // .product__set-buy
             &-buy {
                 position: absolute;
-                bottom: 1rem;
+                bottom: 10px;
                 width: auto;
                 left: 0;
                 right: 0;
-                margin: auto 1rem;
+                margin: auto 10px;
 
                 @include mq($from: desktop) {
-                    bottom: 1.5rem;
-                    margin: auto 1.5rem;
+                    bottom: 1rem;
+                    margin: auto 1rem;
                 }
 
                 .product-size-modal-button {
@@ -761,9 +767,12 @@ body.single-product {
                         bottom: 0;
                         left: 0;
                         margin: 0;
+                        top: unset;
+                        min-height: unset;
                         @include mq($from: desktop) {
                             position: unset;
                             margin: auto;
+                            min-height: -webkit-fill-available;
                         }
 
                         .modal-content {
