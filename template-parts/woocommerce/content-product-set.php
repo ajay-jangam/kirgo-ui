@@ -31,7 +31,7 @@
     </div>
     <div class="product__set-buy">
         <?php global $product; ?>
-        <button href="#" class="buy-button btn btn-dark product-size-modal-button" data-bs-toggle="modal" data-bs-target="#product-size-modal-<?php get_the_ID() ?>">Add for&nbsp;<?php echo $product->get_price_html(); ?></button>
+        <button class="buy-button btn btn-dark product-size-modal-button" data-bs-toggle="modal" data-bs-target="#product-size-modal-<?php get_the_ID() ?>">Add for&nbsp;<?php echo $product->get_price_html(); ?></button>
         <div class="modal fade cart-product-size-modal" id="product-size-modal-<?php get_the_ID(); ?>" tabindex="-1" role="dialog" aria-labelledby="product-size-modal-label-<?php get_the_ID(); ?>" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

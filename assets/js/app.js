@@ -342,4 +342,8 @@ jQuery(document).ready(function ($) {
             $(".cart-product-size-modal").modal("hide");
         }
     );
+
+    $(".product .psfw-social-wrap").appendTo(
+        "#productShareIcons .modal-content .modal-body"
+    );
 });

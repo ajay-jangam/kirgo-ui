@@ -860,3 +860,79 @@ html.xoo-wsc-cart-active {
         display: none;
     }
 }
+
+/********
+* Share Icons
+*********/
+
+.product-share-modal-button {
+    background-color: #0000;
+    border: none;
+    position: absolute;
+    top: 32.9rem;
+    right: 5rem;
+    @include mq($from: desktop) {
+        top: -2.5rem;
+        right: 12rem;
+    }
+}
+
+#productShareIcons {
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    background-color: rgba(217, 217, 217, 0.02);
+    .modal-dialog {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        top: unset;
+        min-height: unset;
+        @include mq($from: desktop) {
+            position: unset;
+            margin: auto;
+            min-height: -webkit-fill-available;
+        }
+
+        .modal-content {
+            background-color: #000;
+            padding: 2rem;
+            border-radius: 9px;
+            .modal-body {
+                padding: 0;
+                .modal-title {
+                    font-family: $blaak-black-regular;
+                    font-size: 21px;
+                    font-weight: 900;
+                    line-height: 1.2;
+                    text-align: center;
+                    color: #fff;
+                    text-transform: lowercase;
+                    margin-bottom: 1rem;
+                    @include mq($from: desktop) {
+                        font-size: 30px;
+                    }
+                    span {
+                        color: #bbcea8;
+                    }
+                }
+                .psfw-social-wrap {
+                    justify-content: center;
+                    ul.psfw-social-icons {
+                        margin: 0;
+                        li {
+                            a {
+                                color: #fff;
+                                border: none;
+                                font-size: 2.5rem;
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -325,6 +325,7 @@ function add_modal_content() {
 	</div>";
 }
 
+
 // Show Alternate Products on Cart Page
 // add_action( 'woocommerce_cart_collaterals', 'display_related_products_on_cart_page' );
 
@@ -415,4 +416,24 @@ function display_related_products() {
 function get_variation_price( $variation_id ) {
 	$variation = wc_get_product( $variation_id );
 	return $variation->get_price_html();
+}
+
+
+// Notify me modal on detail page 
+add_action( 'woocommerce_single_product_summary', 'add_share_icons_modal', 5 );
+
+function add_share_icons_modal() {
+ 	echo "
+	<button class='product-share-modal-button' data-bs-toggle='modal' data-bs-target='#productShareIcons'>
+		<img class='share-icon' src='" . get_template_directory_uri() . "/assets/images/icons/share.svg' alt='Share Icon'>
+	</button>
+	<div class='modal fade' id='productShareIcons' tabindex='-1' aria-labelledby='productShareIconsLabel' aria-hidden='true'>
+		<div class='modal-dialog modal-dialog-centered'>
+			<div class='modal-content'>
+				<div class='modal-body'>
+					<p class='modal-title'><span>share</span> on</p>
+				</div>
+			</div>
+		</div>
+	</div>";
 }

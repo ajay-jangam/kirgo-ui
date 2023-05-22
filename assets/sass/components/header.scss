@@ -192,6 +192,21 @@
                 }
             }
         }
+        .xoo-wsc-sc-cont {
+            .xoo-wsc-sc-bkcont {
+                .xoo-wsc-sc-bki {
+                    &::before {
+                        display: inherit;
+                    }
+                    &::after {
+                        display: none;
+                    }
+                }
+                .xoo-wsc-sc-count {
+                    color: #fff;
+                }
+            }
+        }
     }
 }
 

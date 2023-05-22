@@ -13,16 +13,6 @@
 	<header class="entry-header">
 
 		<?php
-			function readingTime() {
-				$content = get_the_content();
-				$words_per_minute = 200;
-				$word_count = str_word_count(strip_tags($content));
-				
-				return $reading_time = ceil($word_count / $words_per_minute);
-			}
-		?>
-
-		<?php
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
 		else :
@@ -35,8 +25,6 @@
 				<?php
 					kirgo_posted_on();
 					kirgo_posted_by();
-					// Display the reading time
-					echo ' ' . readingTime() . ' min read';
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
