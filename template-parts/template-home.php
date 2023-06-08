@@ -71,7 +71,7 @@
     <div class="collection-introduction">
         <h2 class="title">introducing</br> <strong>our first collection</strong></h2>
         <p class="subTitle">sports bra and leggings made to move</p>
-        <button class="buy-button">buy the complete set</button>
+        <a href="/product/classic-leggings" class="buy-button">buy the complete set</a>
     </div>
     <div class="home-carousel">
         <?php if( have_rows('slider') ): ?>

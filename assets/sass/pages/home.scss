@@ -45,7 +45,7 @@
             text-align: center;
             color: #000;
             background-color: #fff;
-            padding: 0.7rem;
+            padding: 1rem 1.5rem;
             text-decoration: none;
             border-radius: 8px;
             margin: 0;
@@ -538,6 +538,9 @@
         display: flex;
         border: 1px solid #fff;
         border-radius: 6px;
+        @include mq($from: desktop) {
+            overflow: hidden;
+        }
         input {
             padding: 0.5rem 0.8rem;
             font-family: $lekton;
@@ -940,6 +943,7 @@
         .shop-section__shopImage {
             height: 450px;
             object-fit: cover;
+            border-radius: 9px;
         }
     }
 }

@@ -35,7 +35,6 @@ jQuery(document).ready(function ($) {
     });
 
     $(".navbar-links").scroll(function () {
-        console.log("ejhsgb");
         let scroll = $(".navbar-links").scrollTop();
         if (
             (scroll > 10 && !$(".active").hasClass("white-background")) ||
@@ -95,7 +94,7 @@ jQuery(document).ready(function ($) {
 
     // Toggle Review Form
     $("#review_form .comment-reply-title").click(function () {
-        $(".woocommerce #review_form .comment-form").toggle();
+        $(".woocommerce #review_form .comment-form").css("display", "flex");
     });
 
     // Change the Review Title text
@@ -131,8 +130,6 @@ jQuery(document).ready(function ($) {
     $(".quantity").on("click", ".plus, .minus", function (e) {
         e.preventDefault();
 
-        console.log("ewjsgb");
-
         // Get the input field and current quantity value for this cart item
         var $input = $(this).closest(".quantity").find("input.qty"),
             currentVal = parseInt($input.val());
@@ -157,7 +154,7 @@ jQuery(document).ready(function ($) {
     // Replace the labels to their respective placeholders
 
     let inputElementsOnCheckout = $(
-        ".woocommerce-billing-fields__field-wrapper label"
+        ".woocommerce-billing-fields__field-wrapper label, .woocommerce-shipping-fields__field-wrapper label"
     );
     let inputElementsOnSignIn = $(
         ".woocommerce-account .woocommerce-form-row label"
@@ -206,7 +203,7 @@ jQuery(document).ready(function ($) {
     }
 
     // Change the Sign In Title text
-    if ($("body").not("woocommerce-account.logged-in")) {
+    if (!$("body.woocommerce-account.logged-in")) {
         const signInTextElement = $(
             ".woocommerce-account #page .woocommerce h2"
         );
@@ -245,7 +242,10 @@ jQuery(document).ready(function ($) {
         $(this).text(firstChar);
     });
 
-    if ($("body").hasClass("woocommerce-checkout")) {
+    if (
+        $("body").hasClass("woocommerce-checkout") &&
+        !$("body.woocommerce-checkout").hasClass("woocommerce-order-received")
+    ) {
         const checkoutButtonAncestor = document.querySelector(
             ".checkout.woocommerce-checkout"
         );
@@ -316,12 +316,10 @@ jQuery(document).ready(function ($) {
             e.preventDefault();
             window.location.href = "/cart";
         });
-        console.log("not cart page");
     } else {
         $(".navbar-cart").click(function (e) {
             e.preventDefault();
         });
-        console.log("cart page");
     }
 
     // Redirect the user to the cart page when they click on the cart icon
@@ -346,4 +344,39 @@ jQuery(document).ready(function ($) {
     $(".product .psfw-social-wrap").appendTo(
         "#productShareIcons .modal-content .modal-body"
     );
+
+    $(".navbar-admin-desktop svg").appendTo(".navbar-admin .xoo-el-action-sc");
+
+    // Shift checkout button in right coloum of desktop
+    if (window.screen.width > 1000) {
+        $(".woocommerce-cart .checkout-button.button").appendTo(
+            ".cart-collaterals"
+        );
+        $(".woocommerce-checkout .alternate-cart-products").appendTo(
+            ".woocommerce-checkout #order_review"
+        );
+        $(".woocommerce-checkout #place_order").appendTo(
+            ".woocommerce-checkout #order_review"
+        );
+        $(".woocommerce-checkout #order_review").prepend(
+            $(".woocommerce-checkout #order_review_heading")
+        );
+        $(
+            `<div class="woocommerce-desktop-col-left"></div>
+            <div class="woocommerce-desktop-col-right"></div>`
+        ).appendTo(".woocommerce-checkout .woocommerce-order");
+        $(
+            `.woocommerce-checkout .woocommerce-order p.woocommerce-notice,
+                 .woocommerce-checkout .woocommerce-order ul.woocommerce-order-overview,
+                 .woocommerce-checkout .woocommerce-order > p`
+        ).appendTo(
+            ".woocommerce-checkout .woocommerce-order .woocommerce-desktop-col-left"
+        );
+        $(
+            `.woocommerce-checkout .woocommerce-order .woocommerce-customer-details,
+                 .woocommerce-checkout .woocommerce-order .woocommerce-order-details`
+        ).appendTo(
+            ".woocommerce-checkout .woocommerce-order .woocommerce-desktop-col-right"
+        );
+    }
 });

@@ -419,7 +419,7 @@ function get_variation_price( $variation_id ) {
 }
 
 
-// Notify me modal on detail page 
+// share icons modal on detail page 
 add_action( 'woocommerce_single_product_summary', 'add_share_icons_modal', 5 );
 
 function add_share_icons_modal() {
@@ -437,3 +437,38 @@ function add_share_icons_modal() {
 		</div>
 	</div>";
 }
+
+// Redirect to home page after WooCommerce logout
+function redirect_after_woocommerce_logout() {
+    wp_redirect(home_url());
+    exit;
+}
+add_action('wp_logout', 'redirect_after_woocommerce_logout');
+
+/**
+ * Hide shipping rates when free shipping is available.
+ * Updated to support WooCommerce 2.6 Shipping Zones.
+ */
+function my_hide_shipping_when_free_is_available( $rates ) {
+	$free = array();
+
+	foreach ( $rates as $rate_id => $rate ) {
+		if ( 'free_shipping' === $rate->method_id ) {
+			$free[ $rate_id ] = $rate;
+			break;
+		}
+	}
+
+	return ! empty( $free ) ? $free : $rates;
+}
+
+add_filter( 'woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100 );
+
+// Add a class to the body tag if cart is empty
+function add_class_if_cart_empty($classes) {
+    if (WC()->cart->is_empty()) {
+        $classes[] = 'cart-empty';
+    }
+    return $classes;
+}
+add_filter('body_class', 'add_class_if_cart_empty');

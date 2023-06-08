@@ -5,7 +5,7 @@
 <?php echo do_shortcode('[woocommerce_my_account]'); ?>
 
 <?php if ( is_account_page() && ! is_wc_endpoint_url() ) : ?>
-    <div class="social-link">
+    <div class="account-social-link">
         <div class="social-links">
             <a href="#" class="social-link__items">
                 <?php echo file_get_contents(get_template_directory() .'/assets/images/instagram.svg') ?>

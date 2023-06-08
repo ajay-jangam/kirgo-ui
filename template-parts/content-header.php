@@ -1,18 +1,26 @@
 <!-- Header -->
 <nav class="navbar <?php echo get_field( 'transparent_navbar' ) == 1 ? 'navbar-transparent' : '' ?>">
 
-    <?php if (is_cart() || is_checkout() || (is_account_page() && is_user_logged_in())) : ?>
+   <?php if (is_cart() || is_checkout() || (is_account_page() && is_user_logged_in())) : ?>
         <a href="/" class="home-arrow">
             <?php echo file_get_contents(get_template_directory() .'/assets/images/home-page/prev-arrow.svg') ?>
         </a>
         <p class="woocommerce-page-title"><?php the_title(); ?></p>
+        <a href="/" class="navbar-brand__logo kirgo-mobile-logo">
+            <?php echo file_get_contents(get_template_directory() .'/assets/images/kirgo-logo.svg') ?>
+        </a>
     <?php else : ?>
         <a href="/" class="navbar-brand__logo">
             <?php echo file_get_contents(get_template_directory() .'/assets/images/kirgo-logo.svg') ?>
         </a>
     <?php endif; ?>
 
-    <a href="/my-account" class="navbar-admin">
+
+    <div class="navbar-admin navbar-admin-desktop">
+        <?php echo do_shortcode('[xoo_el_action type="login" text="" change_to="/my-account"]') ?>
+        <?php require get_template_directory() . '/assets/images/icons/admin.svg'; ?>
+    </div>
+   <a href="/my-account" class="navbar-admin navbar-admin-mobile">
         <?php require get_template_directory() . '/assets/images/icons/admin.svg'; ?>
     </a>
     <a href="/cart" class="navbar-cart">

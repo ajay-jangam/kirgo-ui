@@ -230,6 +230,25 @@
     }
 }
 
+.navbar-admin-desktop {
+    display: none;
+    @include mq($from: desktop) {
+        display: flex;
+
+        .xoo-el-action-sc {
+            font-size: 0;
+            color: #0000;
+        }
+    }
+}
+
+.navbar-admin-mobile {
+    display: block;
+    @include mq($from: desktop) {
+        display: none;
+    }
+}
+
 .navbar-cart {
     margin: 0 10px 0 20px;
     text-decoration: none;
@@ -582,4 +601,22 @@
     // &__image {
     // 	width: 20px;
     // }
+}
+.empty-cart {
+    .xoo-wsc-sc-count {
+        color: #0000;
+    }
+}
+
+.kirgo-mobile-logo {
+    @include mq($until: desktop) {
+        display: none;
+    }
+}
+
+.home-arrow,
+.woocommerce-page-title {
+    @include mq($from: desktop) {
+        display: none;
+    }
 }
