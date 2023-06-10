@@ -310,15 +310,9 @@ function add_modal_content() {
 			<div class='modal-content'>
 				<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
 				<div class='modal-body'>
-					<p class='model-title'>enter e-mail address to get notify</p>
-					<form class='notify-me-form'>
-						<input
-							type='email'
-							name='email'
-							placeholder='enter e-mail address'
-						/>
-						<button type='button' class='notify-me-button'>send</button>
-					</form>
+					<p class='model-title'>enter e-mail address to get notify</p>";
+					echo do_shortcode("[contact-form-7 id='398' title='Notify me']");
+					echo "</form>
 				</div>
 			</div>
 		</div>

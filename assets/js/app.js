@@ -94,7 +94,7 @@ jQuery(document).ready(function ($) {
 
     // Toggle Review Form
     $("#review_form .comment-reply-title").click(function () {
-        $(".woocommerce #review_form .comment-form").css("display", "flex");
+        $(".woocommerce #review_form .comment-form").toggle("display", "flex");
     });
 
     // Change the Review Title text
@@ -253,7 +253,7 @@ jQuery(document).ready(function ($) {
         checkoutButtonAncestor.appendChild(checkoutNestedButton);
 
         const requiredInputFields = $(
-            ".checkout.woocommerce-checkout .validate-required input"
+            ".checkout.woocommerce-checkout .woocommerce-billing-fields .validate-required input"
         );
         const button = $("#place_order");
 

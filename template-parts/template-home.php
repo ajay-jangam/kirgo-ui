@@ -213,14 +213,7 @@
                     <p class="newsletter-section__subTitle">
                         <?php the_sub_field( 'join_us_subtitle' ); ?>
                     </p>
-                    <form class="newsletter-section__form">
-                        <input
-                            type="text"
-                            name="text"
-                            placeholder="enter phone number/e-mail address"
-                        />
-                        <button type="button">join</button>
-                    </form>
+                    <?php echo do_shortcode('[contact-form-7 id="396" title="Newsletters"]');?>
                 </div>
             <?php endwhile; ?>
         <?php endif; ?>
