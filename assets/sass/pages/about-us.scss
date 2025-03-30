@@ -379,3 +379,39 @@
         }
     }
 }
+
+.about-us-content {
+    padding: 0 1rem;
+    text-align: center;
+    margin-top: 4rem;
+
+    p {
+        font-family: Poppins;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 17.5px;
+        letter-spacing: 0.18px;
+        text-align: justify;
+        color: #fff;
+
+        @include mq($from: tablet) {
+            font-size: 16px;
+            line-height: 20.5px;
+            letter-spacing: 0.2px;
+            max-width: 60%;
+            margin: 1rem auto;
+        }
+    }
+
+    img {
+        margin: 1rem 0;
+        border-radius: 10px;
+
+        @include mq($from: tablet) {
+            min-width: 20rem;
+        }
+    }
+
+    .ok-buy {
+    }
+}
