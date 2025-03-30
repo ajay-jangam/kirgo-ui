@@ -190,7 +190,7 @@ jQuery(document).ready(function ($) {
     // Added image on account page
     const accountPageElement = $(".woocommerce-account #page");
     const newAccountPageElement = $(
-        '<img class="account-banner-image" src="/wp-content/themes/kirgo-theme/assets/images/account/sign-in-banner.png" alt="Banner Image" />'
+        '<img class="account-banner-image" src="/wp-content/themes/kirgo-theme/assets/images/account/sign-in-banner.jpg" alt="Banner Image" />'
     );
     if (!$("body.woocommerce-page").hasClass("logged-in")) {
         // Remove banner image when logged in
