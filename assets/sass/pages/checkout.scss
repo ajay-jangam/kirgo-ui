@@ -337,7 +337,7 @@
                     padding: 0;
                     margin: 0.5rem 0;
                     list-style-type: none;
-
+                    height: 14px;
                     li {
                         display: flex;
                         .wc-item-meta-label {
@@ -360,12 +360,23 @@
             }
 
             tfoot {
-                .cart-subtotal {
-                    padding-bottom: 0.75rem;
-                }
+                // .cart-subtotal {
+                //     padding-bottom: 0.75rem;
+                // }
                 .order-total {
                     border-top: 1px solid #fff;
                     padding-top: 10px;
+                    margin-top: 0.75rem;
+                }
+            }
+            .product-name {
+                dl.variation {
+                    display: flex;
+                    margin: 0;
+                    height: 20px;
+                    dt.variation-Size {
+                        margin-right: 5px;
+                    }
                 }
             }
         }
@@ -515,6 +526,12 @@
     position: sticky;
     bottom: 2rem;
     text-transform: lowercase;
+    border: 1px solid #fff;
+    transition: all 0.1s ease-out;
+    &:hover {
+        background-color: #000;
+        color: #fff;
+    }
     @include mq($from: desktop) {
         position: unset;
         max-width: 400px;

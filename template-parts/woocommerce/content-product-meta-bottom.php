@@ -65,10 +65,13 @@
 <?php endif; ?>
 
 <!-- Owner Words -->
-<p class="wow animate__animated animate__fadeInUp product__owner-words">
+<div class="wow animate__animated animate__fadeInUp product__owner-words">
     <?php the_field( 'owner_words' ); ?>
-</p>
+</div>
 
 <!-- Product Set -->
 <?php
 require get_template_directory() . '/template-parts/woocommerce/content-product-set.php';
+
+require get_template_directory() . '/template-parts/woocommerce/content-product-cards.php';
+

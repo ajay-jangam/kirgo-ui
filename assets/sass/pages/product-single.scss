@@ -5,7 +5,7 @@ body.single-product {
     .site-main {
         margin-top: 0rem;
         @include mq($from: desktop) {
-            margin-top: 8rem;
+            margin-top: 11rem;
         }
     }
 
@@ -217,7 +217,7 @@ body.single-product {
                             align-items: center;
                             justify-content: center;
                             padding-top: 3px;
-                            transition: all 0.5s ease;
+                            transition: all 0.1s ease;
                             @include mq($from: desktop) {
                                 font-size: 26px;
                                 width: 50px;
@@ -265,6 +265,10 @@ body.single-product {
                                     display: inline-block;
                                     margin-left: 0.4rem;
                                     transform: scale(0.7) translateY(2px);
+                                }
+
+                                &:hover {
+                                    color: #bbcea8;
                                 }
                             }
                         }
@@ -344,6 +348,10 @@ body.single-product {
                             transform: scale(0.9);
                         }
                     }
+
+                    &:hover {
+                        color: #bbcea8;
+                    }
                 }
 
                 [name="buy-now"].single_add_to_cart_button {
@@ -353,6 +361,13 @@ body.single-product {
                     font-weight: bold;
                     text-align: center;
                     color: #000;
+                    border: 1px solid #fff;
+                    transition: 0.05s ease-out;
+                    &:hover {
+                        color: #fff;
+                        border: 1px solid #fff;
+                        background-color: #0000;
+                    }
                     @include mq($from: desktop) {
                         font-size: 23.1px;
                     }
@@ -511,6 +526,11 @@ body.single-product {
                     text-align: center;
                     color: #000;
                     cursor: pointer;
+                    transition: 0.1s ease-out;
+                    &:hover {
+                        background-color: #fff;
+                        color: #000;
+                    }
                     @include mq($from: desktop) {
                         max-width: 500px;
                         margin: auto;
@@ -599,6 +619,13 @@ body.single-product {
                         color: #000;
                         width: 100%;
                         text-transform: lowercase;
+                        border: 1px solid #fff;
+                        transition: 0.1s ease-out;
+                        &:hover {
+                            color: #fff;
+                            border: 1px solid #fff;
+                            background-color: #0000;
+                        }
                         @include mq($from: desktop) {
                             font-size: 22px;
                             display: flex;
@@ -614,6 +641,9 @@ body.single-product {
                             font-size: 18px;
                             text-transform: lowercase;
                         }
+                    }
+                    .required {
+                        display: none;
                     }
                 }
             }
@@ -793,6 +823,11 @@ body.single-product {
                     text-align: center;
                     color: #fff;
                     border-radius: 9px;
+                    transition: 0.1s ease-out;
+                    &:hover {
+                        background-color: #fff;
+                        color: #000;
+                    }
                     @include mq($from: desktop) {
                         font-size: 26px;
                     }
@@ -801,7 +836,8 @@ body.single-product {
                         background-color: #0d0c0c;
                     }
                 }
-                .cart-product-size-modal {
+                .cart-product-size-modal,
+                .shop-add-to-cart-modal {
                     -webkit-backdrop-filter: blur(7px);
                     backdrop-filter: blur(7px);
                     background-color: rgba(217, 217, 217, 0.02);
@@ -878,7 +914,7 @@ body.single-product {
                                 align-items: center;
                                 justify-content: center;
                                 padding-top: 3px;
-                                transition: all 0.5s ease;
+                                transition: all 0.1s ease;
                                 @include mq($from: desktop) {
                                     font-size: 37px;
                                     width: 80px;
@@ -932,6 +968,14 @@ body.single-product {
                         text-align: center;
                         color: #000;
                         padding: 0;
+                        border: 1px solid #fff;
+                        text-transform: lowercase;
+                        transition: 0.1s ease-out;
+                        &:hover {
+                            color: #fff;
+                            border: 1px solid #fff;
+                            background-color: #0000;
+                        }
                         @include mq($from: desktop) {
                             font-size: 24px;
                             line-height: 2.5;
@@ -1002,4 +1046,71 @@ body.single-product {
 #check_pincode,
 #pincode_response {
     display: none;
+}
+
+.product_cat-summer-collection.product {
+    .summary {
+        background-color: #de5386;
+    }
+
+    .product__set-title a {
+        color: #de5386;
+    }
+
+    .product-size-modal-button {
+        span {
+            color: #de5386;
+        }
+    }
+}
+
+@include mq($until: tablet) {
+    .summer-collection .classic-section__category {
+        margin-bottom: 1rem;
+    }
+
+    .product-activewear {
+        order: 8;
+        padding: 4rem 1.5rem 0;
+        .product-activewear__text {
+            margin-bottom: 2rem;
+            .product-activewear__title {
+                font-size: 20px;
+                font-weight: 900;
+                line-height: 0.77;
+                text-align: center;
+                color: #fff;
+                margin-bottom: 0.5rem;
+                font-family: $blaak;
+            }
+
+            .product-activewear__subtitle {
+                font-family: Poppins;
+                font-size: 11px;
+                font-weight: 300;
+                line-height: 1.35;
+                letter-spacing: 1.6px;
+                text-align: center;
+                color: #ffffffa6;
+            }
+        }
+    }
+    body.single-product
+        .product
+        .woocommerce-product-gallery
+        .flex-control-nav.flex-control-thumbs {
+        left: 40px;
+        right: unset;
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+body.summer-collection-product
+    .product
+    .summary
+    .cart
+    .woovr-variations
+    .woovr-variation__extra-title {
+    color: #fff;
 }

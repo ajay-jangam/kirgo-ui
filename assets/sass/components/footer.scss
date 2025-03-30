@@ -2,6 +2,7 @@
     // footer-section__image
 
     &__image {
+        display: none;
         width: 100%;
         margin: 2rem 0 1rem;
 
@@ -30,7 +31,7 @@
         // }
         @include mq($from: desktop) {
             order: 2;
-            height: 200px;
+            height: 220px;
             display: flex;
             flex-flow: column;
             flex-wrap: wrap;
@@ -55,10 +56,14 @@
             letter-spacing: 7.68px;
             padding-left: 30px;
             margin-bottom: 2rem;
+            height: 40px;
             &:nth-child(-n + 3) {
                 text-align: right;
                 padding-right: 30px;
             }
+        }
+        &:hover {
+            color: #bbcea8;
         }
     }
 
@@ -123,6 +128,9 @@
             letter-spacing: 0.31px;
             opacity: 1;
         }
+        &:hover {
+            color: #bbcea8;
+        }
     }
 
     // .footer-section__getInTouchImg
@@ -166,7 +174,7 @@
 
     &__noteText {
         opacity: 0.7;
-        font-family: BlaakThin;
+        font-family: $blaak-black-light;
         font-size: 13px;
         font-weight: 100;
         line-height: 17.9px;
@@ -178,7 +186,7 @@
             font-size: 16px;
             line-height: 24.7px;
             opacity: 1;
-            max-width: 420px;
+            max-width: 700px;
             margin: 1.5rem auto;
         }
     }
@@ -203,8 +211,18 @@
     // .footer-section__noteSignKirgo
 
     &__noteSignKirgo {
+        margin-left: -2px;
         @include mq($from: desktop) {
-            width: 50px;
+            margin: auto;
+        }
+
+        svg {
+            width: 35px;
+            height: 20px;
+            @include mq($from: desktop) {
+                width: 60px;
+                height: 25px;
+            }
         }
     }
 
@@ -223,7 +241,7 @@
         justify-content: space-between;
 
         @include mq($from: desktop) {
-            padding: 1rem 3rem;
+            padding: 1.5rem 3rem;
             position: relative;
 
             &::before {
@@ -240,7 +258,9 @@
 
     &__offer {
         display: flex;
-        align-items: center;
+        @include mq($from: desktop) {
+            align-items: center;
+        }
     }
 
     // .footer-section__offerImg
@@ -254,6 +274,8 @@
         }
 
         svg {
+            width: 20px;
+            height: 20px;
             path:nth-child(3) {
                 stroke: #fff;
             }
@@ -302,6 +324,13 @@
                 stroke: #fff;
             }
         }
+        &:hover {
+            svg {
+                path {
+                    stroke: #bbcea8;
+                }
+            }
+        }
     }
 
     // .footer-section__socialLinkImg
@@ -317,6 +346,7 @@
         align-items: center;
         justify-content: space-between;
         @include mq($from: desktop) {
+            position: relative;
             padding: 1rem 3rem;
         }
         p {
@@ -335,6 +365,45 @@
         @include mq($from: desktop) {
             font-size: 14.8px;
             letter-spacing: 5.25px;
+        }
+    }
+
+    // .footer-section__termsPolicyLinks
+
+    &__termsPolicyLinks {
+        display: flex;
+        gap: 1.5rem;
+        @include mq($from: desktop) {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    // .footer-section__termsPolicyLink
+
+    &__termsPolicyLink {
+        font-family: $lekton;
+        color: #fff;
+        font-size: 10px;
+        text-decoration: none;
+        display: none;
+        &:hover {
+            color: #bbcea8;
+        }
+
+        @include mq($from: desktop) {
+            font-size: 16px;
+            display: block;
+        }
+    }
+
+    .footer-section__termsPolicyLink.mobile-link {
+        display: block;
+
+        @include mq($from: desktop) {
+            display: none;
         }
     }
 

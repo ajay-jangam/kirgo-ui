@@ -60,6 +60,7 @@ foreach ( $fields as $field_id => $field_args ) {
 
 <button type="submit" class="button btn xoo-el-action-btn xoo-el-login-btn" <?php if( !xoo_el_is_limit_login_ok() ) echo "disabled"; ?>><?php _e('Sign In','easy-login-woocommerce'); ?></button>
 
+<?php echo do_shortcode('[miniorange_social_login shape="round" theme="default" space="4" size="35"]'); ?>
 <input type="hidden" name="xoo_el_redirect" value="<?php echo esc_url( $redirect ); ?>">
 
 <?php echo do_shortcode('[xoo_el_action type="register" text="create an account" change_to="/my-account"]') ?>

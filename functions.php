@@ -214,11 +214,11 @@ if ( class_exists( 'WooCommerce' ) ) {
 require get_template_directory() . '/inc/woocommerce/single-product.php';
 
 // Show Buttons on Cart quantity input
-add_action( 'woocommerce_before_quantity_input_field', 'display_quantity_plus' );
+add_action( 'woocommerce_after_quantity_input_field', 'display_quantity_plus' );
 function display_quantity_plus() {
    echo '<button type="button" class="plus" >+</button>';
 }
-add_action( 'woocommerce_after_quantity_input_field', 'display_quantity_minus' );
+add_action( 'woocommerce_before_quantity_input_field', 'display_quantity_minus' );
 function display_quantity_minus() {
    echo '<button type="button" class="minus" >-</button>';
 }
@@ -242,7 +242,7 @@ function custom_cart_totals_title( $translated_text, $text, $domain ) {
 add_action( 'woocommerce_proceed_to_checkout', 'add_custom_text_with_hyperlink_before_checkout_button', 5 );
 
 function add_custom_text_with_hyperlink_before_checkout_button() {
-    $custom_text = '<strong>You can still save a total of Rs. <span>300</span>/-</strong> <a href="/product/classic-sports-bra">add the sports bra</a> to avail';
+    $custom_text = '<strong>You can still save a total of Rs. 100/-</strong> add <a href="/product/classic-sports-bra"> sports bra</a> to avail';
     echo '<p class="discount-text">' . $custom_text . '</p>';
 }
 
@@ -251,7 +251,7 @@ function add_custom_text_with_hyperlink_before_checkout_button() {
  * Checkout Page
  ***********************/
 
-// Chnaged the checkout order title text
+// Changed the checkout order title text
 add_filter( 'gettext', 'woocommerce_checkout_before_order_review_heading', 10, 3 );
 
 function woocommerce_checkout_before_order_review_heading( $translated_text, $text, $domain ) {
@@ -310,10 +310,9 @@ function add_modal_content() {
 			<div class='modal-content'>
 				<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
 				<div class='modal-body'>
-					<p class='model-title'>enter e-mail address to get notify</p>";
+					<p class='model-title'>ReStock Alert</p>";
 					echo do_shortcode("[contact-form-7 id='398' title='Notify me']");
-					echo "</form>
-				</div>
+				echo "</div>
 			</div>
 		</div>
 	</div>";
@@ -345,13 +344,18 @@ function display_related_products() {
 	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 		$product_ids[] = $cart_item['product_id'];
 	}
+	
+	
+	// Check if product with ID 438 is in the cart
+	$set_product_id_438_in_cart = in_array( 438, $product_ids );
 
 	// Query for related products based on the current product IDs
 	$related_args = array(
 		'post_type' => 'product',
-		'posts_per_page' => 4,
+		'posts_per_page' => 1,
 		'post__not_in' => $product_ids,
 		'orderby' => 'rand',
+		'product_cat' => 'single-product',
 		'meta_query' => array(
 			array(
 				'key' => '_stock_status',
@@ -362,11 +366,11 @@ function display_related_products() {
 	$related_query = new WP_Query( $related_args );
 
 	// Display the related products
-	if ( $related_query->have_posts() ) {
+	if ( $related_query->have_posts() && !$set_product_id_438_in_cart ) {
 
 		echo '<div class="alternate-cart-products">';
 			echo '<h2 class="cart-product-set-text">make it a set and</br> <span>get free shipping</span></h2>';
-			echo '<p class="add-alternate-product-to-cart-text">Add our bra to your cart for a complete kirgo experience</p>';
+			echo '<p class="add-alternate-product-to-cart-text">Add our <span class="alternateProductTitle"></span> to your cart for a complete kirgo experience</p>';
 			echo '<ul class="products">';
 
 			while ( $related_query->have_posts() ) {
@@ -466,3 +470,78 @@ function add_class_if_cart_empty($classes) {
     return $classes;
 }
 add_filter('body_class', 'add_class_if_cart_empty');
+
+
+// Add Cash on Delivery (COD) charges
+// add_action( 'woocommerce_cart_calculate_fees', 'add_cod_fee' );
+// function add_cod_fee() {
+//     if ( 'cod' === WC()->session->chosen_payment_method ) {
+//         $cod_fee = 50; // Set the COD fee amount here
+//         WC()->cart->add_fee( 'Cash on delivery Fee', $cod_fee, true );
+//     }
+// }
+
+// Avoid blur images
+add_filter(
+    'wp_calculate_image_sizes',
+    function( $sizes ) {
+        $sizes = '(max-width: 960px) 50vw, 430px';
+
+        return $sizes;
+    }
+);
+
+
+function custom_update_cart_button_text($translated_text, $text, $domain) {
+    // Check if the text domain is "woocommerce"
+    if ($domain === 'woocommerce') {
+        // Check if the original text is "Update Cart"
+        if ($text === 'Update cart') {
+            // Replace it with your desired text
+            $translated_text = 'Update receipt';
+        }
+    }
+    return $translated_text;
+}
+
+add_filter('gettext', 'custom_update_cart_button_text', 20, 3);
+
+
+// Added Poppins font
+function enqueue_custom_fonts() {
+    wp_enqueue_style('custom-font', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null);
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_fonts');
+
+
+// Rename buttons
+function custom_woocommerce_messages( $message, $text, $domain ) {
+    if ( $domain === 'woocommerce' ) {
+        // Change "Browse Products" text
+        if ( $text === 'Browse products' ) {
+            $message = 'Shop now'; 
+        }
+
+        // Change "No orders found." message
+        if ( $text === 'No order has been made yet.' ) {
+            $message = 'No orders yet'; 
+        }
+    }
+    return $message;
+}
+add_filter( 'gettext', 'custom_woocommerce_messages', 20, 3 );
+
+
+function ajay_add_summer_collection_body_class( $classes ) {
+    if ( is_product() ) { 
+        global $post;
+        
+        $product = wc_get_product( $post->ID ); 
+
+        if ( $product && has_term( 'summer-collection', 'product_cat', $product->get_id() ) ) {
+            $classes[] = 'summer-collection-product';
+        }
+    }
+    return $classes;
+}
+add_filter( 'body_class', 'ajay_add_summer_collection_body_class' );

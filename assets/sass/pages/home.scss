@@ -1,9 +1,75 @@
 // Home Slider
 
+@include mq($until: tablet) {
+    body.home {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 70rem;
+            top: 0;
+            left: 0;
+            background-image: linear-gradient(
+                to bottom,
+                #de5386 33%,
+                #0d0c0c 100%
+            );
+            z-index: -1;
+        }
+    }
+}
+
+.summer-collection {
+    .classic-section__category {
+        @include mq($until: tablet) {
+            margin-bottom: 3rem;
+        }
+        .classic-section__link {
+            background-color: #fff;
+
+            .homepage-product-name {
+                color: #de5386;
+            }
+        }
+    }
+
+    .classic-section__categoryRegular {
+        .classic-section__link {
+            .homepage-product-name {
+                color: #000;
+            }
+        }
+    }
+}
+
+.hero-section {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 9px;
+    margin-bottom: 1rem;
+    .hero-imageContainer {
+        .hero-image {
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+}
+
 .slider-section {
     padding-top: 80px;
+    @include mq($until: tablet) {
+        display: none;
+    }
     @include mq($from: tablet-md) {
         padding-top: 100px;
+    }
+    @include mq($from: desktop) {
+        padding-top: 150px;
+    }
+    @include mq($from: desktop-md) {
+        padding-top: 200px;
     }
     @include mq($from: desktop) {
         position: relative;
@@ -35,22 +101,31 @@
             font-size: 18.9429px;
             line-height: 93.9%;
             color: #ffffff;
-            width: 230px;
-            margin: 1.5rem 0;
+            width: 360px;
+            margin: 2rem 0 3.5rem;
         }
         .buy-button {
             font-family: $lekton;
-            font-size: 21.2px;
+            font-size: 18px;
             font-weight: bold;
             text-align: center;
             color: #000;
             background-color: #fff;
-            padding: 1rem 1.5rem;
+            padding: 0.75rem;
             text-decoration: none;
             border-radius: 8px;
             margin: 0;
-            line-height: 1.5;
-            width: 300px;
+            line-height: 1;
+            width: 280px;
+            display: flex;
+            justify-content: center;
+            border: 1px solid #fff;
+            transition: 0.05s ease-out;
+            &:hover {
+                color: #fff;
+                border: 1px solid #fff;
+                background-color: #0000;
+            }
         }
     }
 
@@ -168,6 +243,11 @@
                 justify-content: center;
                 align-items: center;
                 top: unset;
+                transition: all 0.1s ease-out;
+            }
+
+            &:hover {
+                opacity: 0.5;
             }
 
             .flickity-button-icon {
@@ -238,6 +318,11 @@
 .classic-section {
     padding: 1rem 2rem 0;
     position: relative;
+    display: none;
+    @include mq($until: tablet) {
+        display: block;
+        padding: 5rem 1.5rem 0;
+    }
 
     // .classic-section__wrapper
 
@@ -250,10 +335,16 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 1rem;
-
+        @include mq($until: desktop) {
+            gap: 10px;
+        }
         @include mq($from: desktop) {
             justify-content: center;
             margin-top: 4rem;
+        }
+
+        @include mq($until: tablet) {
+            // background: #fff;
         }
 
         .motto-image {
@@ -279,6 +370,7 @@
         text-align: left;
         position: relative;
         z-index: 2;
+        background-repeat: no-repeat;
         &::before {
             @include mq($from: desktop) {
                 position: absolute;
@@ -295,6 +387,73 @@
                 );
             }
         }
+        @include mq($until: desktop) {
+            border: none;
+            border-radius: 9px;
+            padding: 10px 10px 15px;
+            background: #171616;
+            box-shadow: 0px 1px 32px 0px rgba(0, 0, 0, 0.07);
+        }
+
+        .desktop-elements {
+            display: none;
+            @include mq($from: desktop) {
+                display: block;
+            }
+        }
+
+        .mobile-elements {
+            display: block;
+            position: relative;
+            svg {
+                position: absolute;
+                right: 0;
+                width: 20px;
+                z-index: 1;
+            }
+            .homepage-product-image {
+                margin-bottom: 1rem;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 9px;
+                    @include mq($until: tablet) {
+                        height: 190px !important;
+                    }
+                }
+            }
+
+            .homepage-product-name {
+                color: #fff;
+                font-size: 16px;
+                font-family: $blaak-black-regular;
+                font-style: normal;
+                font-weight: 900;
+                line-height: 93.9%;
+                max-width: 100px;
+                text-transform: lowercase;
+            }
+
+            .homepage-product-description {
+                color: rgba(255, 255, 255, 0.65);
+                text-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+                font-size: 11px;
+                font-family: $lekton;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 118%;
+                letter-spacing: 0.165px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                margin-bottom: 1rem;
+            }
+
+            @include mq($from: desktop) {
+                display: none;
+            }
+        }
 
         & > * {
             @include mq($from: desktop) {
@@ -307,6 +466,7 @@
             border-radius: 18px;
             max-width: 350px;
             padding: 9rem 1.5rem 2rem 1.5rem;
+            overflow: hidden;
             // background-size: 160% 110%;
             // background-position: center 0;
         }
@@ -326,21 +486,54 @@
         }
 
         .product-link {
-            display: none;
-            @include mq($from: desktop) {
-                display: block;
-                font-family: $lekton;
-                font-size: 21.2px;
-                font-weight: bold;
-                text-align: center;
-                color: #000;
-                background-color: #fff;
-                padding: 0.7rem;
-                text-decoration: none;
-                border-radius: 8px;
-                margin: 0;
-                line-height: 1.5;
+            // display: none;
+            font-family: $lekton;
+            font-size: 21.2px;
+            font-weight: bold;
+            text-align: center;
+            color: #000;
+            background-color: #fff;
+            padding: 0.7rem;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 0;
+            line-height: 1.5;
+            border: 1px solid #fff;
+            transition: 0.1s ease-out;
+            display: block;
+            &:hover {
+                color: #fff;
+                border: 1px solid #fff;
+                background-color: #000;
             }
+            @include mq($until: desktop) {
+                font-size: 10px;
+                padding: 0.5rem;
+                line-height: 1;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    &__linkContainer {
+        position: relative;
+        width: 100%;
+        .add-to-cart-button {
+            position: absolute;
+            bottom: 5.25rem;
+            right: 1.5rem;
+            z-index: 11;
+            text-decoration: none;
+            font-size: 2rem;
+            color: #000;
+            background-color: #fff;
+            line-height: 1;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
         }
     }
 
@@ -378,6 +571,8 @@
         left: -45%;
         top: 45%;
         width: 100%;
+        display: none;
+
         @include mq($from: desktop) {
             display: none;
         }
@@ -396,6 +591,8 @@
         background-color: #fff;
         display: block;
         position: relative;
+        transition: all 0.1s ease-out;
+        cursor: pointer;
         @include mq($from: desktop) {
             display: none;
             background-color: #0000;
@@ -405,8 +602,24 @@
             font-size: 35.4px;
         }
 
+        @include mq($until: tablet) {
+            margin: 1rem 0.5rem 0;
+            background-color: #0d0c0c;
+            color: #fff;
+        }
+
+        &:hover {
+            border: 1px solid #fff;
+            color: #fff;
+            // background-color: #0000;
+
+            &::after {
+                content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
+            }
+        }
+
         &::after {
-            content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow.svg");
+            content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
             position: absolute;
             z-index: 1;
             right: 8px;
@@ -421,6 +634,21 @@
         }
     }
 
+    .hero-sectionSummer {
+        .primary-link {
+            @include mq($until: tablet) {
+                margin: 1rem 0.5rem 0;
+                background-color: #de5386;
+                color: #fff;
+                border: none;
+            }
+
+            &::after {
+                content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
+            }
+        }
+    }
+
     .secondary-link {
         text-decoration: none;
         border: 1px solid #fff;
@@ -429,13 +657,22 @@
         display: flex;
         justify-content: center;
         // -webkit-text-stroke: 0.2px #000;
-        font-family: $lekton;
+        font-family: Poppins;
         font-size: 16px;
         font-weight: bold;
         line-height: 0.8;
         letter-spacing: -0.16px;
         text-align: center;
-        color: #fff;
+        color: #000;
+        transition: 0.1sease-out;
+        max-width: 90%;
+        margin: 0 auto;
+        background-color: #fff;
+        &:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
         @include mq($from: desktop) {
             display: none;
         }
@@ -446,6 +683,10 @@
 
 .newsletter-section {
     padding: 1rem 2rem 2rem;
+
+    @include mq($until: tablet) {
+        padding: 1rem 1.5rem 0;
+    }
 
     @include mq($from: desktop) {
         padding: 0 0.5rem;
@@ -464,6 +705,10 @@
         background-color: #000;
         overflow: hidden;
 
+        @include mq($until: tablet) {
+            padding: 1rem;
+            background-color: #fff !important;
+        }
         @include mq($from: desktop) {
             display: flex;
         }
@@ -475,6 +720,10 @@
         width: 100%;
         height: 270px;
         object-fit: cover;
+
+        @include mq($until: tablet) {
+            height: 400px;
+        }
 
         @include mq($from: desktop) {
             flex-basis: 44%;
@@ -506,6 +755,10 @@
         line-height: 37.4px;
         color: #fff;
         margin-left: 7px;
+        @include mq($until: tablet) {
+            color: #d95283;
+            margin: 0;
+        }
 
         @include mq($from: desktop) {
             font-size: 59.4px;
@@ -523,6 +776,12 @@
         text-align: left;
         color: #fff;
         margin-left: 1rem;
+        @include mq($until: tablet) {
+            color: #050505;
+            font-family: Poppins;
+            text-shadow: none;
+            margin: 0 0 1rem 0;
+        }
 
         @include mq($from: desktop) {
             font-size: 20.4px;
@@ -538,12 +797,19 @@
         display: flex;
         border: 1px solid #fff;
         border-radius: 6px;
-        @include mq($from: desktop) {
-            overflow: hidden;
+        overflow: hidden;
+
+        @include mq($until: tablet) {
+            -webkit-backdrop-filter: blur(26px);
+            backdrop-filter: blur(26px);
+            border: solid 0 #fff !important;
+            background-color: #efefef !important;
+            margin-bottom: 0;
         }
+
         input {
             padding: 0.5rem 0.8rem;
-            font-family: $lekton;
+            font-family: "Poppins";
             font-size: 12px;
             letter-spacing: -0.12px;
             text-align: left;
@@ -556,6 +822,9 @@
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
 
+            @include mq($until: tablet) {
+                min-width: min-content;
+            }
             @include mq($from: desktop) {
                 font-size: 18.7px;
                 font-weight: bold;
@@ -567,6 +836,9 @@
 
             &::placeholder {
                 color: rgba(255, 255, 255, 0.4);
+                @include mq($until: tablet) {
+                    color: #9f9f9f;
+                }
             }
         }
 
@@ -583,8 +855,20 @@
             text-align: center;
             color: #000;
             flex-basis: 20%;
-            border: 1px solid #fff;
+            border: 1px solid #d95283;
+            transition: 0.05s ease-out;
 
+            @include mq($until: tablet) {
+                border-radius: 5px;
+                background-color: #d95283;
+                color: #fff;
+            }
+
+            &:hover {
+                color: #fff;
+                border: 1px solid #fff;
+                background-color: #0d0c0c;
+            }
             @include mq($from: desktop) {
                 font-size: 23.8px;
                 letter-spacing: -0.24px;
@@ -593,6 +877,7 @@
     }
 
     span.wpcf7-not-valid-tip {
+        display: none;
         position: absolute;
         top: 50px;
         font-size: 16px;
@@ -607,11 +892,11 @@
         border: none;
         margin: 0;
         padding: 0;
-        font-size: 16px;
+        font-size: 12px;
         text-transform: lowercase;
 
         @include mq($from: desktop) {
-            font-size: 20px;
+            font-size: 16px;
         }
     }
 }
@@ -652,7 +937,7 @@
     // .blog-section__cell
 
     &__cell {
-        background-color: #000;
+        background-color: #fefefe;
         border-radius: 9px;
         overflow: hidden;
     }
@@ -669,15 +954,13 @@
 
     &__readTime {
         flex-grow: 0;
-        opacity: 0.4;
-        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-        font-family: $lekton;
+        font-family: "Poppins";
         font-size: 9px;
         font-weight: bold;
         line-height: 12.3px;
         letter-spacing: 0.14px;
         text-align: left;
-        color: #fff;
+        color: #0d0c0c;
         margin-bottom: 5px;
 
         @include mq($from: desktop) {
@@ -694,9 +977,10 @@
         line-height: 22.4px;
         letter-spacing: -0.09px;
         text-align: left;
-        color: #fff;
+        color: #000;
         margin-bottom: 0;
         min-height: 68px;
+        transition: all 0.1s ease-out;
         @include mq($from: desktop) {
             font-size: 28px;
             line-height: 31px;
@@ -709,6 +993,17 @@
     .blog-carousel {
         a {
             text-decoration: none;
+            &:hover {
+                .blog-section__sliderImg {
+                    img {
+                        transform: scale(1.25);
+                    }
+                }
+
+                .blog-section__newsLetterTitle {
+                    color: #bbcea8;
+                }
+            }
         }
         .flickity-viewport {
             height: 325px;
@@ -718,6 +1013,7 @@
             }
 
             .post-thumbnail {
+                overflow: hidden;
                 .placeholder-image {
                     opacity: 0.6;
                 }
@@ -736,6 +1032,10 @@
                 .blog-section__cell {
                     -webkit-transform: scale(1);
                     transform: scale(1);
+                    @include mq($until: tablet) {
+                        -webkit-transform: scale(0.9);
+                        transform: scale(0.9);
+                    }
                 }
                 .blog-section__newsLetterTitle {
                     @include mq($from: desktop) {
@@ -802,7 +1102,7 @@
             width: 100%;
             height: 170px;
             object-fit: cover;
-
+            transition: all 0.25s ease-out;
             @include mq($from: desktop) {
                 height: 350px;
             }
@@ -812,6 +1112,7 @@
 
 .shop-section {
     // .shop-section__wrapper
+    display: none;
 
     &__wrapper {
         @include mq($from: desktop) {
@@ -886,6 +1187,13 @@
             }
 
             .carousel-cell {
+                border-radius: 9px;
+                overflow: hidden;
+                &:hover {
+                    .shop-section__shopImage {
+                        transform: scale(1.1);
+                    }
+                }
                 @include mq($from: desktop) {
                     width: 32%;
                     margin-right: 30px;
@@ -898,6 +1206,10 @@
                     top: calc(100% + 3rem);
                     background: #0000;
                     color: #0000;
+                }
+
+                &:hover {
+                    opacity: 0.5;
                 }
 
                 .flickity-button-icon {
@@ -968,6 +1280,76 @@
             height: 450px;
             object-fit: cover;
             border-radius: 9px;
+            transition: all 0.25s ease-out;
         }
     }
+}
+
+.buyLink-section {
+    margin-top: 4rem;
+    // .buyLink-section__wrapper
+
+    &__wrapper {
+    }
+
+    // .buyLink-section__links
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    // .buyLink-section__link
+
+    &__link {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0.9px 28.3px 0 #0001;
+    }
+
+    // .buyLink-section__linkImage
+
+    &__linkImage {
+        width: 100%;
+        height: 540px;
+        object-fit: cover;
+    }
+
+    // .buyLink-section__linkMain
+
+    &__linkMain {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 1.5rem;
+        margin: auto;
+        width: 90%;
+        padding: 1rem;
+        border-radius: 4.7px;
+        border: solid 1px #fff;
+        background-color: #fefefe;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: -0.16px;
+        text-align: center;
+        color: #0d0c0c;
+        text-decoration: none;
+    }
+    .summer {
+        .buyLink-section__linkMain {
+            color: #de5386;
+        }
+    }
+    .classic {
+    }
+}
+
+.kirgo-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0 3rem;
 }

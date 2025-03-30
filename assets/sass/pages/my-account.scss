@@ -49,11 +49,15 @@
                         @include mq($from: desktop) {
                             font-size: 24px;
                         }
+                        &:hover {
+                            color: #bbcea8;
+                        }
                     }
                 }
-                .is-active {
+                li.woocommerce-MyAccount-navigation-link.is-active {
                     a {
-                        border-bottom: 5px solid #fff;
+                        border-bottom: 5px solid #bbcea8;
+                        color: #bbcea8;
                     }
                 }
                 li.woocommerce-MyAccount-navigation-link--customer-logout {
@@ -154,7 +158,13 @@
             border-radius: 6px;
             margin: 0 0 1rem;
             width: 100%;
-
+            text-transform: lowercase;
+            border: 1px solid #fff;
+            transition: all 0.1s ease-out;
+            &:hover {
+                background-color: #000;
+                color: #fff;
+            }
             @include mq($from: desktop) {
                 font-size: 14px;
             }
@@ -203,7 +213,12 @@
             background-color: #fff;
             border-radius: 9px;
             color: #000;
-
+            border: 1px solid #fff;
+            transition: all 0.1s ease-out;
+            &:hover {
+                background-color: #000;
+                color: #fff;
+            }
             @include mq($from: desktop) {
                 font-size: 14px;
             }
@@ -420,6 +435,12 @@
                             display: unset;
                             padding: 0.5rem 1rem;
                             text-transform: lowercase;
+                            border: 1px solid #fff;
+                            transition: all 0.1s ease-out;
+                            &:hover {
+                                background-color: #000;
+                                color: #fff;
+                            }
                         }
                         .button.wp-element-button.view {
                             margin: 0 0.5rem;
@@ -470,6 +491,12 @@
                         font-weight: 700;
                         line-height: 1;
                         text-transform: lowercase;
+                        border: 1px solid #fff;
+                        transition: all 0.1s ease-out;
+                        &:hover {
+                            background-color: #000;
+                            color: #fff;
+                        }
                     }
                 }
             }

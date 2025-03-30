@@ -7,6 +7,10 @@
     z-index: 999;
     top: 0;
 
+    @include mq($from: desktop) {
+        height: 100px;
+    }
+
     .navbar-brand__logo {
         svg {
             @include mq($from: desktop) {
@@ -25,6 +29,13 @@
     }
 
     &.active {
+        .home-arrow,
+        .woocommerce-page-title {
+            display: none;
+        }
+        .kirgo-mobile-logo {
+            display: block;
+        }
         .navbar-brand__logo {
             z-index: 99999;
             svg {
@@ -127,7 +138,12 @@
     }
 }
 
-.page-template-template-about-us {
+.page-template-template-about-us,
+body.page-id-425,
+body.page-id-10,
+body.page-id-432,
+body.page-id-436,
+body.page-template-template-get-in-touch {
     .navbar {
         svg {
             fill: #000;
@@ -219,11 +235,13 @@
 }
 
 .navbar-admin {
-    margin: 0 0 0 auto;
+    margin: 3px 0 0 auto;
     z-index: 99999;
+    display: flex;
     svg {
         width: 20px;
         height: 20px;
+        filter: drop-shadow(0px 2px 2px rgb(0 0 0 / 0.4));
         path {
             fill: #fff;
         }
@@ -243,7 +261,7 @@
 }
 
 .navbar-admin-mobile {
-    display: block;
+    display: flex;
     @include mq($from: desktop) {
         display: none;
     }
@@ -290,25 +308,35 @@
         font-family: $lekton;
 
         .xoo-wsc-sc-bkcont {
-            transform: scale(1.15);
+            // transform: scale(1.15);
             margin-right: 0px;
-            margin-top: 2px;
+            // margin-top: 2px;
             .xoo-wsc-sc-bki {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: -1px;
+                filter: drop-shadow(0px 2px 2px rgb(0 0 0 / 0.4));
                 &::before {
-                    content: url("/wp-content/themes/kirgo-theme/assets/images/icons/cart_light.svg");
+                    content: url("/wp-content/themes/kirgo-theme/assets/images/header/cart-light.svg");
                 }
                 &::after {
                     display: none;
-                    content: url("/wp-content/themes/kirgo-theme/assets/images/icons/cart_dark.svg");
+                    content: url("/wp-content/themes/kirgo-theme/assets/images/header/cart-dark.svg");
                 }
             }
 
             .xoo-wsc-sc-count {
                 background-color: unset;
                 font-size: 12px;
-                right: 0px;
-                top: 10px;
+                // right: 0px;
+                // top: 10px;
+                height: 9px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 font-weight: 700;
+                filter: drop-shadow(0px 2px 2px rgb(0 0 0 / 0.4));
             }
         }
     }
@@ -323,6 +351,7 @@
     z-index: 99999;
     transform: scale(0.65);
     cursor: pointer;
+    filter: drop-shadow(0px 2px 2px rgb(0 0 0 / 0.4));
     @include mq($from: desktop) {
         transform: scale(0.9);
         margin-left: 1rem;
@@ -424,6 +453,11 @@
                 color: #000000;
                 padding: 1rem 4rem;
                 text-decoration: none;
+
+                &:hover {
+                    background-color: #000;
+                    color: #fff;
+                }
             }
         }
     }
@@ -489,6 +523,20 @@
         text-decoration: none;
         &:nth-child(2) {
             margin-bottom: 1.75rem;
+        }
+
+        &:hover {
+            .navbar-menu__link {
+                background-color: #000;
+                color: #fff;
+
+                &::after {
+                    content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
+                }
+                span {
+                    color: #fff;
+                }
+            }
         }
     }
 
@@ -576,6 +624,12 @@
     justify-content: space-between;
     &__items {
         text-decoration: none;
+
+        &:first-child {
+            img {
+                width: 20px;
+            }
+        }
     }
 
     .social-links {
@@ -595,6 +649,13 @@
         background-color: #000;
         border-radius: 9px;
         color: #fff;
+        border: 1px solid #000;
+
+        &:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
     }
     // .social-link__image
 
@@ -618,5 +679,15 @@
 .woocommerce-page-title {
     @include mq($from: desktop) {
         display: none;
+    }
+}
+
+body.summer-collection-product {
+    .navbar-brand__logo {
+        svg {
+            path {
+                fill: #de5386;
+            }
+        }
     }
 }

@@ -4,18 +4,24 @@
 /**
  * Extra variations component
  */
-function woocommerce_single_product_variations_extras() {
-	echo "
-	<div class='woovr-variation__extra'>
-		<span class='woovr-variation__extra-title'>XS & XL coming soon</span>
-		<!-- <a class='woovr-variation__extra-link' href='#'>notify me</a> -->
+ function woocommerce_single_product_variations_extras() {
+    $product_id = get_the_ID(); // Get the current product ID
+    $specific_product_id = 65; // Change 123 to your specific product ID
 
-		<button type='button' class='woovr-variation__extra-link' data-bs-toggle='modal' data-bs-target='#notifyMePopup'>
-		notify me
-		</button>
+    echo "<div class='woovr-variation__extra'>";
 
-		
-	</div>";
+    if ($product_id !== $specific_product_id) {
+        echo "<span class='woovr-variation__extra-title'>XS & XL coming soon</span>";
+    } else {
+        echo "<span class='woovr-variation__extra-title'>XL coming soon</span>";
+    }
+
+    echo "
+        <!-- <a class='woovr-variation__extra-link' href='#'>notify me</a> -->
+        <button type='button' class='woovr-variation__extra-link' data-bs-toggle='modal' data-bs-target='#notifyMePopup'>
+        notify me
+        </button>
+    </div>";
 }
 
 add_action('woovr_variations_after', 'woocommerce_single_product_variations_extras', 10, 2);

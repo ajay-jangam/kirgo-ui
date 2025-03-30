@@ -36,6 +36,12 @@
             position: sticky;
             bottom: 2rem;
             text-transform: lowercase;
+            border: 1px solid #fff;
+            transition: all 0.1s ease-out;
+            &:hover {
+                background-color: #000;
+                color: #fff;
+            }
             @include mq($from: desktop) {
                 position: unset;
                 max-width: 400px;
@@ -341,6 +347,12 @@
                         border-radius: 6px;
                         margin: 0 0 1rem;
                         text-transform: lowercase;
+                        border: 1px solid #fff;
+                        transition: all 0.1s ease-out;
+                        &:hover {
+                            background-color: #0000;
+                            color: #fff;
+                        }
                         @include mq($from: desktop) {
                             margin: 0 0 3rem;
                             font-size: 17px;
@@ -366,6 +378,12 @@
                     order: 1;
                     width: max-content;
                     margin-left: auto;
+                    border: 1px solid #fff;
+                    transition: all 0.1s ease-out;
+                    &:hover {
+                        background-color: #fff;
+                        color: #000;
+                    }
                     @include mq($from: desktop) {
                         font-size: 17px;
                     }

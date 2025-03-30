@@ -21,7 +21,7 @@ jQuery(document).ready(function ($) {
         var scrollPosition = $(window).scrollTop();
 
         // check if the scroll position is greater than or equal to the height of the navbar
-        if (scrollPosition >= navbar.outerHeight()) {
+        if (scrollPosition >= 10) {
             // toggle the class on the navbar with animation
             navbar
                 .toggleClass(className, true)
@@ -94,7 +94,7 @@ jQuery(document).ready(function ($) {
 
     // Toggle Review Form
     $("#review_form .comment-reply-title").click(function () {
-        $(".woocommerce #review_form .comment-form").toggle("display", "flex");
+        $(".woocommerce #review_form .comment-form").toggle();
     });
 
     // Change the Review Title text
@@ -341,6 +341,12 @@ jQuery(document).ready(function ($) {
         }
     );
 
+    $(
+        ".woocommerce-shop li.product .product-card-details .shop-add-to-cart-modal .single_add_to_cart_button.wp-element-button"
+    ).click(function () {
+        $(".shop-add-to-cart-modal").modal("hide");
+    });
+
     $(".product .psfw-social-wrap").appendTo(
         "#productShareIcons .modal-content .modal-body"
     );
@@ -379,4 +385,13 @@ jQuery(document).ready(function ($) {
             ".woocommerce-checkout .woocommerce-order .woocommerce-desktop-col-right"
         );
     }
+
+    $(".woocommerce-shop .product a.woocommerce-LoopProduct-link")
+        .contents()
+        .unwrap()
+        .wrap("<div></div>");
+
+    $(".classic-section .primary-link").click(() => {
+        window.location.href = "/shop";
+    });
 });

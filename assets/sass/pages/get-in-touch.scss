@@ -1,0 +1,214 @@
+body.page-template-template-get-in-touch {
+    background-color: #fff;
+    color: #000;
+
+    .footer-section {
+        display: none;
+    }
+}
+
+.getInTouch-section {
+    &__wrapper {
+        @include mq($from: desktop) {
+            display: flex;
+        }
+    }
+    &__banner {
+        height: 250px;
+        width: 100%;
+        @include mq($from: desktop) {
+            height: unset;
+            order: 2;
+        }
+        @media (min-height: 801px) and (min-width: 1024px) {
+            height: 100vh;
+        }
+    }
+    &__mobileBannerImage {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        @include mq($from: desktop) {
+            display: none;
+        }
+    }
+    &__desktopBannerImage {
+        display: none;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        @include mq($from: desktop) {
+            display: block;
+        }
+    }
+    &__details {
+        padding: 2rem 3rem;
+        @include mq($from: desktop) {
+            order: 1;
+            flex-basis: 55%;
+            padding: 8rem 6rem 3rem;
+        }
+    }
+    &__title {
+        font-family: $blaak-black-regular;
+        font-size: 26.3px;
+        font-weight: 900;
+        line-height: 24.7px;
+        text-align: left;
+        color: #0d0c0c;
+        position: relative;
+        @include mq($from: desktop) {
+            font-size: 46.2px;
+            line-height: 43.4px;
+        }
+
+        svg {
+            position: absolute;
+            left: -1.25rem;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+    &__subTitle {
+        opacity: 0.7;
+        font-family: $blaak-black-thin;
+        font-size: 12px;
+        font-weight: 100;
+        line-height: 16.5px;
+        letter-spacing: 0.18px;
+        text-align: left;
+        color: #0d0c0c;
+        margin: 3rem 0 2rem;
+        max-width: 220px;
+        @include mq($from: desktop) {
+            font-size: 20px;
+            line-height: 27.4px;
+            letter-spacing: 0.3px;
+            max-width: 360px;
+        }
+    }
+    &__socialLinks {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+    &__socialLink {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3px;
+        @include mq($from: desktop) {
+            margin-bottom: 1rem;
+        }
+        &:nth-child(3) {
+            svg {
+                width: 15px;
+                @include mq($from: desktop) {
+                    width: 23px;
+                }
+            }
+        }
+        svg {
+            width: 16px;
+            margin-right: 1rem;
+            @include mq($from: desktop) {
+                width: 25px;
+            }
+        }
+        a {
+            display: flex;
+            color: #000;
+            text-decoration: none;
+            align-items: center;
+        }
+    }
+    // .phone-number {
+    //     .getInTouch-section__socialLinkText {
+    //         font-family: BlaakThin;
+    //         font-weight: 600;
+    //         color: #000000d1;
+    //     }
+    // }
+
+    &__socialLinkText {
+        display: inline-flex;
+        opacity: 0.7;
+        font-family: $blaak-black-thin;
+        font-size: 13px;
+        font-weight: 100;
+        line-height: 17.9px;
+        letter-spacing: 0.2px;
+        text-align: left;
+        color: #000;
+        margin-bottom: 0;
+        @include mq($from: desktop) {
+            font-size: 21.6px;
+            line-height: 29.7px;
+            letter-spacing: 0.32px;
+        }
+    }
+    &__addressWrapper {
+        margin-top: 2rem;
+    }
+    &__addressTitle {
+        margin-bottom: 0.5rem;
+        font-family: $blaak-black-regular;
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 13.1px;
+        text-align: left;
+        color: #0d0c0c;
+        @include mq($from: desktop) {
+            font-size: 23.3px;
+            line-height: 21.9px;
+        }
+    }
+    &__address {
+        opacity: 0.7;
+        font-family: $blaak-black-thin;
+        font-size: 12px;
+        font-weight: 100;
+        line-height: 16.5px;
+        letter-spacing: 0.18px;
+        text-align: left;
+        color: #0d0c0c;
+        max-width: 190px;
+        margin-bottom: 0;
+        @include mq($from: desktop) {
+            font-size: 20px;
+            line-height: 27.4px;
+            letter-spacing: 0.3px;
+            max-width: 350px;
+        }
+    }
+    &__desktopContent {
+        display: none;
+        @include mq($from: desktop) {
+            display: block;
+            margin-top: 1.5rem;
+        }
+    }
+    &__kirgoText {
+        font-family: $lekton;
+        font-size: 14.8px;
+        font-weight: bold;
+        letter-spacing: 5.25px;
+        text-align: left;
+        color: #000;
+        margin-bottom: 3rem;
+    }
+    &__socialLinksDesktop {
+        display: flex;
+        gap: 2rem;
+    }
+    &__socialLinksDesktopItems {
+        &:first-child {
+            .getInTouch-section__socialLinksDesktopImage {
+                width: 22px;
+            }
+        }
+    }
+    &__socialLinksDesktopImage {
+        width: 25px;
+    }
+}

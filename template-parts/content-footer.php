@@ -9,12 +9,13 @@
     <div class="footer-section__main">
 
         <div class="footer-section__menu">
-            <a href="#" class="footer-section__link">WHO ARE WE</a>
-            <a href="#" class="footer-section__link">ABOUT THE FABRIC</a>
-            <a href="#" class="footer-section__link">SHOP KIRGO ACTIVEWEAR</a>
-            <a href="#" class="footer-section__link">TRACK YOUR KIRGO</a>
-            <a href="#" class="footer-section__link">READ OUR NEWSLETTERS</a>
-            <a href="#" class="footer-section__link">FAQs ABOUT KIRGO</a>
+            <a href="/about-us" class="footer-section__link">KIRGO'S STORY</a>
+            <a href="/shop" class="footer-section__link">SHOP KIRGO ACTIVEWEAR</a>
+            <a href="https://kirgo.shiprocket.co/tracking" class="footer-section__link">TRACK YOUR KIRGOS</a>
+            <a href="#blogSection" class="footer-section__link blog-section-link">#KIRGOCREW BLOGS</a>
+            <a href="/shipping-policy" class="footer-section__link">SHIPPING POLICY</a>
+            <a href="/cancellations-and-refund" class="footer-section__link">RETURNS AND REFUNDS</a>
+<!--             <a href="/" class="footer-section__link">FAQs ABOUT KIRGO</a> -->
         </div>
         <div class="footer-section__getInTouch">
             <p class="footer-section__getInTouchTitle">get in touch</p>
@@ -28,7 +29,7 @@
                         alt="Kirgo"
                         class="footer-section__getInTouchImg"
                     />
-                    hello@kirgo.com
+                    hello@kirgostore.com
                 </a>
                 <a href="tel:+91-810599596" class="footer-section__getInTouchLink"
                     >
@@ -37,23 +38,32 @@
                         alt="Kirgo"
                         class="footer-section__getInTouchImg"
                     />
-                    +91-810599596</a
+                    +91 7498437590</a
                 >
             </div>
         </div>
         <div class="footer-section__note">
             <p class="footer-section__noteTitle">founder's note</p>
             <p class="footer-section__noteText">
-                I started this brand because I believe that everyone should have
-                access to comfortable and stylish workout gear that makes them
-                feel confident and ready to tackle their fitness goals
+                What once started as a love for health and fitness very quickly turned into an obsession for all things activewear. 
+                But after trying almost every single brand in India, I was not satisfied. 
+                I wanted activewear that helped me and millions like me move, and moved with us, that could 
+                be the perfect fit for every adventure irrespective of the place and style. 
+                Activewear that was simplistic yet stylish, that was classic yet timeless. 
+                Activewear that is affordable yet high quality.
+                Activewear that empowers me and hopefully you every step of the way.
+                And after 3+ of searching and researching, rejections and trials I created Kirgo.
+                It is everything i want from my activewear and so much more.
             </p>
             <p class="footer-section__noteSign">Kanika Rodrigues</p>
-            <img
-                src="<?php echo get_template_directory_uri() ?>/assets/images/footer/kirgo-sign.svg"
+            <div class="footer-section__noteSignKirgo">
+                <?php echo file_get_contents(get_template_directory() .'/assets/images/footer/kirgo-sign.svg')?>
+            </div>
+            <!-- <img
+                src="<?php //echo get_template_directory_uri() ?>/assets/images/footer/kirgo-sign.svg"
                 alt="Kirgo"
                 class="footer-section__noteSignKirgo"
-            />
+            /> -->
         </div>
     </div>
     <div class="footer-section__sub">
@@ -63,26 +73,31 @@
                     <?php echo file_get_contents(get_template_directory() .'/assets/images/footer/offer.svg') ?>
                 </div>
                 <p class="footer-section__offerTag">
-                    GET <span>20</span>% OFF <br>YOUR FIRST KIRGO
+                    GET FREE SHIPPING<br> ON THE FULL SET
                 </p>
             </div>
             <div class="footer-section__socialLinks">
-                <a href="#" class="footer-section__socialLink">
+                <a href="https://www.instagram.com/kirgostore/" class="footer-section__socialLink">
                     <?php echo file_get_contents(get_template_directory() .'/assets/images/instagram.svg') ?>
                 </a>
-                <a href="#" class="footer-section__socialLink">
+                <a href="https://www.youtube.com/@Kirgostore" class="footer-section__socialLink">
                     <?php echo file_get_contents(get_template_directory() .'/assets/images/youtube.svg') ?>
                 </a>
-                <a href="#" class="footer-section__socialLink">
+                <a href="https://www.facebook.com/profile.php?id=61551918715460" class="footer-section__socialLink">
                     <?php echo file_get_contents(get_template_directory() .'/assets/images/facebook.svg') ?>
                 </a>
             </div>
         </div>
         <div class="footer-section__copyRight">
-            <p class="footer-section__copyRightKiro">KIRGO ACTIVEWEAR CO.</p>
+            <p class="footer-section__copyRightKiro">KIRGO CO.</p>
+            <div class="footer-section__termsPolicyLinks">
+                <a href="/privacy-policy" class="footer-section__termsPolicyLink">Privacy Policy</a>
+                <a href="/terms-and-conditions" class="footer-section__termsPolicyLink">Terms and Conditions</a>
+                <a href="/privacy-policy" class="footer-section__termsPolicyLink mobile-link">Policy</a>
+                <a href="/terms-and-conditions" class="footer-section__termsPolicyLink mobile-link">T & C</a>
+            </div>
             <p class="footer-section__copyRightSecondary">
-                designed and developed
-                <a href="#" class="doriame">
+                <a href="mailto:help@doraime.com" class="doriame">
                     <img
                     src="<?php echo get_template_directory_uri() ?>/assets/images/footer/doriame.svg"
                     alt="Doriame"
