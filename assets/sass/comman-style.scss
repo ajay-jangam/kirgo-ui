@@ -924,10 +924,10 @@ html.xoo-wsc-cart-active {
     border: none;
     position: absolute;
     top: 32.9rem;
-    right: 5rem;
+    right: 2rem;
     @include mq($from: desktop) {
         top: -2.5rem;
-        right: 12rem;
+        right: 0;
     }
 }
 

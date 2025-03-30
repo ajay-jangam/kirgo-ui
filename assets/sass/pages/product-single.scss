@@ -305,52 +305,63 @@ body.single-product {
 
                 .single_add_to_cart_button:not(.wpcbn-btn-single) {
                     // display: none;
-                    position: absolute;
+                    // position: absolute;
                     border: none;
-                    border-radius: 50px;
+                    border-radius: 5px;
                     line-height: 1;
-                    top: 33rem;
-                    color: #0000;
-                    right: 2rem;
+                    top: 0;
+                    color: #000;
+                    right: 0;
                     z-index: 11;
-                    font-size: 0;
-                    background-color: #0000;
+                    font-size: 1rem;
+                    background-color: #fff;
                     padding: unset;
-                    width: 25px;
-                    height: 25px;
+                    width: 100%;
+                    height: 50px;
+                    margin-bottom: 1rem;
+                    position: relative;
+                    font-family: "Poppins";
+                    font-size: 15px;
+                    font-weight: 700;
+
+                    &:hover {
+                        background-color: #000;
+                        transition: 0.05s ease-out;
+                        border: 1px solid #fff;
+                    }
 
                     @include mq($from: desktop) {
-                        top: -3rem;
-                        color: #fff;
+                        top: 0rem;
+                        color: #000;
                         right: 0;
-                        width: unset;
-                        height: unset;
-                        font-size: 18px;
-                        font-weight: bold;
+                        width: 100%;
+                        height: 60px;
+                        font-size: 23.1px;
+                        font-weight: 700;
                         letter-spacing: -0.18px;
-                        background-color: #000;
+                        background-color: #fff;
                         text-transform: lowercase;
                         padding: 0.75rem 1.5rem 0.75rem 3rem;
                     }
 
-                    &::before {
-                        position: absolute;
-                        content: url("/wp-content/themes/kirgo-theme/assets/images/icons/add-to-cart.svg");
-                        top: -50%;
-                        left: -50%;
-                        width: 100%;
-                        transform: translate(50%, 50%);
+                    // &::before {
+                    //     position: absolute;
+                    //     content: "add to cart";
+                    //     top: -50%;
+                    //     left: -50%;
+                    //     width: 100%;
+                    //     transform: translate(50%, 50%);
 
-                        @include mq($from: desktop) {
-                            top: 8px;
-                            left: 1.2rem;
-                            width: unset;
-                            transform: scale(0.9);
-                        }
-                    }
+                    //     @include mq($from: desktop) {
+                    //         top: 8px;
+                    //         left: 1.2rem;
+                    //         width: unset;
+                    //         transform: scale(0.9);
+                    //     }
+                    // }
 
                     &:hover {
-                        color: #bbcea8;
+                        color: #fff;
                     }
                 }
 
@@ -1066,37 +1077,48 @@ body.single-product {
     }
 }
 
-@include mq($until: tablet) {
-    .summer-collection .classic-section__category {
-        margin-bottom: 1rem;
+.summer-collection .classic-section__category {
+    @include mq($from: tablet) {
+        margin: 1rem auto;
     }
+}
 
-    .product-activewear {
-        order: 8;
-        padding: 4rem 1.5rem 0;
-        .product-activewear__text {
-            margin-bottom: 2rem;
-            .product-activewear__title {
-                font-size: 20px;
-                font-weight: 900;
-                line-height: 0.77;
-                text-align: center;
-                color: #fff;
-                margin-bottom: 0.5rem;
-                font-family: $blaak;
+.product-activewear {
+    order: 8;
+    padding: 4rem 1.5rem 0;
+    .product-activewear__text {
+        margin-bottom: 2rem;
+        @include mq($from: tablet) {
+            margin-bottom: 4rem;
+        }
+        .product-activewear__title {
+            font-size: 20px;
+            font-weight: 900;
+            line-height: 0.77;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-family: $blaak;
+            @include mq($from: tablet) {
+                font-size: 35px;
             }
+        }
 
-            .product-activewear__subtitle {
-                font-family: Poppins;
-                font-size: 11px;
-                font-weight: 300;
-                line-height: 1.35;
-                letter-spacing: 1.6px;
-                text-align: center;
-                color: #ffffffa6;
+        .product-activewear__subtitle {
+            font-family: Poppins;
+            font-size: 11px;
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 1.6px;
+            text-align: center;
+            color: #ffffffa6;
+            @include mq($from: tablet) {
+                font-size: 23px;
             }
         }
     }
+}
+@include mq($until: tablet) {
     body.single-product
         .product
         .woocommerce-product-gallery

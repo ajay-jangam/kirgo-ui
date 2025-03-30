@@ -545,3 +545,8 @@ function ajay_add_summer_collection_body_class( $classes ) {
     return $classes;
 }
 add_filter( 'body_class', 'ajay_add_summer_collection_body_class' );
+
+function custom_add_to_cart_redirect($url) {
+    return wc_get_cart_url(); // Redirects to cart page
+}
+add_filter('woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect');

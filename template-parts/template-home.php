@@ -11,22 +11,12 @@
 
         <?php if ( have_rows( 'product_image_1' ) ) : ?>
             <?php while ( have_rows( 'product_image_1' ) ) : the_row(); ?>
-                <!-- <?php //if ( get_sub_field( 'product_image_mobile' ) ) : ?>
-                    <style>
-                        /* Mobile Background Image */
-                        @media screen and (max-width: 1023px) {
-                            .leggings-category {
-                                background-image: url('<?php //the_sub_field( 'product_image_mobile' ); ?>');
-                                margin-right: 1rem;
-                            }
-                        }
-                    </style>
-                <?php //endif ?> -->
+
                 <?php if ( get_sub_field( 'product_image_desktop' ) ) : ?>
                     <style>                     
                         /* Desktop Background Image */
                         @media screen and (min-width: 1023px) {
-                            .leggings-category {
+                            .classic-section .leggings-category {
                                 background-image: url('<?php the_sub_field( 'product_image_desktop' ); ?>');
                                 margin-right: 1rem;
                             }
@@ -39,22 +29,51 @@
 
         <?php if ( have_rows( 'product_image_2' ) ) : ?>
             <?php while ( have_rows( 'product_image_2' ) ) : the_row(); ?>
-                <!-- <?php //if ( get_sub_field( 'product_image_mobile' ) ) : ?>
-                    <style>
-                        /* Mobile Background Image */
-                        @media screen and (max-width: 1023px) {
-                            .top-category {
-                                background-image: url('<?php //the_sub_field( 'product_image_mobile' ); ?>');
-                            }
-                        }
-                    </style>
-                <?php //endif ?> -->
+
                 <?php if ( get_sub_field( 'product_image_desktop' ) ) : ?>
                     <style>
                         /* Desktop Background Image */                        
                         @media screen and (min-width: 1023px) {
-                            .top-category {
+                            .classic-section .top-category {
                                 background-image: url('<?php the_sub_field( 'product_image_desktop' ); ?>');
+                            }
+                        }
+                    </style>
+                <?php endif ?>
+            <?php endwhile; ?>
+        <?php endif; ?>
+
+    <?php endwhile; ?>
+<?php endif; ?>
+
+<?php if ( have_rows( 'product_collection_2' ) ) : ?>
+    <?php while ( have_rows( 'product_collection_2' ) ) : the_row(); ?>
+
+        <?php if ( have_rows( 'product_image_3' ) ) : ?>
+            <?php while ( have_rows( 'product_image_3' ) ) : the_row(); ?>
+                <?php if ( get_sub_field( 'product_image_desktop_3' ) ) : ?>
+                    <style>                     
+                        /* Desktop Background Image */
+                        @media screen and (min-width: 1023px) {
+                            .summer-collection .leggings-category {
+                                background-image: url('<?php the_sub_field( 'product_image_desktop_3' ); ?>');
+                                margin-right: 1rem;
+                            }
+                        }
+                    </style>
+                <?php endif ?>
+            <?php endwhile; ?>
+        <?php endif ?>
+
+
+        <?php if ( have_rows( 'product_image_4' ) ) : ?>
+            <?php while ( have_rows( 'product_image_4' ) ) : the_row(); ?>
+                <?php if ( get_sub_field( 'product_image_desktop_4' ) ) : ?>
+                    <style>
+                        /* Desktop Background Image */                        
+                        @media screen and (min-width: 1023px) {
+                            .summer-collection .top-category {
+                                background-image: url('<?php the_sub_field( 'product_image_desktop_4' ); ?>');
                             }
                         }
                     </style>
@@ -143,14 +162,14 @@
 
                     
 
-                    <?php $product_detail_page_link_2 = get_sub_field('product_detail_page_link_2'); ?>
-                    <?php if ($product_detail_page_link_2) : ?>
+                    <?php $product_detail_page_link_4 = get_sub_field('product_detail_page_link_4'); ?>
+                    <?php if ($product_detail_page_link_4) : ?>
 
                         <div class="classic-section__linkContainer">
-                            <a href="<?php echo esc_url($product_detail_page_link_2['url']); ?>" class="classic-section__link top-category">
+                            <a href="<?php echo esc_url($product_detail_page_link_4['url']); ?>" class="classic-section__link top-category">
                                 <div class="desktop-elements">
-                                    <span class="classic-section__text">classic</span>
-                                    <p><?php the_sub_field('product_name_2'); ?></p>
+                                    <!-- <span class="classic-section__text">classic</span> -->
+                                    <p><?php the_sub_field('product_name_4'); ?></p>
                                 </div>
                                 <div class="mobile-elements">
                                     <div class="homepage-product-image">
@@ -169,13 +188,13 @@
                         </div>
                     <?php endif; ?>
 
-                    <?php $product_detail_page_link_1 = get_sub_field('product_detail_page_link_1'); ?>
-                    <?php if ($product_detail_page_link_1) : ?>
+                    <?php $product_detail_page_link_3 = get_sub_field('product_detail_page_link_3'); ?>
+                    <?php if ($product_detail_page_link_3) : ?>
                         <div class="classic-section__linkContainer">
-                            <a href="<?php echo esc_url($product_detail_page_link_1['url']); ?>" class="classic-section__link leggings-category">
+                            <a href="<?php echo esc_url($product_detail_page_link_3['url']); ?>" class="classic-section__link leggings-category">
                                 <div class="desktop-elements">
-                                    <span class="classic-section__text">classic</span>
-                                    <p><?php the_sub_field('product_name_1'); ?></p>
+                                    <!-- <span class="classic-section__text">classic</span> -->
+                                    <p><?php the_sub_field('product_name_3'); ?></p>
                                 </div>
                                 <div class="mobile-elements">
                                     <div class="homepage-product-image">
@@ -215,7 +234,7 @@
 <section class="wow animate__animated animate__fadeInUp classic-section" style="padding-top: 0">
     <?php if ( have_rows( 'product_collection' ) ) : ?>
         <?php while ( have_rows( 'product_collection' ) ) : the_row(); ?>
-            <div class="wow animate__animated animate__fadeInUp-section__wrapper summer-collection">
+            <div class="wow animate__animated animate__fadeInUp-section__wrapper">
 
                 <div class="hero-section hero-classicSection">
                     <div class="hero-imageContainer">
@@ -369,11 +388,11 @@
 <section class="buyLink-section">
     <div class="buyLink-section__wrapper container">
         <div class="buyLink-section__links">
-            <div class="buyLink-section__link summer">
+            <div class="buyLink-section__link summer wow animate__animated animate__fadeInUp">
                 <img src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/latest/kirgo-summer.png" alt="Buy Summer Collection" class="buyLink-section__linkImage">
                 <a href="#" class="buyLink-section__linkMain">Buy the Summer 25 Set</a>
             </div>           
-            <div class="buyLink-section__link classic">
+            <div class="buyLink-section__link classic wow animate__animated animate__fadeInUp">
                 <img src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg" alt="Buy Summer Collection" class="buyLink-section__linkImage">
                 <a href="#" class="buyLink-section__linkMain">Buy the Classic Set</a>
             </div>
@@ -383,7 +402,7 @@
 
 <!-- Buy Links -->
 
-<section class="kirgo-logo">
+<section class="kirgo-logo wow animate__animated animate__fadeInUp">
     <img src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo-home-logo.svg" alt="" class="kirgo-logo_image">
 </section>
 

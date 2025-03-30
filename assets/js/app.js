@@ -402,4 +402,10 @@ jQuery(document).ready(function ($) {
         pageDots: false,
         adaptiveHeight: true,
     });
+
+    $(".single_add_to_cart_button.button.alt").click(() => {
+        setTimeout(() => {
+            window.location.href = "/cart";
+        }, 100);
+    });
 });

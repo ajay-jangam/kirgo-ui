@@ -34,10 +34,12 @@
             }
         }
     }
-
+}
+.classic-section {
     .classic-section__categoryRegular {
         .classic-section__link {
-            .homepage-product-name {
+            background-color: #fff;
+            h2.homepage-product-name {
                 color: #000;
             }
         }
@@ -49,6 +51,10 @@
     background-color: #fff;
     border-radius: 9px;
     margin-bottom: 1rem;
+    @include mq($from: tablet) {
+        display: none;
+    }
+
     .hero-imageContainer {
         @include mq($until: tablet) {
             overflow: hidden;
@@ -338,7 +344,7 @@
 .classic-section {
     padding: 1rem 2rem 0;
     position: relative;
-    display: none;
+    // display: none;
     @include mq($until: tablet) {
         display: block;
         padding: 5rem 1.5rem 0;
@@ -360,7 +366,8 @@
         }
         @include mq($from: desktop) {
             justify-content: center;
-            margin-top: 4rem;
+            width: 70%;
+            margin: 1rem auto;
         }
 
         @include mq($until: tablet) {
@@ -547,6 +554,9 @@
     &__linkContainer {
         position: relative;
         width: 100%;
+        @include mq($from: tablet) {
+            width: 31%;
+        }
         .add-to-cart-button {
             position: absolute;
             bottom: 5.25rem;
@@ -563,6 +573,10 @@
             justify-content: center;
             align-items: center;
             border-radius: 4px;
+
+            @include mq($from: tablet) {
+                display: none;
+            }
         }
     }
 
@@ -1163,12 +1177,12 @@
         justify-content: space-between;
         padding: 1rem;
 
-        .leggings-category {
-            background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/leggings.jpg");
-        }
-        .sports-category {
-            background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/sports.jpg");
-        }
+        // .leggings-category {
+        //     background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/leggings.jpg");
+        // }
+        // .sports-category {
+        //     background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/sports.jpg");
+        // }
     }
 
     // .shop-section__link
@@ -1315,6 +1329,10 @@
 }
 
 .buyLink-section {
+    @include mq($from: tablet) {
+        display: none;
+    }
+
     margin-top: 4rem;
     // .buyLink-section__wrapper
 
