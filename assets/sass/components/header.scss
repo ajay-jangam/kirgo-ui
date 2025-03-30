@@ -44,8 +44,9 @@
                     margin-left: 10px;
                 }
                 g {
-                    fill: #000;
+                    fill: #fff;
                     filter: none;
+
                     @include mq($from: desktop) {
                         fill: #fff;
                     }
@@ -56,8 +57,8 @@
         .navbar-admin {
             svg {
                 path {
-                    stroke: #000;
-                    fill: #000;
+                    stroke: #fff;
+                    fill: #fff;
                 }
             }
         }
@@ -65,11 +66,11 @@
         .navbar-cart {
             svg {
                 path {
-                    fill: #000;
+                    fill: #fff;
                 }
             }
             .cart-count {
-                color: #000;
+                color: #fff;
             }
             .xoo-wsc-sc-cont {
                 .xoo-wsc-sc-bkcont {
@@ -82,7 +83,7 @@
                         }
                     }
                     .xoo-wsc-sc-count {
-                        color: #000;
+                        color: #fff;
                     }
                 }
             }
@@ -127,6 +128,143 @@
     }
 }
 
+.navbar-carousel {
+    width: 100%;
+    padding: 0 1rem;
+    margin-top: 4rem;
+
+    &-cell {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        // Summer 25 banner
+        &.banner {
+            height: 200px;
+            background: #ffb6c1;
+            position: relative;
+
+            .banner-text {
+                position: absolute;
+                top: 2rem;
+                left: 2rem;
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: white;
+            }
+        }
+
+        // Classic collection
+        &.collection {
+            height: 180px;
+            background: #f5f5f5;
+
+            .collection-text {
+                padding: 2rem;
+                h2 {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+
+        // About and Track sections
+        &.info-card {
+            height: 100px;
+            background: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+
+            .prefix {
+                font-size: 1.2rem;
+                color: #666;
+                margin-bottom: 0.25rem;
+            }
+
+            .title {
+                font-size: 1.8rem;
+                font-weight: bold;
+            }
+        }
+
+        // Product cards
+        &.product-card {
+            height: 250px;
+            background: white;
+
+            .product-image {
+                height: 200px;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .product-info {
+                padding: 1rem;
+
+                .product-name {
+                    font-size: 1.2rem;
+                    color: #ff69b4;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+// Social links at bottom
+.social-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+
+    .social-icon {
+        width: 24px;
+        height: 24px;
+        color: white;
+    }
+
+    .get-in-touch {
+        padding: 0.75rem 1.5rem;
+        background: #ff69b4;
+        color: white;
+        border-radius: 2rem;
+        text-decoration: none;
+        font-weight: 500;
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel {
+        margin-top: 5rem;
+        padding: 0 2rem;
+
+        &-cell {
+            &.banner {
+                height: 300px;
+            }
+
+            &.collection {
+                height: 250px;
+            }
+
+            &.product-card {
+                width: calc(33.333% - 1rem);
+                margin-right: 1rem;
+            }
+        }
+    }
+}
+
 .woocommerce-cart {
     .navbar {
         .navbar-cart.disabled {
@@ -138,7 +276,6 @@
     }
 }
 
-.page-template-template-about-us,
 body.page-id-425,
 body.page-id-10,
 body.page-id-432,
@@ -397,7 +534,7 @@ body.page-template-template-get-in-touch {
     z-index: 9999;
     top: 0;
     right: 100%;
-    background-color: #fff;
+    background-color: #0d0c0c;
     transition: all 0.4s ease;
     padding-top: 100px;
     overflow-y: auto;
@@ -477,7 +614,7 @@ body.page-template-template-get-in-touch {
             @include mq($from: desktop) {
                 padding: 0 3rem;
                 margin: auto 0 0;
-                gap: 3rem;
+                gap: 1rem;
                 display: flex;
                 flex-direction: column;
             }
@@ -502,7 +639,7 @@ body.page-template-template-get-in-touch {
         height: 100px;
         right: 0;
         top: 0;
-        background-color: #fff;
+        background-color: #000;
         z-index: 99999;
     }
 }
@@ -527,14 +664,8 @@ body.page-template-template-get-in-touch {
 
         &:hover {
             .navbar-menu__link {
-                background-color: #000;
-                color: #fff;
-
                 &::after {
                     content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
-                }
-                span {
-                    color: #fff;
                 }
             }
         }
@@ -544,6 +675,7 @@ body.page-template-template-get-in-touch {
 
     &__link {
         border: 1px solid #000;
+        background-color: #fff;
         border-radius: 9px;
         padding: 1.3rem 0.8rem 0.8rem;
         margin-bottom: 1rem;
@@ -625,6 +757,10 @@ body.page-template-template-get-in-touch {
     &__items {
         text-decoration: none;
 
+        img {
+            filter: invert(1);
+        }
+
         &:first-child {
             img {
                 width: 20px;
@@ -633,7 +769,7 @@ body.page-template-template-get-in-touch {
     }
 
     .social-links {
-        min-width: 130px;
+        min-width: 150px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -646,7 +782,7 @@ body.page-template-template-get-in-touch {
         line-height: 11.4px;
         text-align: left;
         padding: 1.5rem;
-        background-color: #000;
+        background-color: #de5386;
         border-radius: 9px;
         color: #fff;
         border: 1px solid #000;
@@ -687,6 +823,79 @@ body.summer-collection-product {
         svg {
             path {
                 fill: #de5386;
+            }
+        }
+    }
+}
+
+.nav-product-carousel {
+    margin-bottom: 1rem;
+
+    @include mq($from: desktop) {
+        margin-bottom: 0rem;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .product-grid__item {
+        margin-right: 0.5rem;
+        text-decoration: none;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 0.4rem;
+        width: 110px;
+        padding-bottom: 0.5rem;
+
+        @include mq($from: desktop) {
+            width: 200px;
+            margin-right: 1rem;
+        }
+
+        &.summer-collection {
+            .product-title {
+                color: #de5386;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 125px;
+            border-radius: 8px;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+
+            @include mq($from: desktop) {
+                height: 250px;
+                aspect-ratio: 3/5;
+            }
+        }
+
+        .product-title {
+            font-family: "BlaakRegular_personal";
+            text-transform: lowercase;
+            font-size: 12px;
+            font-weight: 900;
+            line-height: 12.2px;
+            max-width: 90%;
+            text-align: left;
+            color: #000;
+            margin: 0.4rem 0rem 0 0.2rem;
+
+            @include mq($from: desktop) {
+                font-size: 16px;
+                line-height: 20.5px;
+                max-width: 100%;
+                margin: 0.4rem 0rem 0 0.5rem;
+            }
+
+            .category {
+                display: block;
+                font-size: 0.875rem;
+                color: #666;
+                text-transform: uppercase;
+                margin-bottom: 0.5rem;
             }
         }
     }

@@ -394,4 +394,12 @@ jQuery(document).ready(function ($) {
     $(".classic-section .primary-link").click(() => {
         window.location.href = "/shop";
     });
+
+    $(".nav-product-carousel").flickity({
+        cellAlign: "left",
+        contain: true,
+        prevNextButtons: false,
+        pageDots: false,
+        adaptiveHeight: true,
+    });
 });

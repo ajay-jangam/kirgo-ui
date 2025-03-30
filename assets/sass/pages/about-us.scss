@@ -383,6 +383,7 @@
 .about-us-content {
     padding: 0 1rem;
     text-align: center;
+    margin-top: 4rem;
 
     p {
         font-family: Poppins;
@@ -404,7 +405,7 @@
 
     img {
         margin: 1rem 0;
-        border-radius: 15px;
+        border-radius: 10px;
 
         @include mq($from: tablet) {
             min-width: 20rem;
