@@ -50,9 +50,29 @@
     border-radius: 9px;
     margin-bottom: 1rem;
     .hero-imageContainer {
+        @include mq($until: tablet) {
+            overflow: hidden;
+            border-radius: 5px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+        }
         .hero-image {
             width: 100%;
             border-radius: 5px;
+            @include mq($until: tablet) {
+                transform: scale(1.75) translate(12px, -24px);
+            }
+        }
+    }
+}
+
+.hero-classicSection {
+    .hero-imageContainer {
+        .hero-image {
+            @include mq($until: tablet) {
+                transform: scale(1.6) translate(0px, 0px);
+            }
         }
     }
 }
@@ -413,13 +433,22 @@
             }
             .homepage-product-image {
                 margin-bottom: 1rem;
+                @include mq($until: tablet) {
+                    height: 240px;
+                }
                 img {
                     width: 100%;
                     height: 100%;
                     border-radius: 9px;
                     @include mq($until: tablet) {
-                        height: 190px !important;
+                        height: 100% !important;
+                        object-position: center !important;
+                        transform: unset !important;
                     }
+                }
+
+                &.leggings img {
+                    transform: scale(1.4) !important;
                 }
             }
 
@@ -1315,6 +1344,9 @@
         width: 100%;
         height: 540px;
         object-fit: cover;
+        @include mq($until: tablet) {
+            height: 650px;
+        }
     }
 
     // .buyLink-section__linkMain
@@ -1339,6 +1371,13 @@
         text-decoration: none;
     }
     .summer {
+        &.buyLink-section__link {
+            img {
+                @include mq($until: tablet) {
+                    transform: scale(1.2) translate(0px, 20px);
+                }
+            }
+        }
         .buyLink-section__linkMain {
             color: #de5386;
         }

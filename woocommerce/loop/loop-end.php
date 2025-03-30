@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <section class="newsletter-section">
     <div class="wow animate__animated animate__fadeInUp newsletter-section__wrapper">
-        <img src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/newsletter-image.jpg" 
+        <img src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/latest/Kirgo01402.webp" 
         alt="Join the Crew"
         class="newsletter-section__image"/>
         <div class="newsletter-section__content">

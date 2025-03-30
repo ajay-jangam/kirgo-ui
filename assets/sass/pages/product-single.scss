@@ -1050,7 +1050,9 @@ body.single-product {
 
 .product_cat-summer-collection.product {
     .summary {
-        background-color: #de5386;
+        @include mq($until: tablet) {
+            background-color: #de5386;
+        }
     }
 
     .product__set-title a {
