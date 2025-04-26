@@ -236,10 +236,18 @@ jQuery(document).ready(function ($) {
 
     // loop through all elements with the class name "woovr-variation-name"
     $(".woovr-variation-name").each(function () {
-        let words = $(this).text().split(" ");
-        let lastWord = words[words.length - 1];
-        let firstChar = lastWord.charAt(0);
-        $(this).text(firstChar);
+        let words = $(this).text().trim().split(" ");
+        let newText = "";
+
+        if (words.includes("Extra")) {
+            let lastWord = words[words.length - 1];
+            newText = "X" + lastWord.charAt(0);
+        } else {
+            let lastWord = words[words.length - 1];
+            newText = lastWord.charAt(0);
+        }
+
+        $(this).text(newText.toUpperCase());
     });
 
     if (
@@ -407,5 +415,15 @@ jQuery(document).ready(function ($) {
         setTimeout(() => {
             window.location.href = "/cart";
         }, 100);
+    });
+
+    const $product = $(".woocommerce-shop .product.type-product.post-1406");
+    if ($product.length) {
+        $product.attr("id", "summerCollectionId");
+    }
+
+    $(".home-arrow").on("click", function (e) {
+        e.preventDefault();
+        window.history.back();
     });
 });

@@ -592,3 +592,23 @@ body.woocommerce-cart:not(.cart-empty) {
         }
     }
 }
+
+[value="Apply coupon"][name="apply_coupon"] {
+    font-family: "BlaakRegular_personal";
+    font-size: 12.1px;
+    font-weight: 900;
+    line-height: 11.4px;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    border-radius: 6px;
+    margin-top: 1rem;
+    text-transform: lowercase;
+    border: 1px solid #fff;
+    transition: all 0.1s ease-out;
+}

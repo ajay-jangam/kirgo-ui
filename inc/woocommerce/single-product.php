@@ -51,7 +51,7 @@ add_filter('wpcbn_btn_single', 'tranform_buy_now', 10, 3);
  * Add icon to add to cart
  */
 add_filter( 'woocommerce_product_single_add_to_cart_text', function() {
-    return __( 'Add to cart', 'kirgo' );
+    return __( 'add to cart', 'kirgo' );
 } );
 
 

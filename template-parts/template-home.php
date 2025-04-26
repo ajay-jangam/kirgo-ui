@@ -389,12 +389,12 @@
     <div class="buyLink-section__wrapper container">
         <div class="buyLink-section__links">
             <div class="buyLink-section__link summer wow animate__animated animate__fadeInUp">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/latest/kirgo-summer.png" alt="Buy Summer Collection" class="buyLink-section__linkImage">
-                <a href="#" class="buyLink-section__linkMain">Buy the Summer 25 Set</a>
+                <img src="<?php echo get_template_directory_uri() ?>/assets/images/header/summer-desktop.png" alt="Buy Summer Collection" class="buyLink-section__linkImage">
+                <a href="/shop#summerCollectionId" class="buyLink-section__linkMain">buy now</a>
             </div>           
             <div class="buyLink-section__link classic wow animate__animated animate__fadeInUp">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/home-page/kirgo.jpg" alt="Buy Summer Collection" class="buyLink-section__linkImage">
-                <a href="#" class="buyLink-section__linkMain">Buy the Classic Set</a>
+                <img src="<?php echo get_template_directory_uri() ?>/assets/images/header/kirgo.jpg" alt="Buy Summer Collection" class="buyLink-section__linkImage">
+                <a href="/shop" class="buyLink-section__linkMain">buy now</a>
             </div>
         </div>
     </div>

@@ -538,6 +538,9 @@ body.page-template-template-get-in-touch {
     transition: all 0.4s ease;
     padding-top: 100px;
     overflow-y: auto;
+    @include mq($until: mobile) {
+        padding-top: 75px;
+    }
     @include mq($from: desktop) {
         display: flex;
         flex-direction: column;
@@ -712,38 +715,29 @@ body.page-template-template-get-in-touch {
     }
 
     .product-category {
-        padding: 5rem 1.5rem 0.8rem 0.8rem;
+        // padding: 5rem 1.5rem 0.8rem 0.8rem;
         background-size: cover;
         color: #fff;
         border: none;
         position: relative;
         z-index: 1;
+        background-position: center;
+        @include mq($until: tablet) {
+            min-height: 130px;
+            padding-right: 9rem;
+        }
+
         &::after {
             display: none;
-        }
-        &::before {
-            position: absolute;
-            content: "";
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            z-index: -1;
-            background: linear-gradient(
-                270deg,
-                rgba(0, 0, 0, 0) 20.22%,
-                #000000 158.94%
-            );
-            border-radius: 9px;
         }
     }
 
     .top-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/classic-sport.jpg");
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/latest/nav-summer.webp");
     }
 
     .leggings-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/classic-leggings.jpg");
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/nav-classic.png");
         margin-right: 0;
     }
 }
@@ -823,6 +817,16 @@ body.summer-collection-product {
         svg {
             path {
                 fill: #de5386;
+            }
+        }
+    }
+}
+
+body.summer-collection-product.postid-1365 {
+    .navbar-brand__logo {
+        svg {
+            path {
+                fill: #fff;
             }
         }
     }

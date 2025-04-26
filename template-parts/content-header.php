@@ -60,12 +60,12 @@
         <div class="product-nav-links-right links-mobile">
             <ul class="navbar-menu">
                 <a href="/product/classic-sports-bra" class="navbar-menu__item hidden-link-desktop">
-                    <li class="navbar-menu__link product-category top-category"><span class="classic">classic</span>
-                        sports bra</li>
+                    <li class="navbar-menu__link product-category top-category">
+                        summer 25</li>
                 </a>
                 <a href="/product/classic-leggings" class="navbar-menu__item hidden-link-desktop">
                     <li class="navbar-menu__link product-category leggings-category">
-                        <span class="classic">classic</span> leggings
+                        
                     </li>
                 </a>
                 <a href="/about-us" class="navbar-menu__item">
