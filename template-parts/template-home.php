@@ -203,9 +203,9 @@
                                             $product_id = 1375;
                                             $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
                                             $gallery_image_ids = explode(',', $gallery_image_url);
-                                            $first_image_id = isset($gallery_image_ids[4]) ? $gallery_image_ids[4] : '';
+                                            $first_image_id = isset($gallery_image_ids[5]) ? $gallery_image_ids[5] : '';
                                         ?>
-                                        <img src="<?php echo wp_get_attachment_image_url($first_image_id, 'full'); ?>" alt="">
+                                        <img class="summer-leggins-img" src="<?php echo wp_get_attachment_image_url($first_image_id, 'full'); ?>" alt="">
                                     </div>
                                     <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
                                     <h2 class="homepage-product-name"><?php echo $leggings_name; ?></h2>

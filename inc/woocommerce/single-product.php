@@ -39,7 +39,7 @@ function tranform_buy_now($output, $atts) {
 
 		$btn_text = 'buy for ' . wc_price( wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) ) );
 
-		$output = sprintf( '<button type="submit" name="buy-now" value="%d" class="wpcbn-btn wpcbn-btn-single single_add_to_cart_button button alt btn btn-light" data-product_id="%s">%s</button>', $product->get_ID(), $product->get_ID(), $btn_text );
+		$output = sprintf( '<button type="submit" name="buy-now" value="%d" class="product-detail-buy-now-btn wpcbn-btn wpcbn-btn-single single_add_to_cart_button button alt btn btn-light" data-product_id="%s">%s</button>', $product->get_ID(), $product->get_ID(), $btn_text );
 	}
 
 	return $output;

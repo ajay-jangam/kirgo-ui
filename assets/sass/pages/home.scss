@@ -573,7 +573,7 @@
             justify-content: center;
             align-items: center;
             border-radius: 4px;
-
+            font-weight: 300;
             @include mq($from: tablet) {
                 display: none;
             }
@@ -1409,4 +1409,12 @@
     justify-content: center;
     align-items: center;
     padding: 5rem 0 3rem;
+}
+
+.classic-section__link.leggings-category .mobile-elements {
+    .homepage-product-image {
+        .summer-leggins-img {
+            transform: scale(1.5) translate(0px, -30px) !important;
+        }
+    }
 }

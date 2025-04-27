@@ -1138,3 +1138,12 @@ body.summer-collection-product
     .woovr-variation__extra-title {
     color: #fff;
 }
+
+body.single-product.summer-collection-product
+    .product
+    .summary
+    .cart
+    .woovr-variations
+    .woovr-variation__extra {
+    display: none;
+}
