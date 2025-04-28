@@ -1144,6 +1144,9 @@ body.single-product.summer-collection-product
     .summary
     .cart
     .woovr-variations
-    .woovr-variation__extra {
+    .woovr-variation__extra,
+.summary.entry-summary
+    .woocommerce-variation-add-to-cart
+    .product-detail-buy-now-btn.wpcbn-btn.wpcbn-btn-single.single_add_to_cart_button.button.alt.btn.btn-light {
     display: none;
 }

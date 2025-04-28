@@ -254,11 +254,12 @@ jQuery(document).ready(function ($) {
         $("body").hasClass("woocommerce-checkout") &&
         !$("body.woocommerce-checkout").hasClass("woocommerce-order-received")
     ) {
-        const checkoutButtonAncestor = document.querySelector(
-            ".checkout.woocommerce-checkout"
-        );
-        const checkoutNestedButton = document.querySelector("#place_order");
-        checkoutButtonAncestor.appendChild(checkoutNestedButton);
+        const $checkoutButtonAncestor = $(".checkout.woocommerce-checkout");
+        const $checkoutNestedButton = $("#place_order");
+
+        if ($checkoutButtonAncestor.length && $checkoutNestedButton.length) {
+            $checkoutNestedButton.appendTo($checkoutButtonAncestor);
+        }
 
         const requiredInputFields = $(
             ".checkout.woocommerce-checkout .woocommerce-billing-fields .validate-required input"
@@ -288,13 +289,12 @@ jQuery(document).ready(function ($) {
     }
 
     if ($("body").hasClass("woocommerce-cart")) {
-        const cartButtonAncestor = document.querySelector(
-            ".woocommerce-cart .woocommerce"
-        );
-        const cartNestedButton = document.querySelector(
-            ".woocommerce-cart .checkout-button"
-        );
-        cartButtonAncestor.appendChild(cartNestedButton);
+        const $cartButtonAncestor = $(".woocommerce-cart .woocommerce");
+        const $cartNestedButton = $(".woocommerce-cart .checkout-button");
+
+        if ($cartButtonAncestor.length && $cartNestedButton.length) {
+            $cartNestedButton.appendTo($cartButtonAncestor);
+        }
     }
 
     if (window.location.href.indexOf("/cart/") > -1) {
@@ -411,10 +411,10 @@ jQuery(document).ready(function ($) {
         adaptiveHeight: true,
     });
 
-    $(".single_add_to_cart_button.button.alt").click(() => {
-        setTimeout(() => {
+    $(document).on("click", ".single_add_to_cart_button", function () {
+        setTimeout(function () {
             window.location.href = "/cart";
-        }, 100);
+        }, 500);
     });
 
     const $product = $(".woocommerce-shop .product.type-product.post-1406");
