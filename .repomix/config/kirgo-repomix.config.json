@@ -1,0 +1,31 @@
+{
+  "output": {
+    "filePath": "/Users/luffy/Documents/xoco/kirgo/wp-content/themes/kirgo-theme/.repomix/output/repomix-output.md",
+    "style": "markdown",
+    "parsableStyle": false,
+    "headerText": "",
+    "instructionFilePath": "",
+    "fileSummary": true,
+    "directoryStructure": true,
+    "removeComments": false,
+    "removeEmptyLines": true,
+    "topFilesLength": 5,
+    "showLineNumbers": false,
+    "copyToClipboard": true,
+    "includeEmptyDirectories": false,
+    "compress": true
+  },
+  "include": [],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": []
+  },
+  "security": {
+    "enableSecurityCheck": true
+  },
+  "tokenCount": {
+    "encoding": "o200k_base"
+  },
+  "cwd": "/Users/luffy/Documents/xoco/kirgo/wp-content/themes/kirgo-theme"
+}

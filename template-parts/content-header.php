@@ -59,13 +59,14 @@
         </div>
         <div class="product-nav-links-right links-mobile">
             <ul class="navbar-menu">
-                <a href="/product/classic-sports-bra" class="navbar-menu__item hidden-link-desktop">
+                <a href="/shop" class="navbar-menu__item hidden-link-desktop">
                     <li class="navbar-menu__link product-category top-category">
-                        summer 25</li>
+                        <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25.svg') ?>
+                    </li>
                 </a>
                 <a href="/product/classic-leggings" class="navbar-menu__item hidden-link-desktop">
                     <li class="navbar-menu__link product-category leggings-category">
-                        
+
                     </li>
                 </a>
                 <a href="/about-us" class="navbar-menu__item">

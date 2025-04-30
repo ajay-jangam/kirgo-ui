@@ -165,7 +165,7 @@
                 }
                 img.attachment-woocommerce_thumbnail {
                     width: 100%;
-                    height: 450px;
+                    height: 400px;
                     object-fit: cover;
                     border-radius: 9px;
                     @include mq($until: desktop) {
@@ -413,7 +413,7 @@
 
                 .img-slider-nav {
                     position: absolute;
-                    top: 400px;
+                    top: 350px;
                     right: 30px;
                     z-index: 1;
                     width: 140px;

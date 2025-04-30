@@ -556,6 +556,7 @@
         width: 100%;
         @include mq($from: tablet) {
             width: 31%;
+            margin-right: 1rem;
         }
         .add-to-cart-button {
             position: absolute;

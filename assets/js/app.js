@@ -400,7 +400,7 @@ jQuery(document).ready(function ($) {
         .wrap("<div></div>");
 
     $(".classic-section .primary-link").click(() => {
-        window.location.href = "/shop";
+        window.location.href = "/shop#summerCollectionId";
     });
 
     $(".nav-product-carousel").flickity({
@@ -417,10 +417,10 @@ jQuery(document).ready(function ($) {
         }, 500);
     });
 
-    const $product = $(".woocommerce-shop .product.type-product.post-1406");
-    if ($product.length) {
-        $product.attr("id", "summerCollectionId");
-    }
+    // const $product = $(".woocommerce-shop .product.type-product.post-1406");
+    // if ($product.length) {
+    //     $product.attr("id", "summerCollectionId");
+    // }
 
     $(".home-arrow").on("click", function (e) {
         e.preventDefault();

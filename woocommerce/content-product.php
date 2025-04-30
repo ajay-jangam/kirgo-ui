@@ -31,10 +31,18 @@ $product_id = $product->get_id();
 
 ?>
 
-<li <?php wc_product_class( '', $product ); ?>>
+<?php
+// Define the target product ID
+$target_product_id = 1406; // The ID from your JavaScript (post-1406)
+$product_id = $product->get_id();
+$li_classes = wc_get_product_class( '', $product ); // Get the default classes
+$li_id_attr = ($product_id === $target_product_id) ? ' id="summerCollectionId"' : ''; // Add ID attribute if it's the target product
+?>
+<li class="<?php echo esc_attr( implode( ' ', $li_classes ) ); ?>"
+    <?php echo $li_id_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 
 
-	<?php
+    <?php
 
 		// Get the product tags
 		$tags = get_the_terms(get_the_ID(), 'product_tag');
@@ -72,8 +80,9 @@ $product_id = $product->get_id();
 		
 		if ((!empty($image_ids))) {
 			?>
-			<div class="carousel woocommerce-product-card-gallery-<?php echo $product_id; ?>" data-flickity='{ "pageDots": false, "prevNextButtons": false  }'>
-			<?php
+    <div class="carousel woocommerce-product-card-gallery-<?php echo $product_id; ?>"
+        data-flickity='{ "pageDots": false, "prevNextButtons": false  }'>
+        <?php
 			foreach ($image_ids as $image_id) {
 				echo '<div class="carousel-cell">';
 					echo wp_get_attachment_image($image_id, 'woocommerce_thumbnail');
@@ -86,12 +95,13 @@ $product_id = $product->get_id();
 		}
 
 		?>
-		<div class="img-slider-nav">
+        <div class="img-slider-nav">
 
-			<!-- Nav images for slider -->
-			
-			<div class="carousel carousel-nav" data-flickity='{ "asNavFor": ".woocommerce-product-card-gallery-<?php echo $product_id; ?>",  "contain": true, "freeScroll": true, "pageDots": false, "prevNextButtons": false  }'>
-			<?php
+            <!-- Nav images for slider -->
+
+            <div class="carousel carousel-nav"
+                data-flickity='{ "asNavFor": ".woocommerce-product-card-gallery-<?php echo $product_id; ?>",  "contain": true, "freeScroll": true, "pageDots": false, "prevNextButtons": false  }'>
+                <?php
 				foreach ($image_ids as $image_id) {
 					echo '<div class="carousel-nav-item">';
 					echo wp_get_attachment_image($image_id, 'woocommerce_thumbnail');
@@ -99,13 +109,13 @@ $product_id = $product->get_id();
 				}
 				echo '</div>';
 			?>
-		</div>
-			
-		<?php $product_permalink = $product->get_permalink(); ?>
-		
-		<a class="productLink" href="<?php echo esc_url($product_permalink); ?>" >
-			<div class="product-card-details">
-				<?php
+            </div>
+
+            <?php $product_permalink = $product->get_permalink(); ?>
+
+            <a class="productLink" href="<?php echo esc_url($product_permalink); ?>">
+                <div class="product-card-details">
+                    <?php
 				/**
 				 * Hook: woocommerce_shop_loop_item_title.
 				 *
@@ -131,44 +141,50 @@ $product_id = $product->get_id();
 
 			?>
 
-			<!-- share icons modal  -->
-			<button class='product-share-modal-button' data-bs-toggle='modal' data-bs-target='#productShareIcons-<?php echo $product_id; ?>'>
-				<?php require get_template_directory() . '/assets/images/icons/share.svg' ?>
-			</button>
-			<div class='product-share-modal modal fade' id='productShareIcons-<?php echo $product_id; ?>' tabindex='-1' aria-labelledby='productShareIcons-<?php echo $product_id; ?>Label' aria-hidden='true'>1
-				<div class='modal-dialog modal-dialog-centered'>
-					<div class='modal-content'>
-						<div class='modal-body'>
-							<p class='modal-title'><span>share</span> on</p>
-							<?php echo do_shortcode("[psfw_basic_share]"); ?> 
-						</div>
-					</div>
-				</div>
-			</div>
+                    <!-- share icons modal  -->
+                    <button class='product-share-modal-button' data-bs-toggle='modal'
+                        data-bs-target='#productShareIcons-<?php echo $product_id; ?>'>
+                        <?php require get_template_directory() . '/assets/images/icons/share.svg' ?>
+                    </button>
+                    <div class='product-share-modal modal fade' id='productShareIcons-<?php echo $product_id; ?>'
+                        tabindex='-1' aria-labelledby='productShareIcons-<?php echo $product_id; ?>Label'
+                        aria-hidden='true'>1
+                        <div class='modal-dialog modal-dialog-centered'>
+                            <div class='modal-content'>
+                                <div class='modal-body'>
+                                    <p class='modal-title'><span>share</span> on</p>
+                                    <?php echo do_shortcode("[psfw_basic_share]"); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-			<!-- Add to cart button and modal -->
+                    <!-- Add to cart button and modal -->
 
-			<button class="shop-add-to-cart" data-bs-toggle="modal" data-bs-target="#add-to-cart-modal-<?php echo get_the_ID() ?>"><?php require get_template_directory() . '/assets/images/icons/add-to-cart.svg'; ?></button>
-			<div class="modal fade shop-add-to-cart-modal" id="add-to-cart-modal-<?php echo get_the_ID(); ?>" tabindex="-1" role="dialog" aria-labelledby="add-to-cart-modal-label-<?php get_the_ID(); ?>" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
+                    <button class="shop-add-to-cart" data-bs-toggle="modal"
+                        data-bs-target="#add-to-cart-modal-<?php echo get_the_ID() ?>"><?php require get_template_directory() . '/assets/images/icons/add-to-cart.svg'; ?></button>
+                    <div class="modal fade shop-add-to-cart-modal" id="add-to-cart-modal-<?php echo get_the_ID(); ?>"
+                        tabindex="-1" role="dialog" aria-labelledby="add-to-cart-modal-label-<?php get_the_ID(); ?>"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
 
-						<div class="modal-body">
-							<p class="modal-title">select</br> <span><?php echo get_the_title(); ?> size</span></p>
+                                <div class="modal-body">
+                                    <p class="modal-title">select</br> <span><?php echo get_the_title(); ?> size</span>
+                                    </p>
 
-							<!-- Buy Button -->
-							<div class="buy-button">
-								<?php  woocommerce_template_single_add_to_cart(); ?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                                    <!-- Buy Button -->
+                                    <div class="buy-button">
+                                        <?php  woocommerce_template_single_add_to_cart(); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-			<p class="product-card-short-desc"><?php echo get_the_excerpt(); ?></p>
-			<a href="<?php echo esc_url( get_permalink() ) ?>" class="product-card-buy-btn">buy for Rs. <?php echo $product_price; ?></a>
-		</div>
-	</a>
+                    <p class="product-card-short-desc"><?php echo get_the_excerpt(); ?></p>
+                    <a href="<?php echo esc_url( get_permalink() ) ?>" class="product-card-buy-btn">buy for Rs.
+                        <?php echo $product_price; ?></a>
+                </div>
+            </a>
 </li>
-
-

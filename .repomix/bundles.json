@@ -1,0 +1,32 @@
+{
+  "bundles": {
+    "kirgo-464": {
+      "name": "kirgo",
+      "created": "2025-04-29T16:24:42.851Z",
+      "lastUsed": "2025-04-29T16:24:58.857Z",
+      "tags": [],
+      "files": [
+        "assets/js",
+        "assets/sass",
+        "inc",
+        "languages",
+        "template-parts",
+        "templates",
+        "woocommerce",
+        "404.php",
+        "archive.php",
+        "comments.php",
+        "footer.php",
+        "functions.php",
+        "header.php",
+        "index.php",
+        "page.php",
+        "sidebar.php",
+        "search.php",
+        "single.php",
+        "woocommerce.css"
+      ],
+      "configPath": ".repomix/config/kirgo-repomix.config.json"
+    }
+  }
+}
