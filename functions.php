@@ -599,17 +599,22 @@ add_action('after_setup_theme', 'kirgo_after_setup_theme', 20);
 
 // Force AJAX add to cart buttons on single products
 function kirgo_add_to_cart_args($args) {
-    // Make sure AJAX is enabled for add to cart buttons
-    $args['class'] .= ' ajax_add_to_cart';
+    // If we're on a single product page, don't use AJAX add to cart
+    if (is_product()) {
+        $args['class'] = str_replace('ajax_add_to_cart', '', $args['class']);
+    } else {
+        // For shop/archive pages, we can keep AJAX functionality
+        $args['class'] .= ' ajax_add_to_cart';
+    }
     
     return $args;
 }
 add_filter('woocommerce_loop_add_to_cart_args', 'kirgo_add_to_cart_args', 10);
 
 // Force redirect after add to cart with another approach
-add_action('woocommerce_add_to_cart', 'kirgo_redirect_after_add_to_cart', 10);
+add_action('woocommerce_add_to_cart', 'kirgo_redirect_after_add_to_cart', 99);
 function kirgo_redirect_after_add_to_cart() {
-    // If not doing AJAX, redirect to cart page
+    // For non-AJAX requests or when we're on a single product page and want to force redirect
     if (!wp_doing_ajax()) {
         wp_safe_redirect(wc_get_cart_url());
         exit;
@@ -637,10 +642,31 @@ function kirgo_add_product_form_redirection_js() {
         ?>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
+    // Override AJAX add to cart on single product pages
+    $('.single_add_to_cart_button').removeClass('ajax_add_to_cart');
+
+    // Remove any AJAX add to cart functionality
+    $(document.body).off('click', '.single_add_to_cart_button');
+
     // Make sure single add to cart forms work properly
     $('form.cart').on('submit', function(e) {
         // Let the form submit normally but ensure we go to cart page
         $(this).append('<input type="hidden" name="redirect_to_cart" value="1" />');
+    });
+
+    // For AJAX add to cart, force redirection
+    $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
+        // Redirect to cart page after adding to cart
+        window.location.href = '<?php echo esc_js(wc_get_cart_url()); ?>';
+        return false;
+    });
+
+    // Direct click handler as a fallback
+    $('.single_add_to_cart_button').on('click', function(e) {
+        // Add a small delay to allow the form to submit first
+        setTimeout(function() {
+            window.location.href = '<?php echo esc_js(wc_get_cart_url()); ?>';
+        }, 500);
     });
 });
 </script>
@@ -648,3 +674,35 @@ jQuery(document).ready(function($) {
     }
 }
 add_action('wp_footer', 'kirgo_add_product_form_redirection_js', 30);
+
+// Add a filter to redirect AJAX add to cart requests
+function kirgo_ajax_add_to_cart_redirect() {
+    if (wp_doing_ajax() && isset($_REQUEST['add-to-cart'])) {
+        add_filter('woocommerce_ajax_added_to_cart', 'kirgo_ajax_redirect_after_add_to_cart');
+    }
+}
+add_action('init', 'kirgo_ajax_add_to_cart_redirect');
+
+function kirgo_ajax_redirect_after_add_to_cart() {
+    // Set a session variable to trigger redirect
+    WC()->session->set('redirect_to_cart', true);
+    // Return true to continue processing
+    return true;
+}
+
+// Check for redirect in frontend
+function kirgo_check_redirect_after_ajax() {
+    // Check if redirect is needed
+    if (WC()->session && WC()->session->get('redirect_to_cart')) {
+        // Clear the flag
+        WC()->session->set('redirect_to_cart', false);
+        // Add JavaScript to redirect
+        ?>
+<script type="text/javascript">
+window.location.href = '<?php echo esc_js(wc_get_cart_url()); ?>';
+</script>
+<?php
+        exit;
+    }
+}
+add_action('wp_footer', 'kirgo_check_redirect_after_ajax', 99);
