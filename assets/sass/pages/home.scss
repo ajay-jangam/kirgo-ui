@@ -939,6 +939,7 @@
         font-size: 12px;
         text-transform: lowercase;
         color: #000;
+        padding-top: 1rem;
 
         @include mq($from: desktop) {
             font-size: 16px;
