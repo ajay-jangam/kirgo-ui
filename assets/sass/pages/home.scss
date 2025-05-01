@@ -857,7 +857,7 @@
             font-size: 12px;
             letter-spacing: -0.12px;
             text-align: left;
-            color: #fff;
+            color: #000;
             background-color: $background-color;
             min-width: 200px;
             width: 100%;
@@ -938,6 +938,7 @@
         padding: 0;
         font-size: 12px;
         text-transform: lowercase;
+        color: #000;
 
         @include mq($from: desktop) {
             font-size: 16px;
