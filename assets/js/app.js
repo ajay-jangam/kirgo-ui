@@ -400,7 +400,7 @@ jQuery(document).ready(function ($) {
         .wrap("<div></div>");
 
     $(".classic-section .primary-link").click(() => {
-        window.location.href = "/shop#summerCollectionId";
+        window.location.href = "/shop/?orderby=date&order=desc";
     });
 
     $(".nav-product-carousel").flickity({

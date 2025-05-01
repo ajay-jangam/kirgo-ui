@@ -124,7 +124,7 @@
             </div>
             <div class="primary-link">
                 <span class="primary-link__text">introducing</span>
-                <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25.svg') ?>
+                <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25-nopad.svg') ?>
             </div>
         </div>
 
@@ -395,9 +395,9 @@
     <div class="buyLink-section__wrapper container">
         <div class="buyLink-section__links">
             <div class="buyLink-section__link summer wow animate__animated animate__fadeInUp">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/images/header/summer-desktop 2.png"
+                <img src="<?php echo get_template_directory_uri() ?>/assets/images/header/summer-desktop.webp"
                     alt="Buy Summer Collection" class="buyLink-section__linkImage">
-                <a href="/shop#summerCollectionId" class="buyLink-section__linkMain">buy now</a>
+                <a href="/shop?orderby=date&order=desc" class="buyLink-section__linkMain">buy now</a>
             </div>
             <div class="buyLink-section__link classic wow animate__animated animate__fadeInUp">
                 <img src="<?php echo get_template_directory_uri() ?>/assets/images/header/kirgo.jpg"

@@ -4,24 +4,78 @@
 /**
  * Extra variations component
  */
- function woocommerce_single_product_variations_extras() {
-    $product_id = get_the_ID(); // Get the current product ID
-    $specific_product_id = 65; // Change 123 to your specific product ID
+function woocommerce_single_product_variations_extras() {
+    global $product;
 
-    echo "<div class='woovr-variation__extra'>";
-
-    if ($product_id !== $specific_product_id) {
-        echo "<span class='woovr-variation__extra-title'>XS & XL coming soon</span>";
-    } else {
-        echo "<span class='woovr-variation__extra-title'>XL coming soon</span>";
+    // Ensure it's a variable product on a product page
+    if ( ! is_a( $product, 'WC_Product' ) || ! $product->is_type( 'variable' ) ) {
+        return;
     }
 
-    echo "
+    // --- IMPORTANT Configuration ---
+    // !! Since you added "Size" directly to the product, the slug is likely just 'size'.
+    // Double-check this on the product edit page -> Product Data -> Attributes tab.
+    $size_attribute_slug = 'size'; // <--- Changed from 'pa_size'
+    $xs_variation_value = 'XS'; // The exact value string for the XS variation
+    $xl_variation_value = 'XL'; // The exact value string for the XL variation
+    // --- End Configuration ---
+
+    // This will now likely look for 'attribute_size' in the variation data
+    $attribute_key_lookup = 'attribute_' . $size_attribute_slug;
+    $available_variations = $product->get_available_variations();
+
+    // Exit if no variations found
+    if ( empty( $available_variations ) ) {
+        return;
+    }
+
+    $has_xs = false;
+    $has_xl = false;
+
+    // Check available variations for XS and XL sizes
+    foreach ( $available_variations as $variation_data ) {
+        // Check if the variation has attributes AND if our specific attribute key exists for this variation
+        if ( isset( $variation_data['attributes'][ $attribute_key_lookup ] ) ) {
+            // Get the size value for this specific variation
+            $variation_size = trim( $variation_data['attributes'][ $attribute_key_lookup ] );
+
+            // Check if it matches XS or XL
+            if ( $variation_size === $xs_variation_value ) {
+                $has_xs = true;
+            }
+            if ( $variation_size === $xl_variation_value ) {
+                $has_xl = true;
+            }
+            // Optimization: if both found, no need to check further variations
+            if ( $has_xs && $has_xl ) {
+                break;
+            }
+        }
+    }
+
+    // Determine the message based on whether XS and XL variations exist
+    $message = '';
+    if ( ! $has_xs && ! $has_xl ) {
+        // Neither XS nor XL exists
+        $message = esc_html( $xs_variation_value ) . ' & ' . esc_html( $xl_variation_value ) . ' coming soon';
+    } elseif ( $has_xs && ! $has_xl ) {
+        // XS exists, but XL does not
+        $message = esc_html( $xl_variation_value ) . ' coming soon';
+    } elseif ( ! $has_xs && $has_xl ) {
+        // XL exists, but XS does not
+        $message = esc_html( $xs_variation_value ) . ' coming soon';
+    }
+
+    if ( ! empty( $message ) ) {
+        echo "<div class='woovr-variation__extra'>";
+        echo "<span class='woovr-variationextra-title'>" . $message . "</span>";
+        echo "
         <!-- <a class='woovr-variation__extra-link' href='#'>notify me</a> -->
-        <button type='button' class='woovr-variation__extra-link' data-bs-toggle='modal' data-bs-target='#notifyMePopup'>
-        notify me
-        </button>
-    </div>";
+            <button type='button' class='woovr-variation__extra-link' data-bs-toggle='modal' data-bs-target='#notifyMePopup'>
+            notify me
+            </button>
+        </div>";
+    }
 }
 
 add_action('woovr_variations_after', 'woocommerce_single_product_variations_extras', 10, 2);
@@ -50,10 +104,15 @@ add_filter('wpcbn_btn_single', 'tranform_buy_now', 10, 3);
 /**
  * Add icon to add to cart
  */
-add_filter( 'woocommerce_product_single_add_to_cart_text', function() {
-    return __( 'add to cart', 'kirgo' );
-} );
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'change_add_to_cart_text_with_plain_currency_price' );
 
+function change_add_to_cart_text_with_plain_currency_price() {
+	global $product;
+
+	$price = strip_tags( wc_price( $product->get_price() ) );
+
+	return __( 'Buy for', 'kirgo' ) . ' ' . $price;
+}
 
 /**
  * After Product Add to cart button

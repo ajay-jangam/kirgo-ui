@@ -690,6 +690,10 @@ body.page-template-template-get-in-touch {
         color: #000;
         position: relative;
 
+        &-about {
+            padding: 0.8rem 0.8rem 0.8rem;
+        }
+
         &::after {
             content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow.svg");
             position: absolute;

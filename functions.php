@@ -348,6 +348,7 @@ function display_related_products() {
 	
 	// Check if product with ID 438 is in the cart
 	$set_product_id_438_in_cart = in_array( 438, $product_ids );
+	$set_product_id_1406_in_cart = in_array( 1406, $product_ids );
 
 	// Query for related products based on the current product IDs
 	$related_args = array(
@@ -366,7 +367,7 @@ function display_related_products() {
 	$related_query = new WP_Query( $related_args );
 
 	// Display the related products
-	if ( $related_query->have_posts() && !$set_product_id_438_in_cart ) {
+	if ( $related_query->have_posts() && !$set_product_id_438_in_cart && !$set_product_id_1406_in_cart ) {
 
 		echo '<div class="alternate-cart-products">';
 			echo '<h2 class="cart-product-set-text">make it a set and</br> <span>get free shipping</span></h2>';

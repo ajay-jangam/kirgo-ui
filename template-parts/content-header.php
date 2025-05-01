@@ -60,25 +60,36 @@
         <div class="product-nav-links-right links-mobile">
             <ul class="navbar-menu">
                 <a href="/shop" class="navbar-menu__item hidden-link-desktop">
-                    <li class="navbar-menu__link product-category top-category">
-                        <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25.svg') ?>
+                    <li class=" navbar-menu__link product-category top-category">
+                        <span style="margin-top: -8px; margin-left: 2px;">
+                            <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25.svg') ?>
+                        </span>
                     </li>
                 </a>
-                <a href="/product/classic-leggings" class="navbar-menu__item hidden-link-desktop">
+                <a href=" /product/classic-leggings" class="navbar-menu__item hidden-link-desktop">
                     <li class="navbar-menu__link product-category leggings-category">
 
                     </li>
                 </a>
                 <a href="/about-us" class="navbar-menu__item">
-                    <li class="navbar-menu__link"><span>read</span>about kirgo</li>
+                    <li class="navbar-menu__link navbar-menu__link-about"><span>read</span>about kirgo</li>
                 </a>
 
                 <div class="nav-product-carousel">
                     <?php
                         $product_ids = [1375, 1365, 65, 14];
 
+
                         foreach ($product_ids as $product_id) :
                             $product = wc_get_product($product_id);
+
+                        $custom_image = get_the_post_thumbnail_url($product_id, 'medium');
+
+                        if ($product_id === 1365) {
+                            $custom_image = get_template_directory_uri() . '/assets/images/header/ham_bra_result.webp';
+                        } else if ($product_id === 1375) {
+                            $custom_image = get_template_directory_uri() . '/assets/images/header/ham_leggings_result.webp';
+                        }
                             
                             if ($product) :
                                 $categories = wp_get_post_terms($product_id, 'product_cat');
@@ -90,7 +101,8 @@
                         ?>
                     <a href="<?php echo get_permalink($product_id); ?>"
                         class="<?php echo trim($category_classes); ?> product-grid__item">
-                        <?php echo $product->get_image('medium'); ?>
+                        <img src="<?php echo $custom_image; ?>" alt="<?php echo $product->get_title(); ?>"
+                            class="product-image">
                         <div class="product-title">
                             <?php echo esc_html($product->get_title()); ?>
                         </div>
