@@ -330,15 +330,12 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    // Redirect the user to the cart page when they click on the cart icon
-
-    $("body.single-product .wpcbn-btn-single.single_add_to_cart_button").click(
-        function () {
-            setTimeout(() => {
-                window.location.href = "/checkout";
-            }, 1000);
-        }
+    // Remove add to cart button overrides to let normal WooCommerce behavior work
+    $("body.single-product .wpcbn-btn-single.single_add_to_cart_button").off(
+        "click"
     );
+
+    $(document).off("click", ".single_add_to_cart_button");
 
     $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").text(
         "Add to Checkout"
@@ -412,9 +409,9 @@ jQuery(document).ready(function ($) {
     });
 
     $(document).on("click", ".single_add_to_cart_button", function () {
-        setTimeout(function () {
-            window.location.href = "/cart";
-        }, 500);
+        // Remove this redirect to avoid conflicts with the PHP redirection
+        // Let the server-side handle the cart update and redirection
+        return true;
     });
 
     // const $product = $(".woocommerce-shop .product.type-product.post-1406");
