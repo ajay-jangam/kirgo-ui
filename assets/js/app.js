@@ -340,7 +340,7 @@ jQuery(document).ready(function ($) {
     $("body.single-product .single_add_to_cart_button").click(function () {
         setTimeout(() => {
             window.location.href = "/cart";
-        }, 1000);
+        }, 2000);
     });
 
     $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").text(
