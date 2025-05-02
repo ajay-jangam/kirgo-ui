@@ -337,11 +337,11 @@ jQuery(document).ready(function ($) {
 
     // $(document).off("click", ".single_add_to_cart_button");
 
-    $("body.single-product .single_add_to_cart_button").click(function () {
-        setTimeout(() => {
-            window.location.href = "/cart";
-        }, 1000);
-    });
+    // $("body.single-product .single_add_to_cart_button").click(function () {
+    //     setTimeout(() => {
+    //         window.location.href = "/cart";
+    //     }, 1000);
+    // });
 
     $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").text(
         "Add to Checkout"

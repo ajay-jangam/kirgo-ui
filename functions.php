@@ -552,6 +552,10 @@ add_filter( 'body_class', 'ajay_add_summer_collection_body_class' );
 // }
 // add_filter('woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect');
 
+// add_action( 'woocommerce_add_to_cart', function ()
+// {
+// 	header('Location: http://kirgo.test/cart/');
+// });
 
 // function custom_add_to_cart_redirect($url) {
 //     if (isset($_REQUEST['add-to-cart']) && !empty($_REQUEST['add-to-cart'])) {
