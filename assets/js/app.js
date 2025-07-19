@@ -346,11 +346,35 @@ jQuery(document).ready(function ($) {
     $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").text(
         "Add to Checkout"
     );
-    $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").click(
-        () => {
-            $(".cart-product-size-modal").modal("hide");
+
+    // Track if we should refresh after modal close
+    let shouldRefreshCart = false;
+
+    // Close modal after add to cart is completed
+    $(document.body).on(
+        "added_to_cart",
+        function (event, fragments, cart_hash, button) {
+            // Check if the button that triggered the add to cart is inside our modal
+            if ($(button).closest(".cart-product-size-modal").length) {
+                $(".cart-product-size-modal").modal("hide");
+
+                // Set flag to refresh cart page if user is on cart page
+                if ($("body").hasClass("woocommerce-cart")) {
+                    shouldRefreshCart = true;
+                }
+            }
         }
     );
+
+    // Handle modal close event to refresh cart page
+    $(document).on("hidden.bs.modal", ".cart-product-size-modal", function () {
+        if (shouldRefreshCart && $("body").hasClass("woocommerce-cart")) {
+            setTimeout(function () {
+                window.location.reload();
+            }, 100);
+            shouldRefreshCart = false; // Reset flag
+        }
+    });
 
     $(
         ".woocommerce-shop li.product .product-card-details .shop-add-to-cart-modal .single_add_to_cart_button.wp-element-button"
