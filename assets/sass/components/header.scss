@@ -744,6 +744,29 @@ body.page-template-template-get-in-touch {
         background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/nav-classic.png");
         margin-right: 0;
     }
+
+    .core-category {
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/nav-core.webp");
+        margin-right: 0;
+        padding-left: 20px;
+
+        &__title {
+            font-family: $blaak;
+            font-size: 40.6px;
+            font-weight: 900;
+            line-height: 0.94;
+            text-align: left;
+            color: #fefefe;
+        }
+
+        &__subtitle {
+            font-family: $blaak;
+            font-size: 12px;
+            line-height: 11.4px;
+            text-align: left;
+            color: #fefefe;
+        }
+    }
 }
 .social-link {
     // .social-link__items
@@ -847,12 +870,37 @@ body.summer-collection-product.postid-1365 {
         display: none;
     }
 
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        a {
+            text-decoration: none;
+            font-family: $blaak-black-regular;
+            font-size: 14px;
+            font-weight: 900;
+            line-height: 12.2px;
+            color: #fdfdfd
+        }
+
+        span {
+            font-family: $lekton;
+            font-size: 14px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.11;
+            color: rgba(253, 253, 253, 0.5);
+        }
+    }
+
     .product-grid__item {
         margin-right: 0.5rem;
         text-decoration: none;
         background-color: #fff;
         border-radius: 10px;
-        padding: 0.4rem;
+        overflow: hidden;
         width: 110px;
         padding-bottom: 0.5rem;
 
@@ -867,10 +915,16 @@ body.summer-collection-product.postid-1365 {
             }
         }
 
+        &.core-collection {
+            .product-title {
+                color: #405f89;
+            }
+        }
+
         img {
             width: 100%;
             height: 125px;
-            border-radius: 8px;
+            border-radius: 0;
             object-fit: cover;
             aspect-ratio: 3/4;
 
@@ -886,10 +940,11 @@ body.summer-collection-product.postid-1365 {
             font-size: 12px;
             font-weight: 900;
             line-height: 12.2px;
-            max-width: 90%;
+            max-width: 80%;
             text-align: left;
             color: #000;
             margin: 0.4rem 0rem 0 0.2rem;
+            padding: 0 8px;
 
             @include mq($from: desktop) {
                 font-size: 16px;

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kirgo - Mobile View</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #e5e5e5;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                min-height: 100vh;
+                padding: 0;
+                overflow-x: hidden;
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    Oxygen, Ubuntu, Cantarell, sans-serif;
+            }
+
+            .mobile-container {
+                width: 100%;
+                max-width: 390px;
+                min-height: 100vh;
+                background: #fff;
+                box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+                position: relative;
+                margin: 0 auto;
+            }
+
+            .mobile-container iframe {
+                width: 390px;
+                height: 100vh;
+                border: none;
+                display: block;
+                transform-origin: top left;
+            }
+
+            /* Info bar at top (optional - can be removed) */
+            .info-bar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                padding: 8px 16px;
+                font-size: 12px;
+                text-align: center;
+                z-index: 999999;
+                backdrop-filter: blur(10px);
+            }
+
+            .mobile-container.with-info {
+                margin-top: 32px;
+            }
+
+            /* Responsive scaling for smaller screens */
+            @media (max-width: 430px) {
+                .mobile-container {
+                    max-width: 100%;
+                    box-shadow: none;
+                }
+
+                .mobile-container iframe {
+                    width: 390px;
+                    transform: scale(calc(100vw / 390));
+                    height: calc(100vh / (100vw / 390));
+                }
+
+                .info-bar {
+                    display: none;
+                }
+
+                .mobile-container.with-info {
+                    margin-top: 0;
+                }
+            }
+
+            /* Desktop: center and add some spacing */
+            @media (min-width: 768px) {
+                body {
+                    padding: 40px 20px;
+                    background: linear-gradient(
+                        135deg,
+                        #667eea 0%,
+                        #764ba2 100%
+                    );
+                }
+
+                .mobile-container {
+                    border-radius: 30px;
+                    overflow: hidden;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Optional info bar - remove if you don't want it -->
+        <div class="info-bar">
+            📱 Mobile View (390px) | Viewing: <strong>kirgo.test</strong>
+        </div>
+
+        <div class="mobile-container with-info">
+            <iframe
+                src="http://kirgo.test/?mobile_view=1"
+                title="Mobile View - Kirgo"
+                allow="geolocation; microphone; camera; payment"
+                loading="eager"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals"
+            ></iframe>
+        </div>
+
+        <script>
+            // Optional: Remove info bar on click
+            document
+                .querySelector(".info-bar")
+                .addEventListener("click", function () {
+                    this.style.display = "none";
+                    document
+                        .querySelector(".mobile-container")
+                        .classList.remove("with-info");
+                });
+        </script>
+    </body>
+</html>

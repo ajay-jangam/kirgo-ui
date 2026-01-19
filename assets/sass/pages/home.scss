@@ -13,7 +13,7 @@
             left: 0;
             background-image: linear-gradient(
                 to bottom,
-                #de5386 33%,
+                #2f3c4f 33%,
                 #0d0c0c 100%
             );
             z-index: -1;
@@ -47,10 +47,13 @@
 }
 
 .hero-section {
-    padding: 1rem;
     background-color: #fff;
     border-radius: 9px;
     margin-bottom: 1rem;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+
     @include mq($from: tablet) {
         display: none;
     }
@@ -58,10 +61,11 @@
     .hero-imageContainer {
         @include mq($until: tablet) {
             overflow: hidden;
-            border-radius: 5px;
             height: 180px;
             display: flex;
             align-items: center;
+            border-top-left-radius: 9px;
+            border-top-right-radius: 9px;
         }
         .hero-image {
             width: 100%;
@@ -347,7 +351,7 @@
     // display: none;
     @include mq($until: tablet) {
         display: block;
-        padding: 5rem 1.5rem 0;
+        padding: 0 1.5rem 0;
     }
 
     // .classic-section__wrapper
@@ -398,6 +402,7 @@
         position: relative;
         z-index: 2;
         background-repeat: no-repeat;
+
         &::before {
             @include mq($from: desktop) {
                 position: absolute;
@@ -414,6 +419,7 @@
                 );
             }
         }
+
         @include mq($until: desktop) {
             border: none;
             border-radius: 9px;
@@ -446,7 +452,6 @@
                 img {
                     width: 100%;
                     height: 100%;
-                    border-radius: 9px;
                     @include mq($until: tablet) {
                         height: 100% !important;
                         object-position: center !important;
@@ -560,8 +565,8 @@
         }
         .add-to-cart-button {
             position: absolute;
-            bottom: 5.5rem;
-            right: 1.75rem;
+            bottom: 5.9rem;
+            right: 16px;
             z-index: 11;
             text-decoration: none;
             font-size: 2rem;
@@ -647,7 +652,6 @@
         }
 
         @include mq($until: tablet) {
-            margin: 1rem 0.5rem 0;
             background-color: #0d0c0c;
             color: #fff;
         }
@@ -680,12 +684,33 @@
 
     .hero-sectionSummer {
         .primary-link {
-            @include mq($until: tablet) {
-                margin: 1rem 0.5rem 0;
-                background-color: #de5386;
-                color: #fff;
-                border: none;
+            color: #de5386;
+            background-color: #fff;
+            border: none;
+
+            &::after {
+                content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
             }
+        }
+    }
+
+    .hero-sectionCore {
+        .primary-link {
+            color: #405f89;
+            background-color: #fff;
+            border: none;
+
+            &::after {
+                content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
+            }
+        }
+    }
+
+    .hero-classicSection {
+        .primary-link {
+            color: #27303e;
+            background-color: #fff;
+            border: none;
 
             &::after {
                 content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow-white.svg");
@@ -719,6 +744,55 @@
 
         @include mq($from: desktop) {
             display: none;
+        }
+    }
+}
+
+.home-hero-sections {
+    padding-top: 5rem;
+    
+    .classic-section {
+        &__link {
+            padding: 0;
+            padding-bottom: 15px;
+            border-radius: 9px;
+            overflow: hidden;
+            background: #fff;
+
+            .homepage-product-name {
+                padding-left: 10px;
+                color: #405f89;
+            }
+
+            .homepage-product-image {
+                border-radius: 0 !important;
+
+                img {
+                    border-radius: 0 !important;
+                }
+            }
+        }
+    }
+
+    .primary-link {
+        margin-bottom: 0;
+        border-radius: 0;
+        border-bottom-left-radius: 9px;
+        border-bottom-right-radius: 9px;
+
+        &__title {
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 900;
+            font-family: $blaak-black-regular;
+            text-transform: lowercase;
+            margin-bottom: 6px;
+            text-decoration: none;
+        }
+
+        &__text {
+            color: #27303e;
+            text-decoration: none;
         }
     }
 }

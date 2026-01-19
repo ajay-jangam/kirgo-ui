@@ -60,6 +60,12 @@
         <div class="product-nav-links-right links-mobile">
             <ul class="navbar-menu">
                 <a href="/shop?orderby=date&order=desc" class="navbar-menu__item hidden-link-desktop">
+                    <li class="navbar-menu__link product-category core-category">
+                        <span class="core-category__title">core</span>
+                        <span class="core-category__subtitle">Designed for everyday wear</span>
+                    </li>
+                </a>
+                <a href="/shop" class="navbar-menu__item hidden-link-desktop">
                     <li class=" navbar-menu__link product-category top-category">
                         <span style="margin-top: -8px; margin-left: 2px;">
                             <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25.svg') ?>
@@ -71,13 +77,19 @@
 
                     </li>
                 </a>
-                <a href="/about-us" class="navbar-menu__item">
-                    <li class="navbar-menu__link navbar-menu__link-about"><span>read</span>about kirgo</li>
-                </a>
+
+                <div class="nav-product-carousel__header">
+                    <a href="/shop?orderby=date&order=desc">
+                        all products
+                    </a>
+                    <span>
+                        scroll sideways >
+                    </span>
+                </div>
 
                 <div class="nav-product-carousel">
                     <?php
-                        $product_ids = [1375, 1365, 65, 14];
+                        $product_ids = [1771, 1375, 1365, 65, 14];
 
 
                         foreach ($product_ids as $product_id) :
@@ -99,15 +111,17 @@
                                     $category_classes .= $category->slug . ' ';
                                 }
                         ?>
-                    <a href="<?php echo get_permalink($product_id); ?>"
-                        class="<?php echo trim($category_classes); ?> product-grid__item">
-                        <img src="<?php echo $custom_image; ?>" alt="<?php echo $product->get_title(); ?>"
-                            class="product-image">
-                        <div class="product-title">
-                            <?php echo esc_html($product->get_title()); ?>
-                        </div>
-                    </a>
-                    <?php 
+
+                        <a href="<?php echo get_permalink($product_id); ?>"
+                            class="<?php echo trim($category_classes); ?> product-grid__item">
+                            <img src="<?php echo $custom_image; ?>" alt="<?php echo $product->get_title(); ?>"
+                                class="product-image">
+                            <div class="product-title">
+                                <?php echo esc_html($product->get_title()); ?>
+                            </div>
+                        </a>
+                        
+                        <?php 
                             endif;
                         endforeach; 
                         ?>
@@ -115,6 +129,10 @@
 
                 <a href="https://kirgo.shiprocket.co/tracking" class="navbar-menu__item">
                     <li class="navbar-menu__link"><span>track</span>your kirgo delivery</li>
+                </a>
+
+                <a href="/about-us" class="navbar-menu__item">
+                    <li class="navbar-menu__link navbar-menu__link-about"><span>read</span>about kirgo</li>
                 </a>
             </ul>
             <div class="social-link">

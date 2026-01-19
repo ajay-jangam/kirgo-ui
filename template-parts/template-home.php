@@ -109,248 +109,366 @@
 </section>
 <!-- Slider Section -->
 
+<!-- Core Collection -->
+<div class="home-hero-sections">
+    <section class="wow animate__animated animate__fadeInUp classic-section">
+        <?php if ( have_rows( 'product_collection_2' ) ) : ?>
+        <?php while ( have_rows( 'product_collection_2' ) ) : the_row(); ?>
+        <div class="wow animate__animated animate__fadeInUp-section__wrapper core-collection">
+            <a href="/shop/?orderby=date&order=desc" class="hero-section hero-sectionCore">
+                <div class="hero-imageContainer">
+                    <img class="hero-image"
+                        src="<?php echo get_template_directory_uri()  ?>/assets/images/home-page/latest/kirgo-core-set.webp"
+                        alt="">
+                </div>
+                <div class="primary-link">
+                    <span class="primary-link__title">Core Collection</span>
+                    <span class="primary-link__text">Designed for everyday wear</span>
+                </div>
+            </a>
 
+            <div class="classic-section__category">
+                <div class="motto-image">
+                    <?php $motto_image = get_sub_field('motto_image'); ?>
+                    <?php if ($motto_image) : ?>
+                    <img src="<?php the_sub_field('motto_image'); ?>" alt="" class="motto-img" />
+                    <?php endif; ?>
+                </div>
 
-<!-- Classic Section -->
-<section class="wow animate__animated animate__fadeInUp classic-section">
-    <?php if ( have_rows( 'product_collection_2' ) ) : ?>
-    <?php while ( have_rows( 'product_collection_2' ) ) : the_row(); ?>
-    <div class="wow animate__animated animate__fadeInUp-section__wrapper summer-collection">
-        <div class="hero-section hero-sectionSummer">
-            <div class="hero-imageContainer">
-                <img class="hero-image"
-                    src="<?php echo get_template_directory_uri()  ?>/assets/images/home-page/latest/Kirgo01109.webp"
-                    alt="">
+                <?php 
+                    // Fetching product details dynamically
+                    $sports_bra = wc_get_product(1771);
+                    $leggings = wc_get_product(1757);
+
+                    $sports_bra_name = $sports_bra->get_name();
+                    $leggings_name = $leggings->get_name();
+                    
+                    $sports_bra_short_desc = $sports_bra->get_short_description();
+                    $leggings_short_desc = $leggings->get_short_description();
+
+                    $sports_bra_price = $sports_bra->get_price();
+                    $leggings_price = $leggings->get_price();
+
+                    $sports_bra_image = $sports_bra->get_image();
+                    $leggings_image = $leggings->get_image();
+                    
+                    // Get Add to Cart URL
+                    $sports_bra_cart_url = $sports_bra->add_to_cart_url();
+                    $leggings_cart_url = $leggings->add_to_cart_url();
+                ?>
+
+                <div class="classic-section__linkContainer">
+                    <a href="<?php echo $sports_bra->get_permalink(); ?>"
+                        class="classic-section__link top-category">
+                        <div class="desktop-elements">
+                            <!-- <span class="classic-section__text">classic</span> -->
+                            <p><?php the_sub_field('product_name_4'); ?></p>
+                        </div>
+                        <div class="mobile-elements">
+                            <div class="homepage-product-image">
+                                <?php echo $sports_bra_image; ?>
+                            </div>
+                            <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
+                            <h2 class="homepage-product-name"><?php echo $sports_bra_name; ?></h2>
+                            <p class="homepage-product-description"><?php echo $sports_bra_short_desc; ?></p>
+                        </div>
+
+                        <p class="product-link">buy for Rs. <?php echo $sports_bra_price; ?></p>
+
+                        <!-- Add to Cart Button -->
+                        <a href="<?php echo esc_url($sports_bra_cart_url); ?>" class="add-to-cart-button">+</a>
+                    </a>
+                </div>
+
+                <div class="classic-section__linkContainer">
+                    <a href="<?php echo $leggings->get_permalink(); ?>"
+                        class="classic-section__link leggings-category">
+                        <div class="desktop-elements">
+                            <!-- <span class="classic-section__text">classic</span> -->
+                            <p><?php the_sub_field('product_name_3'); ?></p>
+                        </div>
+                        <div class="mobile-elements">
+                            <div class="homepage-product-image">
+                                <?php
+                                    // Get first gallery image
+                                    $product_id = 1757;
+                                    $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
+                                    $gallery_image_ids = explode(',', $gallery_image_url);
+                                    $first_image_id = isset($gallery_image_ids[5]) ? $gallery_image_ids[5] : '';
+                                ?>
+                                <?php echo $leggings_image; ?>
+                            </div>
+                            <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
+                            <h2 class="homepage-product-name"><?php echo $leggings_name; ?></h2>
+                            <p class="homepage-product-description"><?php echo $leggings_short_desc; ?></p>
+                        </div>
+
+                        <p class="product-link">buy for Rs. <?php echo $leggings_price; ?></p>
+
+                        <!-- Add to Cart Button -->
+                        <a href="<?php echo esc_url($leggings_cart_url); ?>" class="add-to-cart-button">+</a>
+                    </a>
+                </div>
             </div>
-            <div class="primary-link">
-                <span class="primary-link__text">introducing</span>
-                <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25-nopad.svg') ?>
-            </div>
+
         </div>
 
-        <div class="classic-section__category">
-            <div class="motto-image">
-                <?php $motto_image = get_sub_field('motto_image'); ?>
-                <?php if ($motto_image) : ?>
-                <img src="<?php the_sub_field('motto_image'); ?>" alt="" class="motto-img" />
-                <?php endif; ?>
-            </div>
-
-            <?php 
-                        // Fetching product details dynamically
-                        $sports_bra = wc_get_product(1365);
-                        $leggings = wc_get_product(1375);
-
-                        $sports_bra_name = $sports_bra->get_name();
-                        $leggings_name = $leggings->get_name();
-                        
-                        $sports_bra_short_desc = $sports_bra->get_short_description();
-                        $leggings_short_desc = $leggings->get_short_description();
-
-                        $sports_bra_price = $sports_bra->get_price();
-                        $leggings_price = $leggings->get_price();
-
-                        $sports_bra_image = $sports_bra->get_image();
-                        $leggings_image = $leggings->get_image();
-                        
-                        // Get Add to Cart URL
-                        $sports_bra_cart_url = $sports_bra->add_to_cart_url();
-                        $leggings_cart_url = $leggings->add_to_cart_url();
-                    ?>
+        <p class="classic-section__tagline">
+            <?php the_sub_field( 'section_tag_line' ); ?>
+        </p>
+        <?php endwhile; ?>
+        <?php endif; ?>
 
 
-
-            <?php $product_detail_page_link_4 = get_sub_field('product_detail_page_link_4'); ?>
-            <?php if ($product_detail_page_link_4) : ?>
-
-            <div class="classic-section__linkContainer">
-                <a href="<?php echo esc_url($product_detail_page_link_4['url']); ?>"
-                    class="classic-section__link top-category">
-                    <div class="desktop-elements">
-                        <!-- <span class="classic-section__text">classic</span> -->
-                        <p><?php the_sub_field('product_name_4'); ?></p>
-                    </div>
-                    <div class="mobile-elements">
-                        <div class="homepage-product-image">
-                            <?php echo $sports_bra_image; ?>
-                        </div>
-                        <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
-                        <h2 class="homepage-product-name"><?php echo $sports_bra_name; ?></h2>
-                        <p class="homepage-product-description"><?php echo $sports_bra_short_desc; ?></p>
-                    </div>
-
-                    <p class="product-link">buy for Rs. <?php echo $sports_bra_price; ?></p>
-
-                    <!-- Add to Cart Button -->
-                    <a href="<?php echo esc_url($sports_bra_cart_url); ?>" class="add-to-cart-button">+</a>
-                </a>
-            </div>
-            <?php endif; ?>
-
-            <?php $product_detail_page_link_3 = get_sub_field('product_detail_page_link_3'); ?>
-            <?php if ($product_detail_page_link_3) : ?>
-            <div class="classic-section__linkContainer">
-                <a href="<?php echo esc_url($product_detail_page_link_3['url']); ?>"
-                    class="classic-section__link leggings-category">
-                    <div class="desktop-elements">
-                        <!-- <span class="classic-section__text">classic</span> -->
-                        <p><?php the_sub_field('product_name_3'); ?></p>
-                    </div>
-                    <div class="mobile-elements">
-                        <div class="homepage-product-image">
-                            <?php
-                                            // Get first gallery image
-                                            $product_id = 1375;
-                                            $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
-                                            $gallery_image_ids = explode(',', $gallery_image_url);
-                                            $first_image_id = isset($gallery_image_ids[5]) ? $gallery_image_ids[5] : '';
-                                        ?>
-                            <img class="summer-leggins-img"
-                                src="<?php echo wp_get_attachment_image_url($first_image_id, 'full'); ?>" alt="">
-                        </div>
-                        <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
-                        <h2 class="homepage-product-name"><?php echo $leggings_name; ?></h2>
-                        <p class="homepage-product-description"><?php echo $leggings_short_desc; ?></p>
-                    </div>
-
-                    <p class="product-link">buy for Rs. <?php echo $leggings_price; ?></p>
-
-                    <!-- Add to Cart Button -->
-                    <a href="<?php echo esc_url($leggings_cart_url); ?>" class="add-to-cart-button">+</a>
-                </a>
-            </div>
-            <?php endif; ?>
-        </div>
-
-    </div>
-
-    <p class="classic-section__tagline">
-        <?php the_sub_field( 'section_tag_line' ); ?>
-    </p>
-    <?php endwhile; ?>
-    <?php endif; ?>
-
-</section>
-
-<section class="wow animate__animated animate__fadeInUp classic-section" style="padding-top: 0">
-    <?php if ( have_rows( 'product_collection' ) ) : ?>
-    <?php while ( have_rows( 'product_collection' ) ) : the_row(); ?>
-    <div class="wow animate__animated animate__fadeInUp-section__wrapper">
-
-        <div class="hero-section hero-classicSection">
-            <div class="hero-imageContainer">
-                <img class="hero-image"
-                    src="<?php echo get_template_directory_uri()  ?>/assets/images/about-us/story-behind-img-desktop.jpg"
-                    alt="">
-            </div>
-            <div class="primary-link">
-                <span class="primary-link__text">our first</span>
-                classic collection
-            </div>
-        </div>
-
-        <div class="classic-section__category classic-section__categoryRegular">
-
-            <?php 
-                        // Fetching product details dynamically
-                        $sports_bra = wc_get_product(65);
-                        $leggings = wc_get_product(14);
-
-                        $sports_bra_name = $sports_bra->get_name();
-                        $leggings_name = $leggings->get_name();
-                        
-                        $sports_bra_short_desc = $sports_bra->get_short_description();
-                        $leggings_short_desc = $leggings->get_short_description();
-
-                        $sports_bra_price = $sports_bra->get_price();
-                        $leggings_price = $leggings->get_price();
-
-                        $sports_bra_image = $sports_bra->get_image();
-                        $leggings_image = $leggings->get_image();
-                        
-                        // Get Add to Cart URL
-                        $sports_bra_cart_url = $sports_bra->add_to_cart_url();
-                        $leggings_cart_url = $leggings->add_to_cart_url();
-
-                    ?>
-
-            <?php $product_detail_page_link_1 = get_sub_field('product_detail_page_link_1'); ?>
-            <?php if ($product_detail_page_link_1) : ?>
-            <div class="classic-section__linkContainer">
-                <a href="<?php echo esc_url($product_detail_page_link_1['url']); ?>"
-                    class="classic-section__link leggings-category">
-                    <div class="desktop-elements">
-                        <span class="classic-section__text">classic</span>
-                        <p><?php the_sub_field('product_name_1'); ?></p>
-                    </div>
-                    <div class="mobile-elements">
-                        <div class="homepage-product-image leggings">
-                            <?php
-                                            // Get first gallery image
-                                            $product_id = 14;
-                                            $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
-                                            $gallery_image_ids = explode(',', $gallery_image_url);
-                                            $first_image_id = isset($gallery_image_ids[4]) ? $gallery_image_ids[4] : '';
-                                            ?>
-                            <img src="<?php echo wp_get_attachment_image_url($first_image_id, 'full'); ?>" alt="">
-                        </div>
-                        <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
-                        <h2 class="homepage-product-name"><?php echo $leggings_name; ?></h2>
-                        <p class="homepage-product-description"><?php echo $leggings_short_desc; ?></p>
-                    </div>
-
-                    <p class="product-link">buy for Rs. <?php echo $leggings_price; ?></p>
-
-                    <!-- Add to Cart Button -->
-                    <a href="<?php echo esc_url($leggings_cart_url); ?>" class="add-to-cart-button">+</a>
-                </a>
-            </div>
-            <?php endif; ?>
-
-            <?php $product_detail_page_link_2 = get_sub_field('product_detail_page_link_2'); ?>
-            <?php if ($product_detail_page_link_2) : ?>
-
-            <div class="classic-section__linkContainer">
-                <a href="<?php echo esc_url($product_detail_page_link_2['url']); ?>"
-                    class="classic-section__link top-category">
-                    <div class="desktop-elements">
-                        <span class="classic-section__text">classic</span>
-                        <p><?php the_sub_field('product_name_2'); ?></p>
-                    </div>
-                    <div class="mobile-elements">
-                        <div class="homepage-product-image">
-                            <?php echo $sports_bra_image; ?>
-                        </div>
-                        <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
-                        <h2 class="homepage-product-name"><?php echo $sports_bra_name; ?></h2>
-                        <p class="homepage-product-description"><?php echo $sports_bra_short_desc; ?></p>
-                    </div>
-
-                    <p class="product-link">buy for Rs. <?php echo $sports_bra_price; ?></p>
-
-                    <!-- Add to Cart Button -->
-                    <a href="<?php echo esc_url($sports_bra_cart_url); ?>" class="add-to-cart-button">+</a>
-                </a>
-            </div>
-            <?php endif; ?>
-        </div>
-
-
-        <?php $shop_page_link = get_sub_field( 'shop_page_link' ); ?>
+        <?php $shop_page_link = get_field( 'shop_page_link' ); ?>
         <?php if ( $shop_page_link ) : ?>
-        <a href="<?php echo esc_url( $shop_page_link['url'] ); ?>" class="secondary-link"
+        <a href="<?php echo esc_url( $shop_page_link['url'] ); ?>" class="secondary-link" style="margin-bottom: 16px;"
             target="<?php echo esc_attr( $shop_page_link['target'] ); ?>"><?php echo esc_html( $shop_page_link['title'] ); ?></a>
         <?php endif; ?>
 
-    </div>
+    </section>
 
-    <p class="classic-section__tagline">
-        <?php the_sub_field( 'section_tag_line' ); ?>
-    </p>
-    <?php endwhile; ?>
-    <?php endif; ?>
+<!-- Summer Collection -->
+    <section class="wow animate__animated animate__fadeInUp classic-section" style="padding-top: 0">
+        <?php if ( have_rows( 'product_collection' ) ) : ?>
+        <?php while ( have_rows( 'product_collection' ) ) : the_row(); ?>
+        <div class="wow animate__animated animate__fadeInUp-section__wrapper">
 
-</section>
+            <div class="hero-section hero-classicSection">
+                <div class="hero-imageContainer">
+                    <img class="hero-image"
+                        src="<?php echo get_template_directory_uri()  ?>/assets/images/about-us/story-behind-img-desktop.jpg"
+                        alt="">
+                </div>
+                
+                <div class="primary-link">
+                    <span class="primary-link__title">classic collection</span>
+                    <span class="primary-link__text">Crafted for sweaty workouts</span>
+                </div>
+            </div>
+
+            <div class="classic-section__category classic-section__categoryRegular">
+
+                <?php 
+                    // Fetching product details dynamically
+                    $sports_bra = wc_get_product(65);
+                    $leggings = wc_get_product(14);
+
+                    $sports_bra_name = $sports_bra->get_name();
+                    $leggings_name = $leggings->get_name();
+                    
+                    $sports_bra_short_desc = $sports_bra->get_short_description();
+                    $leggings_short_desc = $leggings->get_short_description();
+
+                    $sports_bra_price = $sports_bra->get_price();
+                    $leggings_price = $leggings->get_price();
+
+                    $sports_bra_image = $sports_bra->get_image();
+                    $leggings_image = $leggings->get_image();
+                    
+                    // Get Add to Cart URL
+                    $sports_bra_cart_url = $sports_bra->add_to_cart_url();
+                    $leggings_cart_url = $leggings->add_to_cart_url();
+                ?>
+
+                <?php $product_detail_page_link_1 = get_sub_field('product_detail_page_link_1'); ?>
+                <?php if ($product_detail_page_link_1) : ?>
+                <div class="classic-section__linkContainer">
+                    <a href="<?php echo esc_url($product_detail_page_link_1['url']); ?>"
+                        class="classic-section__link leggings-category">
+                        <div class="desktop-elements">
+                            <span class="classic-section__text">classic</span>
+                            <p><?php the_sub_field('product_name_1'); ?></p>
+                        </div>
+                        <div class="mobile-elements">
+                            <div class="homepage-product-image leggings">
+                                <?php
+                                                // Get first gallery image
+                                                $product_id = 14;
+                                                $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
+                                                $gallery_image_ids = explode(',', $gallery_image_url);
+                                                $first_image_id = isset($gallery_image_ids[4]) ? $gallery_image_ids[4] : '';
+                                                ?>
+                                <img src="<?php echo wp_get_attachment_image_url($first_image_id, 'full'); ?>" alt="">
+                            </div>
+                            <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
+                            <h2 class="homepage-product-name"><?php echo $leggings_name; ?></h2>
+                            <p class="homepage-product-description"><?php echo $leggings_short_desc; ?></p>
+                        </div>
+
+                        <p class="product-link">buy for Rs. <?php echo $leggings_price; ?></p>
+
+                        <!-- Add to Cart Button -->
+                        <a href="<?php echo esc_url($leggings_cart_url); ?>" class="add-to-cart-button">+</a>
+                    </a>
+                </div>
+                <?php endif; ?>
+
+                <?php $product_detail_page_link_2 = get_sub_field('product_detail_page_link_2'); ?>
+                <?php if ($product_detail_page_link_2) : ?>
+
+                <div class="classic-section__linkContainer">
+                    <a href="<?php echo esc_url($product_detail_page_link_2['url']); ?>"
+                        class="classic-section__link top-category">
+                        <div class="desktop-elements">
+                            <span class="classic-section__text">classic</span>
+                            <p><?php the_sub_field('product_name_2'); ?></p>
+                        </div>
+                        <div class="mobile-elements">
+                            <div class="homepage-product-image">
+                                <?php echo $sports_bra_image; ?>
+                            </div>
+                            <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
+                            <h2 class="homepage-product-name"><?php echo $sports_bra_name; ?></h2>
+                            <p class="homepage-product-description"><?php echo $sports_bra_short_desc; ?></p>
+                        </div>
+
+                        <p class="product-link">buy for Rs. <?php echo $sports_bra_price; ?></p>
+
+                        <!-- Add to Cart Button -->
+                        <a href="<?php echo esc_url($sports_bra_cart_url); ?>" class="add-to-cart-button">+</a>
+                    </a>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <p class="classic-section__tagline">
+            <?php the_sub_field( 'section_tag_line' ); ?>
+        </p>
+        <?php endwhile; ?>
+        <?php endif; ?>
+
+    </section>
+
+<!-- Classic Collection -->
+    <section class="wow animate__animated animate__fadeInUp classic-section">
+        <?php if ( have_rows( 'product_collection_2' ) ) : ?>
+        <?php while ( have_rows( 'product_collection_2' ) ) : the_row(); ?>
+        <div class="wow animate__animated animate__fadeInUp-section__wrapper summer-collection">
+            <div class="hero-section hero-sectionSummer">
+                <div class="hero-imageContainer">
+                    <img class="hero-image"
+                        src="<?php echo get_template_directory_uri()  ?>/assets/images/home-page/latest/Kirgo01109.webp"
+                        alt="">
+                </div>
+                
+                <div class="primary-link">
+                    <span class="primary-link__title">summer collection</span>
+                    <span class="primary-link__text">Light as a feather</span>
+                </div>
+            </div>
+
+            <div class="classic-section__category">
+                <div class="motto-image">
+                    <?php $motto_image = get_sub_field('motto_image'); ?>
+                    <?php if ($motto_image) : ?>
+                    <img src="<?php the_sub_field('motto_image'); ?>" alt="" class="motto-img" />
+                    <?php endif; ?>
+                </div>
+
+                <?php 
+                            // Fetching product details dynamically
+                            $sports_bra = wc_get_product(1365);
+                            $leggings = wc_get_product(1375);
+
+                            $sports_bra_name = $sports_bra->get_name();
+                            $leggings_name = $leggings->get_name();
+                            
+                            $sports_bra_short_desc = $sports_bra->get_short_description();
+                            $leggings_short_desc = $leggings->get_short_description();
+
+                            $sports_bra_price = $sports_bra->get_price();
+                            $leggings_price = $leggings->get_price();
+
+                            $sports_bra_image = $sports_bra->get_image();
+                            $leggings_image = $leggings->get_image();
+                            
+                            // Get Add to Cart URL
+                            $sports_bra_cart_url = $sports_bra->add_to_cart_url();
+                            $leggings_cart_url = $leggings->add_to_cart_url();
+                        ?>
+
+
+
+                <?php $product_detail_page_link_4 = get_sub_field('product_detail_page_link_4'); ?>
+                <?php if ($product_detail_page_link_4) : ?>
+
+                <div class="classic-section__linkContainer">
+                    <a href="<?php echo esc_url($product_detail_page_link_4['url']); ?>"
+                        class="classic-section__link top-category">
+                        <div class="desktop-elements">
+                            <!-- <span class="classic-section__text">classic</span> -->
+                            <p><?php the_sub_field('product_name_4'); ?></p>
+                        </div>
+                        <div class="mobile-elements">
+                            <div class="homepage-product-image">
+                                <?php echo $sports_bra_image; ?>
+                            </div>
+                            <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
+                            <h2 class="homepage-product-name"><?php echo $sports_bra_name; ?></h2>
+                            <p class="homepage-product-description"><?php echo $sports_bra_short_desc; ?></p>
+                        </div>
+
+                        <p class="product-link">buy for Rs. <?php echo $sports_bra_price; ?></p>
+
+                        <!-- Add to Cart Button -->
+                        <a href="<?php echo esc_url($sports_bra_cart_url); ?>" class="add-to-cart-button">+</a>
+                    </a>
+                </div>
+                <?php endif; ?>
+
+                <?php $product_detail_page_link_3 = get_sub_field('product_detail_page_link_3'); ?>
+                <?php if ($product_detail_page_link_3) : ?>
+                <div class="classic-section__linkContainer">
+                    <a href="<?php echo esc_url($product_detail_page_link_3['url']); ?>"
+                        class="classic-section__link leggings-category">
+                        <div class="desktop-elements">
+                            <!-- <span class="classic-section__text">classic</span> -->
+                            <p><?php the_sub_field('product_name_3'); ?></p>
+                        </div>
+                        <div class="mobile-elements">
+                            <div class="homepage-product-image">
+                                <?php
+                                                // Get first gallery image
+                                                $product_id = 1375;
+                                                $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
+                                                $gallery_image_ids = explode(',', $gallery_image_url);
+                                                $first_image_id = isset($gallery_image_ids[5]) ? $gallery_image_ids[5] : '';
+                                            ?>
+                                <img class="summer-leggins-img"
+                                    src="<?php echo wp_get_attachment_image_url($first_image_id, 'full'); ?>" alt="">
+                            </div>
+                            <?php echo file_get_contents(get_template_directory() . '/assets/images/icons/add-to-cart.svg'); ?>
+                            <h2 class="homepage-product-name"><?php echo $leggings_name; ?></h2>
+                            <p class="homepage-product-description"><?php echo $leggings_short_desc; ?></p>
+                        </div>
+
+                        <p class="product-link">buy for Rs. <?php echo $leggings_price; ?></p>
+
+                        <!-- Add to Cart Button -->
+                        <a href="<?php echo esc_url($leggings_cart_url); ?>" class="add-to-cart-button">+</a>
+                    </a>
+                </div>
+                <?php endif; ?>
+
+                <?php $shop_page_link = get_sub_field( 'shop_page_link' ); ?>
+                <?php if ( $shop_page_link ) : ?>
+                <a href="<?php echo esc_url( $shop_page_link['url'] ); ?>" class="secondary-link"
+                    target="<?php echo esc_attr( $shop_page_link['target'] ); ?>"><?php echo esc_html( $shop_page_link['title'] ); ?></a>
+                <?php endif; ?>
+            </div>
+
+        </div>
+
+        <p class="classic-section__tagline">
+            <?php the_sub_field( 'section_tag_line' ); ?>
+        </p>
+        <?php endwhile; ?>
+        <?php endif; ?>
+
+    </section>
+</div>
 <!-- Classic Section -->
 
 <!-- Features Section -->
