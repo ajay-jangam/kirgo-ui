@@ -104,8 +104,8 @@
 
             <?php 
                         // Fetching product details dynamically
-                        $sports_bra = wc_get_product(65);
-                        $leggings = wc_get_product(14);
+                        $sports_bra = wc_get_product(1840);
+                        $leggings = wc_get_product(1820);
 
                         $sports_bra_name = $sports_bra->get_name();
                         $leggings_name = $leggings->get_name();
@@ -137,7 +137,7 @@
                         <div class="homepage-product-image">
                             <?php
                                             // Get first gallery image
-                                            $product_id = 14;
+                                            $product_id = 1820;
                                             $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
                                             $gallery_image_ids = explode(',', $gallery_image_url);
                                             $first_image_id = isset($gallery_image_ids[4]) ? $gallery_image_ids[4] : '';

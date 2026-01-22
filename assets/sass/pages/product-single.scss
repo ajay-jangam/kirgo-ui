@@ -918,7 +918,7 @@ body.single-product {
                                 text-align: left;
                                 color: #fff;
                                 border-radius: 6px;
-                                border: solid 4px #fff;
+                                border: solid 2px #fff;
                                 width: 70px;
                                 height: 70px;
                                 display: flex;
@@ -980,6 +980,7 @@ body.single-product {
                         transition: 0.1s ease-out;
                         width: 100%;
                         border-radius: 10px;
+                        background: #fff;
 
                         &:hover {
                             color: #fff;
