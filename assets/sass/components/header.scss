@@ -680,7 +680,7 @@ body.page-template-template-get-in-touch {
         border: 1px solid #000;
         background-color: #fff;
         border-radius: 9px;
-        padding: 1.3rem 0.8rem 0.8rem;
+        padding: 1rem 0.8rem;
         margin-bottom: 1rem;
         font-family: $blaak-black-regular;
         font-size: 23px;
@@ -689,10 +689,6 @@ body.page-template-template-get-in-touch {
         text-align: left;
         color: #000;
         position: relative;
-
-        &-about {
-            padding: 0.8rem 0.8rem 0.8rem;
-        }
 
         &::after {
             content: url("/wp-content/themes/kirgo-theme/assets/images/link-arrow.svg");
@@ -737,16 +733,16 @@ body.page-template-template-get-in-touch {
     }
 
     .top-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/home-page/latest/nav-summer.webp");
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/summer-collection.webp");
     }
 
     .leggings-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/nav-classic.png");
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/classis-collection.webp");
         margin-right: 0;
     }
 
     .core-category {
-        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/nav-core.webp");
+        background-image: url("/wp-content/themes/kirgo-theme/assets/images/header/core-collection.webp");
         margin-right: 0;
         padding-left: 20px;
 

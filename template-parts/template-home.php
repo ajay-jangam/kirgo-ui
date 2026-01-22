@@ -117,13 +117,13 @@
         <div class="wow animate__animated animate__fadeInUp-section__wrapper core-collection">
             <a href="/shop/?orderby=date&order=desc" class="hero-section hero-sectionCore">
                 <div class="hero-imageContainer">
-                    <img class="hero-image"
+                    <img class="hero-image core-hero-image"
                         src="<?php echo get_template_directory_uri()  ?>/assets/images/home-page/latest/kirgo-core-set.webp"
                         alt="">
                 </div>
                 <div class="primary-link">
-                    <span class="primary-link__title">Core Collection</span>
-                    <span class="primary-link__text">Designed for everyday wear</span>
+                    <span class="primary-link__title">Core</span>
+                    <span class="primary-link__text">Second-skin comfort. Everyday movement</span>
                 </div>
             </a>
 
@@ -137,8 +137,8 @@
 
                 <?php 
                     // Fetching product details dynamically
-                    $sports_bra = wc_get_product(1771);
-                    $leggings = wc_get_product(1757);
+                    $sports_bra = wc_get_product(1840);
+                    $leggings = wc_get_product(1820);
 
                     $sports_bra_name = $sports_bra->get_name();
                     $leggings_name = $leggings->get_name();
@@ -191,7 +191,7 @@
                             <div class="homepage-product-image">
                                 <?php
                                     // Get first gallery image
-                                    $product_id = 1757;
+                                    $product_id = 1820;
                                     $gallery_image_url = get_post_meta($product_id, '_product_image_gallery', true);
                                     $gallery_image_ids = explode(',', $gallery_image_url);
                                     $first_image_id = isset($gallery_image_ids[5]) ? $gallery_image_ids[5] : '';
@@ -242,8 +242,8 @@
                 </div>
                 
                 <div class="primary-link">
-                    <span class="primary-link__title">classic collection</span>
-                    <span class="primary-link__text">Crafted for sweaty workouts</span>
+                    <span class="primary-link__title">classic</span>
+                    <span class="primary-link__text">Maximum support. Peak performance.</span>
                 </div>
             </div>
 
@@ -354,8 +354,8 @@
                 </div>
                 
                 <div class="primary-link">
-                    <span class="primary-link__title">summer collection</span>
-                    <span class="primary-link__text">Light as a feather</span>
+                    <span class="primary-link__title">summer</span>
+                    <span class="primary-link__text">Lighter feel. Same intensity.</span>
                 </div>
             </div>
 
@@ -509,7 +509,7 @@
 
 <!-- Buy Links -->
 
-<section class="buyLink-section">
+<!-- <section class="buyLink-section">
     <div class="buyLink-section__wrapper container">
         <div class="buyLink-section__links">
             <div class="buyLink-section__link summer wow animate__animated animate__fadeInUp">
@@ -524,7 +524,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Buy Links -->
 

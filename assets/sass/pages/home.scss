@@ -73,6 +73,12 @@
             @include mq($until: tablet) {
                 transform: scale(1.75) translate(12px, -24px);
             }
+
+            &.core-hero-image {
+                transform: unset;
+                height: 100%;
+                object-fit: cover;
+            }
         }
     }
 }
@@ -675,7 +681,6 @@
         }
         &__text {
             // color: #000;
-            margin-bottom: 5px;
             @include mq($from: desktop) {
                 display: none;
             }

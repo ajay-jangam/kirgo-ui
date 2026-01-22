@@ -61,15 +61,15 @@
             <ul class="navbar-menu">
                 <a href="/shop?orderby=date&order=desc" class="navbar-menu__item hidden-link-desktop">
                     <li class="navbar-menu__link product-category core-category">
-                        <span class="core-category__title">core</span>
-                        <span class="core-category__subtitle">Designed for everyday wear</span>
+                        <!-- <span class="core-category__title">core</span>
+                        <span class="core-category__subtitle">Designed for everyday wear</span> -->
                     </li>
                 </a>
                 <a href="/shop" class="navbar-menu__item hidden-link-desktop">
                     <li class=" navbar-menu__link product-category top-category">
-                        <span style="margin-top: -8px; margin-left: 2px;">
+                        <!-- <span style="margin-top: -8px; margin-left: 2px;">
                             <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25.svg') ?>
-                        </span>
+                        </span> -->
                     </li>
                 </a>
                 <a href="/shop" class="navbar-menu__item hidden-link-desktop">
@@ -89,8 +89,7 @@
 
                 <div class="nav-product-carousel">
                     <?php
-                        $product_ids = [1771, 1375, 1365, 65, 14];
-
+                        $product_ids = [1840, 1820, 1375, 1365, 65, 14];
 
                         foreach ($product_ids as $product_id) :
                             $product = wc_get_product($product_id);
@@ -128,11 +127,11 @@
                 </div>
 
                 <a href="https://kirgo.shiprocket.co/tracking" class="navbar-menu__item">
-                    <li class="navbar-menu__link"><span>track</span>your kirgo delivery</li>
+                    <li class="navbar-menu__link">track your delivery</li>
                 </a>
 
                 <a href="/about-us" class="navbar-menu__item">
-                    <li class="navbar-menu__link navbar-menu__link-about"><span>read</span>about kirgo</li>
+                    <li class="navbar-menu__link navbar-menu__link-about">about kirgo</li>
                 </a>
             </ul>
             <div class="social-link">
