@@ -587,3 +587,11 @@ function my_custom_function() {
 // Hook into the appropriate action
 add_action('wp_ajax_xoo_wsc_add_to_cart', 'my_custom_function', 5); // For logged-in users
 add_action('wp_ajax_nopriv_xoo_wsc_add_to_cart', 'my_custom_function', 5); // For
+
+add_filter( 'woocommerce_coupons_enabled', 'disable_coupon_field_on_cart' );
+function disable_coupon_field_on_cart( $enabled ) {
+    if ( is_cart() ) {
+        $enabled = false;
+    }
+    return $enabled;
+}
