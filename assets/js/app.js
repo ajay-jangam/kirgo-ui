@@ -426,13 +426,7 @@ jQuery(document).ready(function ($) {
         .unwrap()
         .wrap("<div></div>");
 
-    $(".hero-sectionSummer .primary-link").click(() => {
-        window.location.href = "/shop/?orderby=date&order=desc";
-    });
 
-    $(".hero-classicSection .primary-link").click(() => {
-        window.location.href = "/shop";
-    });
 
     $(".nav-product-carousel").flickity({
         cellAlign: "left",

@@ -238,15 +238,6 @@ function custom_cart_totals_title( $translated_text, $text, $domain ) {
     return $translated_text;
 }
 
-// Add custom text with hyperlink before "Proceed to Checkout" button on cart page
-add_action( 'woocommerce_proceed_to_checkout', 'add_custom_text_with_hyperlink_before_checkout_button', 5 );
-
-function add_custom_text_with_hyperlink_before_checkout_button() {
-    $custom_text = '<strong>You can still save a total of Rs. 100/-</strong> add <a href="/product/classic-sports-bra"> sports bra</a> to avail';
-    echo '<p class="discount-text">' . $custom_text . '</p>';
-}
-
-
 /***********************
  * Checkout Page
  ***********************/
@@ -338,40 +329,131 @@ function display_related_products_on_checkout_page() {
 
 
 function display_related_products() {
-	// Get the current product IDs from the cart
-	$product_ids = array();
+	// 1. Analyze Cart
+	$product_ids_in_cart = array();
+	$has_set_product_in_cart = false;
+	$first_single_product_collection = '';
 
 	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-		$product_ids[] = $cart_item['product_id'];
-	}
-	
-	
-	// Check if product with ID 438 is in the cart
-	$set_product_id_438_in_cart = in_array( 438, $product_ids );
-	$set_product_id_1406_in_cart = in_array( 1406, $product_ids );
+		$prod_id = $cart_item['product_id'];
+		$product_ids_in_cart[] = $prod_id;
 
-	// Query for related products based on the current product IDs
-	$related_args = array(
-		'post_type' => 'product',
-		'posts_per_page' => 1,
-		'post__not_in' => $product_ids,
-		'orderby' => 'rand',
-		'product_cat' => 'single-product',
-		'meta_query' => array(
-			array(
-				'key' => '_stock_status',
-				'value' => 'instock',
+		if ( has_term( 'set-product', 'product_cat', $prod_id ) ) {
+			$has_set_product_in_cart = true;
+		}
+
+		// Identify the collection of the first single product found in cart
+		if ( empty( $first_single_product_collection ) && has_term( 'single-product', 'product_cat', $prod_id ) ) {
+			if ( has_term( 'core-collection', 'product_cat', $prod_id ) ) {
+				$first_single_product_collection = 'core-collection';
+			} elseif ( has_term( 'summer-collection', 'product_cat', $prod_id ) ) {
+				$first_single_product_collection = 'summer-collection';
+			} elseif ( has_term( 'classic-collection', 'product_cat', $prod_id ) ) {
+				$first_single_product_collection = 'classic-collection';
+			}
+		}
+	}
+
+	// Exit early if a set product is already in the cart AND there is no single product to upsell against
+	if ( $has_set_product_in_cart && empty( $first_single_product_collection ) ) {
+		return;
+	}
+
+	// 2. Determine Query Arguments
+	$collection_slugs = array( 'core-collection', 'summer-collection', 'classic-collection' );
+	$target_collection = '';
+
+	// Strategy A: Try to complete the set (Same Collection)
+	if ( ! empty( $first_single_product_collection ) ) {
+		$target_collection = $first_single_product_collection;
+	} else {
+		// Fallback: Pick a random collection if no specific single product context
+		$target_collection = $collection_slugs[ array_rand( $collection_slugs ) ];
+	}
+
+	// Helper function into array args
+	$get_related_args = function( $collection, $exclude_ids ) {
+		return array(
+			'post_type' => 'product',
+			'posts_per_page' => 1,
+			'post__not_in' => $exclude_ids,
+			'orderby' => 'rand',
+			'tax_query' => array(
+				'relation' => 'AND',
+				array(
+					'taxonomy' => 'product_cat',
+					'field' => 'slug',
+					'terms' => $collection,
+				),
+				array(
+					'taxonomy' => 'product_cat',
+					'field' => 'slug',
+					'terms' => 'single-product',
+				),
+				array(
+					'taxonomy' => 'product_cat',
+					'field' => 'slug',
+					'terms' => 'set-product',
+					'operator' => 'NOT IN',
+				),
 			),
-		),
-	);
+			'meta_query' => array(
+				array(
+					'key' => '_stock_status',
+					'value' => 'instock',
+				),
+			),
+		);
+	};
+
+	// Attempt Query 1: Same Collection (Upsell matching piece)
+	$related_args = $get_related_args( $target_collection, $product_ids_in_cart );
 	$related_query = new WP_Query( $related_args );
 
+	// Strategy B: If user has the full set (no posts found in same collection), try Different Collection
+	if ( ! $related_query->have_posts() && ! empty( $first_single_product_collection ) ) {
+		$other_collections = array_diff( $collection_slugs, array( $first_single_product_collection ) );
+		if ( ! empty( $other_collections ) ) {
+			// Select a random different collection
+			$target_collection = $other_collections[ array_rand( $other_collections ) ];
+			$related_args = $get_related_args( $target_collection, $product_ids_in_cart );
+			$related_query = new WP_Query( $related_args );
+		}
+	}
+
 	// Display the related products
-	if ( $related_query->have_posts() && !$set_product_id_438_in_cart && !$set_product_id_1406_in_cart ) {
+	if ( $related_query->have_posts() ) {
+
+		// Logic for Title Display
+		$cart_total = WC()->cart->get_cart_contents_total(); // Pre-tax, pre-shipping total usually used for thresholds
+		// If needed, use WC()->cart->get_total( 'edit' ); for final total. 
+		// Assuming free shipping is based on subtotal.
+		
+		$free_shipping_threshold = 3000; // Constant as requested
+		$show_title = true;
+		$title_html = '<h2 class="cart-product-set-text">make it a set and</br> <span>get free shipping</span></h2>';
+
+		// Priority 1: Strategies Switch (Collection Complete) -> Hide Title
+		if ( ! empty( $first_single_product_collection ) && $target_collection !== $first_single_product_collection ) {
+			$show_title = false;
+		} elseif ( $has_set_product_in_cart && ! empty( $first_single_product_collection ) ) {
+			// Priority 2 (Use Case 3): Set + Single -> Show "make it a set"
+			// This overrides the 3000 check because "Make it a set" is still relevant
+			$title_html = '<h2 class="cart-product-set-text">make it a set</h2>';
+		} elseif ( $cart_total > $free_shipping_threshold ) {
+			// Priority 3 (Rule 1): If price is above 3K, Hide Title
+			// This now primarily applies to Use Case 1 (Single Product Only)
+			$show_title = false;
+		}
+		// Default (Use Case 1): Single only -> Show full title (already set)
 
 		echo '<div class="alternate-cart-products">';
-			echo '<h2 class="cart-product-set-text">make it a set and</br> <span>get free shipping</span></h2>';
-			echo '<p class="add-alternate-product-to-cart-text">Add our <span class="alternateProductTitle"></span> to your cart for a complete kirgo experience</p>';
+			
+			if ( $show_title ) {
+				echo $title_html;
+				echo '<p class="add-alternate-product-to-cart-text">Add to your cart for a complete kirgo experience</p>';
+			}
+			
 			echo '<ul class="products">';
 
 			while ( $related_query->have_posts() ) {
@@ -595,3 +677,30 @@ function disable_coupon_field_on_cart( $enabled ) {
     }
     return $enabled;
 }
+
+/**
+ * Prioritize specific product category in the shop loop.
+ * URL: /shop/?prioritize_collection=slug
+ */
+function kirgo_prioritize_collection_sorting( $clauses, $query ) {
+    if ( is_admin() || ! $query->is_main_query() || ! function_exists('is_shop') || ! is_shop() ) {
+        return $clauses;
+    }
+
+    if ( isset( $_GET['prioritize_collection'] ) ) {
+        global $wpdb;
+        $collection_slug = sanitize_text_field( $_GET['prioritize_collection'] );
+        $term = get_term_by( 'slug', $collection_slug, 'product_cat' );
+
+        if ( $term ) {
+            // Join term_relationships to identify products in the category
+            $clauses['join'] .= " LEFT JOIN {$wpdb->term_relationships} AS priority_cat ON ({$wpdb->posts}.ID = priority_cat.object_id AND priority_cat.term_taxonomy_id = " . absint( $term->term_taxonomy_id ) . ") ";
+            
+            // Order by presence in the category (1 DESC, 0 ASC) first, then existings sorts
+            $clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, " . $clauses['orderby'];
+        }
+    }
+
+    return $clauses;
+}
+add_filter( 'posts_clauses', 'kirgo_prioritize_collection_sorting', 20, 2 );

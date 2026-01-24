@@ -115,7 +115,7 @@
         <?php if ( have_rows( 'product_collection_2' ) ) : ?>
         <?php while ( have_rows( 'product_collection_2' ) ) : the_row(); ?>
         <div class="wow animate__animated animate__fadeInUp-section__wrapper core-collection">
-            <a href="/shop/?orderby=date&order=desc" class="hero-section hero-sectionCore">
+            <a href="/shop/?prioritize_collection=core-collection" class="hero-section hero-sectionCore">
                 <div class="hero-imageContainer">
                     <img class="hero-image core-hero-image"
                         src="<?php echo get_template_directory_uri()  ?>/assets/images/home-page/latest/kirgo-core-set.webp"
@@ -234,7 +234,7 @@
         <?php while ( have_rows( 'product_collection' ) ) : the_row(); ?>
         <div class="wow animate__animated animate__fadeInUp-section__wrapper">
 
-            <div class="hero-section hero-classicSection">
+            <a href="/shop/?prioritize_collection=classic-collection" class="hero-section hero-classicSection">
                 <div class="hero-imageContainer">
                     <img class="hero-image"
                         src="<?php echo get_template_directory_uri()  ?>/assets/images/about-us/story-behind-img-desktop.jpg"
@@ -245,7 +245,7 @@
                     <span class="primary-link__title">classic</span>
                     <span class="primary-link__text">Maximum support. Peak performance.</span>
                 </div>
-            </div>
+            </a>
 
             <div class="classic-section__category classic-section__categoryRegular">
 
@@ -346,7 +346,7 @@
         <?php if ( have_rows( 'product_collection_2' ) ) : ?>
         <?php while ( have_rows( 'product_collection_2' ) ) : the_row(); ?>
         <div class="wow animate__animated animate__fadeInUp-section__wrapper summer-collection">
-            <div class="hero-section hero-sectionSummer">
+            <a href="/shop/?prioritize_collection=summer-collection" class="hero-section hero-sectionSummer">
                 <div class="hero-imageContainer">
                     <img class="hero-image"
                         src="<?php echo get_template_directory_uri()  ?>/assets/images/home-page/latest/Kirgo01109.webp"
@@ -357,7 +357,7 @@
                     <span class="primary-link__title">summer</span>
                     <span class="primary-link__text">Lighter feel. Same intensity.</span>
                 </div>
-            </div>
+            </a>
 
             <div class="classic-section__category">
                 <div class="motto-image">

@@ -59,22 +59,18 @@
         </div>
         <div class="product-nav-links-right links-mobile">
             <ul class="navbar-menu">
-                <a href="/shop?orderby=date&order=desc" class="navbar-menu__item hidden-link-desktop">
+                <a href="/shop/?prioritize_collection=core-collection" class="navbar-menu__item hidden-link-desktop">
                     <li class="navbar-menu__link product-category core-category">
                         <!-- <span class="core-category__title">core</span>
                         <span class="core-category__subtitle">Designed for everyday wear</span> -->
                     </li>
                 </a>
-                <a href="/shop" class="navbar-menu__item hidden-link-desktop">
+                <a href="/shop/?prioritize_collection=summer-collection" class="navbar-menu__item hidden-link-desktop">
                     <li class=" navbar-menu__link product-category top-category">
-                        <!-- <span style="margin-top: -8px; margin-left: 2px;">
-                            <?php echo file_get_contents(get_template_directory() .'/assets/images/header/summer25.svg') ?>
-                        </span> -->
                     </li>
                 </a>
-                <a href="/shop" class="navbar-menu__item hidden-link-desktop">
+                <a href="/shop/?prioritize_collection=classic-collection" class="navbar-menu__item hidden-link-desktop">
                     <li class="navbar-menu__link product-category leggings-category">
-
                     </li>
                 </a>
 
