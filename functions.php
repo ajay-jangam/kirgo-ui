@@ -704,3 +704,50 @@ function kirgo_prioritize_collection_sorting( $clauses, $query ) {
     return $clauses;
 }
 add_filter( 'posts_clauses', 'kirgo_prioritize_collection_sorting', 20, 2 );
+
+/**
+ * Add cart count to WooCommerce fragments for dynamic AJAX updates
+ * This ensures the cart count updates properly even with Cloudflare caching
+ */
+function kirgo_add_cart_count_fragment( $fragments ) {
+    $count = WC()->cart->get_cart_contents_count();
+
+    // Fragment for custom cart-count element
+    ob_start();
+    echo '<span class="cart-count">' . esc_html( $count ) . '</span>';
+    $fragments['span.cart-count'] = ob_get_clean();
+
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'kirgo_add_cart_count_fragment' );
+
+/**
+ * REST API endpoint for getting cart count
+ * Provides a cacheable endpoint that Cloudflare can handle properly
+ */
+function kirgo_register_cart_count_endpoint() {
+    register_rest_route( 'kirgo/v1', '/cart-count', array(
+        'methods' => 'GET',
+        'callback' => 'kirgo_get_cart_count_rest',
+        'permission_callback' => '__return_true'
+    ));
+}
+add_action( 'rest_api_init', 'kirgo_register_cart_count_endpoint' );
+
+function kirgo_get_cart_count_rest() {
+    // Set headers to prevent caching of this endpoint
+    header('Cache-Control: no-cache, no-store, must-revalidate');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+
+    if ( ! WC()->cart ) {
+        return new WP_REST_Response( array( 'count' => 0 ), 200 );
+    }
+
+    $count = WC()->cart->get_cart_contents_count();
+
+    return new WP_REST_Response( array(
+        'count' => $count,
+        'hash' => WC()->cart->get_cart_hash()
+    ), 200 );
+}

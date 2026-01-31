@@ -423,7 +423,7 @@ body.page-template-template-get-in-touch {
         line-height: 1;
         font-weight: 700;
         position: absolute;
-        top: 4.7px;
+        top: 2.5px;
         left: 1px;
         display: flex;
         width: 18px;
@@ -464,6 +464,7 @@ body.page-template-template-get-in-touch {
             }
 
             .xoo-wsc-sc-count {
+                display: none;
                 background-color: unset;
                 font-size: 12px;
                 // right: 0px;

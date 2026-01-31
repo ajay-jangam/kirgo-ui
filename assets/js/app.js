@@ -445,4 +445,52 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         window.history.back();
     });
+
+    // Load cart count on page load via AJAX (works with Cloudflare caching)
+    function updateCartCount() {
+
+        // Try WooCommerce fragments first
+        if (typeof wc_add_to_cart_params !== 'undefined' && wc_add_to_cart_params.wc_ajax_url) {
+            $.ajax({
+                url: wc_add_to_cart_params.wc_ajax_url.toString().replace('%%endpoint%%', 'get_refreshed_fragments'),
+                type: 'POST',
+                success: function(data) {
+                    if (data && data.fragments) {
+                        $.each(data.fragments, function(key, value) {
+                            $(key).replaceWith(value);
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Fallback to REST API if fragments fail
+                    loadCartCountViaREST();
+                }
+            });
+        } else {
+            // Use REST API if WooCommerce params not available
+            loadCartCountViaREST();
+        }
+    }
+
+    // Fallback function using REST API
+    function loadCartCountViaREST() {
+        $.ajax({
+            url: '/wp-json/kirgo/v1/cart-count',
+            type: 'GET',
+            success: function(response) {
+                // Trigger WooCommerce fragment refresh with the count data
+                $(document.body).trigger('wc_fragment_refresh');
+            },
+            error: function(xhr, status, error) {
+            }
+        });
+    }
+
+    // Update cart count on page load
+    updateCartCount();
+
+    // Update cart count dynamically when items are added/removed
+    $(document.body).on('added_to_cart removed_from_cart updated_cart_totals wc_fragments_refreshed', function() {
+        updateCartCount();
+    });
 });
