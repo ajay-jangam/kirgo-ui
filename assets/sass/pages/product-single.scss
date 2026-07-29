@@ -1152,14 +1152,65 @@ body.single-product {
     }
 }
 
-body.summer-collection-product
-    .product
-    .summary
-    .cart
-    .woovr-variations
-    .woovr-variation__extra-title {
-    color: #fff;
+// Greyed-out / disabled size variants
+// Broad selector — works both before (staging div) and after (inside .woovr-variations) JS move
+body.single-product .woovr-variation[data-purchasable="no"] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.38;
+    // Match the flex-item display of regular WooVR variation buttons
+    display: flex;
+    align-items: self-start;
+
+    .woovr-variation-name {
+        color: #888;
+        border-color: #555;
+        position: relative;
+        overflow: hidden;
+        // Match WooVR button dimensions
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        font-family: $lekton;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.37;
+        letter-spacing: 0.27px;
+        border-radius: 3px;
+        border: solid 2px #555;
+        width: 40px;
+        height: 40px;
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 3px;
+        @include mq($from: desktop) {
+            font-size: 26px;
+            width: 50px;
+            height: 50px;
+        }
+
+        // Diagonal strikethrough line
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -5%;
+            width: 110%;
+            height: 1.5px;
+            background-color: #888;
+            transform: rotate(-35deg);
+            transform-origin: center;
+        }
+    }
+
+    // Suppress hover and active styles
+    &:hover .woovr-variation-name,
+    &.woovr-variation-active .woovr-variation-name {
+        background-color: transparent;
+        color: #888;
+    }
 }
+
 
 body.single-product.summer-collection-product
     .product

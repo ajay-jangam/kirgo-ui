@@ -13,7 +13,7 @@
             left: 0;
             background-image: linear-gradient(
                 to bottom,
-                #2f3c4f 33%,
+                #2b4881 33%,
                 #0d0c0c 100%
             );
             z-index: -1;
@@ -1498,5 +1498,108 @@
         .summer-leggins-img {
             transform: scale(1.5) translate(0px, -30px) !important;
         }
+    }
+}
+
+// Core Flare Leggings Section
+// Zeplin ref: https://zpl.io/6JJBpvR — standalone card outside .classic-section
+// Card dimensions (393px screen): full-width, split 55% content / 45% image
+// Border-radius: 9px all corners (design image), bottom bar uses 6px per Zeplin Rectangle 120
+// Colors: #405f89 (core blue), #1a3461 (dark navy), #fff (background)
+// Title: BlaakBlack ~21px weight 900, subtitle Poppins, CTA Poppins bold
+
+.core-flare-leggings {
+    display: flex;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 9px;
+    overflow: hidden;
+    margin: 0 1.5rem 1rem;
+
+    // Left content pane (55% width, full height)
+    &__content {
+        flex: 0 0 55%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2.5rem 0.75rem 1.2rem 1.25rem;
+        text-align: center;
+    }
+
+    // "INTRODUCING" eyebrow — Poppins, uppercase, letter-spaced, core blue
+    &__eyebrow {
+        display: block;
+        font-family: $blaak-black-light;
+        font-size: 9px;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #273f6e;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+
+    // "core flare leggings" — BlaakBlack, ~21px per Zeplin, color #273f6e
+    &__title {
+        font-family: $blaak-black-regular;
+        font-size: 2rem;
+        font-weight: 900;
+        font-style: normal;
+        line-height: 0.9;
+        color: #273f6e;
+        text-transform: lowercase;
+        margin: 0 0 1.5rem;
+    }
+
+    // Subtitle — Poppins, centered, dark navy
+    &__subtitle {
+        font-family: $lekton;
+        font-size: 11px;
+        font-weight: 400;
+        font-style: normal;
+        line-height: 1.5;
+        color: #1a3461;
+        margin: 0 0 2rem;
+        text-align: center;
+    }
+
+    // "Buy Now" CTA — dark navy fill, Poppins bold, border-radius 6px per Zeplin
+    &__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $lekton;
+        font-size: 12px;
+        font-weight: 700;
+        font-style: normal;
+        color: #fff;
+        background-color: #273f6e;
+        border-radius: 6px;
+        padding: 0.85rem 1rem;
+        text-align: center;
+        transition: background-color 0.15s ease-out;
+        letter-spacing: 0.02em;
+        width: 100%;
+
+        &:hover {
+            background-color: #273f6e;
+        }
+    }
+
+    // Right image pane — 45% width, fills full card height
+    &__image-wrapper {
+        flex: 0 0 45%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    // Image covers the full right pane, top-anchored (model visible from top)
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
     }
 }

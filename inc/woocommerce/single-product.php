@@ -2,83 +2,70 @@
 
 
 /**
- * Extra variations component
+ * Render disabled (unchecked "Enable") variations as greyed-out size buttons.
+ *
+ * WooVR skips variations where variation_is_visible() === false (i.e. the
+ * "Enable" checkbox is unchecked in the product edit page). We fetch ALL
+ * children, find the disabled ones, and inject them with the same WooVR
+ * markup so CSS can grey them out via [data-purchasable="no"].
+ *
+ * See: assets/sass/pages/product-single.scss (.woovr-variation[data-purchasable="no"])
  */
-function woocommerce_single_product_variations_extras() {
-    global $product;
+function kirgo_render_disabled_variations() {
+	global $product;
 
-    // Ensure it's a variable product on a product page
-    if ( ! is_a( $product, 'WC_Product' ) || ! $product->is_type( 'variable' ) ) {
-        return;
-    }
+	if ( ! is_a( $product, 'WC_Product' ) || ! $product->is_type( 'variable' ) ) {
+		return;
+	}
 
-    // --- IMPORTANT Configuration ---
-    // !! Since you added "Size" directly to the product, the slug is likely just 'size'.
-    // Double-check this on the product edit page -> Product Data -> Attributes tab.
-    $size_attribute_slug = 'size'; // <--- Changed from 'pa_size'
-    $xs_variation_value = 'XS'; // The exact value string for the XS variation
-    $xl_variation_value = 'XL'; // The exact value string for the XL variation
-    // --- End Configuration ---
+	$all_children = $product->get_children(); // ALL variation IDs, including disabled ones
 
-    // This will now likely look for 'attribute_size' in the variation data
-    $attribute_key_lookup = 'attribute_' . $size_attribute_slug;
-    $available_variations = $product->get_available_variations();
+	if ( empty( $all_children ) ) {
+		return;
+	}
 
-    // Exit if no variations found
-    if ( empty( $available_variations ) ) {
-        return;
-    }
+	$disabled_variations = [];
 
-    $has_xs = false;
-    $has_xl = false;
+	foreach ( $all_children as $child_id ) {
+		$child_product = wc_get_product( $child_id );
 
-    // Check available variations for XS and XL sizes
-    foreach ( $available_variations as $variation_data ) {
-        // Check if the variation has attributes AND if our specific attribute key exists for this variation
-        if ( isset( $variation_data['attributes'][ $attribute_key_lookup ] ) ) {
-            // Get the size value for this specific variation
-            $variation_size = trim( $variation_data['attributes'][ $attribute_key_lookup ] );
+		// Only collect truly disabled (not-visible) variations
+		if ( ! $child_product || $child_product->variation_is_visible() ) {
+			continue;
+		}
 
-            // Check if it matches XS or XL
-            if ( $variation_size === $xs_variation_value ) {
-                $has_xs = true;
-            }
-            if ( $variation_size === $xl_variation_value ) {
-                $has_xl = true;
-            }
-            // Optimization: if both found, no need to check further variations
-            if ( $has_xs && $has_xl ) {
-                break;
-            }
-        }
-    }
+		$disabled_variations[] = $child_product;
+	}
 
-    // Determine the message based on whether XS and XL variations exist
-    $message = '';
-    if ( ! $has_xs && ! $has_xl ) {
-        // Neither XS nor XL exists
-        $message = esc_html( $xs_variation_value ) . ' & ' . esc_html( $xl_variation_value ) . ' coming soon';
-    } elseif ( $has_xs && ! $has_xl ) {
-        // XS exists, but XL does not
-        $message = esc_html( $xl_variation_value ) . ' coming soon';
-    } elseif ( ! $has_xs && $has_xl ) {
-        // XL exists, but XS does not
-        $message = esc_html( $xs_variation_value ) . ' coming soon';
-    }
+	if ( empty( $disabled_variations ) ) {
+		return;
+	}
 
-    if ( ! empty( $message ) ) {
-        echo "<div class='woovr-variation__extra'>";
-        echo "<span class='woovr-variationextra-title'>" . $message . "</span>";
-        echo "
-        <!-- <a class='woovr-variation__extra-link' href='#'>notify me</a> -->
-            <button type='button' class='woovr-variation__extra-link' data-bs-toggle='modal' data-bs-target='#notifyMePopup'>
-            notify me
-            </button>
-        </div>";
-    }
+	// Output disabled buttons using the same WooVR DOM structure so that:
+	// 1. The existing JS abbreviation logic (.woovr-variation-name) picks them up.
+	// 2. JS moves them into .woovr-variations and sorts by size order.
+	// 3. CSS [data-purchasable="no"] greys them out once inside the container.
+	echo '<div class="kirgo-disabled-staging">';
+	foreach ( $disabled_variations as $child_product ) {
+		$child_name = $child_product->get_name();
+		// Strip parent product name prefix (WooCommerce appends it automatically)
+		$parent_name = $product->get_name();
+		if ( strpos( $child_name, $parent_name ) === 0 ) {
+			$child_name = trim( substr( $child_name, strlen( $parent_name ) ) );
+		}
+
+		echo '<div class="woovr-variation woovr-variation-radio woovr-variation-disabled" '
+			. 'data-purchasable="no" '
+			. 'data-id="' . esc_attr( $child_product->get_id() ) . '">';
+		echo '<div class="woovr-variation-info">';
+		echo '<div class="woovr-variation-name">' . esc_html( $child_name ) . '</div>';
+		echo '</div>';
+		echo '</div>';
+	}
+	echo '</div><!-- /.kirgo-disabled-staging -->';
 }
 
-add_action('woovr_variations_after', 'woocommerce_single_product_variations_extras', 10, 2);
+add_action( 'woovr_variations_after', 'kirgo_render_disabled_variations', 10, 2 );
 
 
 /**

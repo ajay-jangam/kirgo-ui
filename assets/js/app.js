@@ -250,6 +250,38 @@ jQuery(document).ready(function ($) {
         $(this).text(newText.toUpperCase());
     });
 
+    // Move disabled size variants from their staging div into the .woovr-variations
+    // flex container, then sort all size buttons in the canonical order.
+    var sizeOrder = ["XS", "S", "M", "L", "XL"];
+
+    $(".kirgo-disabled-staging").each(function () {
+        var $staging = $(this);
+        // .woovr-variations is the immediately preceding sibling of the staging div
+        var $container = $staging.prev(".woovr-variations");
+        if (!$container.length) {
+            // Fallback: look for it in the nearest common ancestor
+            $container = $staging.closest(".cart, .variations_form").find(".woovr-variations").first();
+        }
+        if (!$container.length) return;
+
+        // Move disabled buttons into the flex container
+        $staging.find(".woovr-variation-disabled").appendTo($container);
+        $staging.remove();
+
+        // Sort all variation buttons (enabled + disabled) by canonical size order
+        var $items = $container.find(".woovr-variation[data-id]");
+        var sorted = $items.toArray().sort(function (a, b) {
+            var aName = $(a).find(".woovr-variation-name").text().trim();
+            var bName = $(b).find(".woovr-variation-name").text().trim();
+            var aIdx = sizeOrder.indexOf(aName);
+            var bIdx = sizeOrder.indexOf(bName);
+            if (aIdx === -1) aIdx = 999;
+            if (bIdx === -1) bIdx = 999;
+            return aIdx - bIdx;
+        });
+        $(sorted).appendTo($container);
+    });
+
     if (
         $("body").hasClass("woocommerce-checkout") &&
         !$("body.woocommerce-checkout").hasClass("woocommerce-order-received")
