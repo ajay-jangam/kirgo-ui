@@ -679,8 +679,28 @@ function disable_coupon_field_on_cart( $enabled ) {
 }
 
 /**
+ * Pinned product ordering map per collection slug.
+ *
+ * Products listed here will appear first (in the defined order) when that
+ * collection is prioritized on the shop page. Products NOT in the list follow
+ * after, sorted by the default WooCommerce ordering.
+ *
+ * Format:
+ *   'collection-slug' => [ product_id_1, product_id_2, ... ]
+ */
+$kirgo_collection_pin_order = [
+    'core-collection' => [
+        2091, // Core Flare Leggings
+        2111, // Core Sports Bra and Flare Leggings
+    ],
+];
+
+/**
  * Prioritize specific product category in the shop loop.
  * URL: /shop/?prioritize_collection=slug
+ *
+ * If a pin-order map exists for the requested collection slug, pinned products
+ * are surfaced first in the defined sequence; all other products follow.
  */
 function kirgo_prioritize_collection_sorting( $clauses, $query ) {
     if ( is_admin() || ! $query->is_main_query() || ! function_exists('is_shop') || ! is_shop() ) {
@@ -688,16 +708,33 @@ function kirgo_prioritize_collection_sorting( $clauses, $query ) {
     }
 
     if ( isset( $_GET['prioritize_collection'] ) ) {
-        global $wpdb;
+        global $wpdb, $kirgo_collection_pin_order;
+
         $collection_slug = sanitize_text_field( $_GET['prioritize_collection'] );
-        $term = get_term_by( 'slug', $collection_slug, 'product_cat' );
+        $term            = get_term_by( 'slug', $collection_slug, 'product_cat' );
 
         if ( $term ) {
-            // Join term_relationships to identify products in the category
+            // Join term_relationships to identify products in the category.
             $clauses['join'] .= " LEFT JOIN {$wpdb->term_relationships} AS priority_cat ON ({$wpdb->posts}.ID = priority_cat.object_id AND priority_cat.term_taxonomy_id = " . absint( $term->term_taxonomy_id ) . ") ";
-            
-            // Order by presence in the category (1 DESC, 0 ASC) first, then existings sorts
-            $clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, " . $clauses['orderby'];
+
+            // Check if a pinned ordering map exists for this collection.
+            $pinned_ids = isset( $kirgo_collection_pin_order[ $collection_slug ] )
+                ? array_map( 'absint', $kirgo_collection_pin_order[ $collection_slug ] )
+                : [];
+
+            if ( ! empty( $pinned_ids ) ) {
+                // Build a FIELD() expression so pinned IDs sort in the exact map order.
+                // Non-pinned products get FIELD() = 0 (MySQL behaviour) and fall to the end.
+                $ids_csv      = implode( ',', $pinned_ids );
+                $field_expr   = "FIELD({$wpdb->posts}.ID, {$ids_csv})";
+
+                // Pinned products first (FIELD > 0 DESC), then in map sequence (FIELD ASC),
+                // then the rest of the category, then default ordering.
+                $clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, ({$field_expr} = 0) ASC, {$field_expr} ASC, " . $clauses['orderby'];
+            } else {
+                // No pin map – fall back to simple category-first ordering.
+                $clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, " . $clauses['orderby'];
+            }
         }
     }
 

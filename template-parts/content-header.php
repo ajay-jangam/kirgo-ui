@@ -1,18 +1,18 @@
 <!-- Header -->
-<nav class="navbar <?php echo get_field( 'transparent_navbar' ) == 1 ? 'navbar-transparent' : '' ?>">
+<nav class="navbar <?php echo get_field('transparent_navbar') == 1 ? 'navbar-transparent' : '' ?>">
 
-    <?php if (is_cart() || is_checkout() || is_shop() || (is_account_page() && is_user_logged_in())) : ?>
-    <button class="home-arrow">
-        <?php echo file_get_contents(get_template_directory() .'/assets/images/home-page/prev-arrow.svg') ?>
-    </button>
-    <p class="woocommerce-page-title"><?php echo is_shop() ? woocommerce_page_title() : the_title(); ?></p>
-    <a href="/" class="navbar-brand__logo kirgo-mobile-logo">
-        <?php echo file_get_contents(get_template_directory() .'/assets/images/kirgo-logo.svg') ?>
-    </a>
-    <?php else : ?>
-    <a href="/" class="navbar-brand__logo">
-        <?php echo file_get_contents(get_template_directory() .'/assets/images/kirgo-logo.svg') ?>
-    </a>
+    <?php if (is_cart() || is_checkout() || is_shop() || (is_account_page() && is_user_logged_in())): ?>
+        <button class="home-arrow">
+            <?php echo file_get_contents(get_template_directory() . '/assets/images/home-page/prev-arrow.svg') ?>
+        </button>
+        <p class="woocommerce-page-title"><?php echo is_shop() ? woocommerce_page_title() : the_title(); ?></p>
+        <a href="/" class="navbar-brand__logo kirgo-mobile-logo">
+            <?php echo file_get_contents(get_template_directory() . '/assets/images/kirgo-logo.svg') ?>
+        </a>
+    <?php else: ?>
+        <a href="/" class="navbar-brand__logo">
+            <?php echo file_get_contents(get_template_directory() . '/assets/images/kirgo-logo.svg') ?>
+        </a>
     <?php endif; ?>
 
 
@@ -31,12 +31,12 @@
     <div class="navbar-hamburger">
         <span></span>
     </div>
-    <?php 
-        // Fetching product price dynamically
-        $sports_bra = wc_get_product( 65 );
-        $leggings = wc_get_product( 14 );
-        $sports_bra_price = $sports_bra->get_price();
-        $leggings_price = $leggings->get_price();
+    <?php
+    // Fetching product price dynamically
+    $sports_bra = wc_get_product(65);
+    $leggings = wc_get_product(14);
+    $sports_bra_price = $sports_bra->get_price();
+    $leggings_price = $leggings->get_price();
     ?>
     <div class="navbar-links">
         <div class="product-nav-links-left links-desktop">
@@ -80,10 +80,10 @@
 
                 <div class="nav-product-carousel">
                     <?php
-                        $product_ids = [1840, 1820, 1375, 1365, 65, 14];
+                    $product_ids = [2091, 1840, 1820, 1375, 1365, 65, 14];
 
-                        foreach ($product_ids as $product_id) :
-                            $product = wc_get_product($product_id);
+                    foreach ($product_ids as $product_id):
+                        $product = wc_get_product($product_id);
 
                         $custom_image = get_the_post_thumbnail_url($product_id, 'medium');
 
@@ -92,29 +92,29 @@
                         } else if ($product_id === 1375) {
                             $custom_image = get_template_directory_uri() . '/assets/images/header/ham_leggings_result.webp';
                         }
-                            
-                            if ($product) :
-                                $categories = wp_get_post_terms($product_id, 'product_cat');
-                                $category_classes = '';
-                                
-                                foreach ($categories as $category) {
-                                    $category_classes .= $category->slug . ' ';
-                                }
-                        ?>
 
-                        <a href="<?php echo get_permalink($product_id); ?>"
-                            class="<?php echo trim($category_classes); ?> product-grid__item">
-                            <img src="<?php echo $custom_image; ?>" alt="<?php echo $product->get_title(); ?>"
-                                class="product-image">
-                            <div class="product-title">
-                                <?php echo esc_html($product->get_title()); ?>
-                            </div>
-                        </a>
-                        
-                        <?php 
-                            endif;
-                        endforeach; 
-                        ?>
+                        if ($product):
+                            $categories = wp_get_post_terms($product_id, 'product_cat');
+                            $category_classes = '';
+
+                            foreach ($categories as $category) {
+                                $category_classes .= $category->slug . ' ';
+                            }
+                            ?>
+
+                            <a href="<?php echo get_permalink($product_id); ?>"
+                                class="<?php echo trim($category_classes); ?> product-grid__item">
+                                <img src="<?php echo $custom_image; ?>" alt="<?php echo $product->get_title(); ?>"
+                                    class="product-image">
+                                <div class="product-title">
+                                    <?php echo esc_html($product->get_title()); ?>
+                                </div>
+                            </a>
+
+                        <?php
+                        endif;
+                    endforeach;
+                    ?>
                 </div>
 
                 <a href="https://kirgo.shiprocket.co/tracking" class="navbar-menu__item">
