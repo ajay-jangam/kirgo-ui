@@ -7,9 +7,9 @@
  * @package Kirgo
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.4.0' );
+	define('_S_VERSION', '1.4.0');
 }
 
 /**
@@ -19,44 +19,45 @@ if ( ! defined( '_S_VERSION' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function kirgo_setup() {
+function kirgo_setup()
+{
 	/*
-		* Make theme available for translation.
-		* Translations can be filed in the /languages/ directory.
-		* If you're building a theme based on kirgo, use a find and replace
-		* to change 'kirgo' to the name of your theme in all the template files.
-		*/
-	load_theme_textdomain( 'kirgo', get_template_directory() . '/languages' );
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on kirgo, use a find and replace
+	 * to change 'kirgo' to the name of your theme in all the template files.
+	 */
+	load_theme_textdomain('kirgo', get_template_directory() . '/languages');
 
 	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+	add_theme_support('automatic-feed-links');
 
 	/*
-		* Let WordPress manage the document title.
-		* By adding theme support, we declare that this theme does not use a
-		* hard-coded <title> tag in the document head, and expect WordPress to
-		* provide it for us.
-		*/
-	add_theme_support( 'title-tag' );
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support('title-tag');
 
 	/*
-		* Enable support for Post Thumbnails on posts and pages.
-		*
-		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		*/
-	add_theme_support( 'post-thumbnails' );
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+	 */
+	add_theme_support('post-thumbnails');
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'kirgo' ),
+			'menu-1' => esc_html__('Primary', 'kirgo'),
 		)
 	);
 
 	/*
-		* Switch default core markup for search form, comment form, and comments
-		* to output valid HTML5.
-		*/
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
 	add_theme_support(
 		'html5',
 		array(
@@ -83,7 +84,7 @@ function kirgo_setup() {
 	);
 
 	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
+	add_theme_support('customize-selective-refresh-widgets');
 
 	/**
 	 * Add support for core custom logo.
@@ -93,14 +94,14 @@ function kirgo_setup() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
+			'height' => 250,
+			'width' => 250,
+			'flex-width' => true,
 			'flex-height' => true,
 		)
 	);
 }
-add_action( 'after_setup_theme', 'kirgo_setup' );
+add_action('after_setup_theme', 'kirgo_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -109,48 +110,51 @@ add_action( 'after_setup_theme', 'kirgo_setup' );
  *
  * @global int $content_width
  */
-function kirgo_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'kirgo_content_width', 640 );
+function kirgo_content_width()
+{
+	$GLOBALS['content_width'] = apply_filters('kirgo_content_width', 640);
 }
-add_action( 'after_setup_theme', 'kirgo_content_width', 0 );
+add_action('after_setup_theme', 'kirgo_content_width', 0);
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function kirgo_widgets_init() {
+function kirgo_widgets_init()
+{
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'kirgo' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'kirgo' ),
+			'name' => esc_html__('Sidebar', 'kirgo'),
+			'id' => 'sidebar-1',
+			'description' => esc_html__('Add widgets here.', 'kirgo'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'after_widget' => '</section>',
+			'before_title' => '<h2 class="widget-title">',
+			'after_title' => '</h2>',
 		)
 	);
 }
-add_action( 'widgets_init', 'kirgo_widgets_init' );
+add_action('widgets_init', 'kirgo_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  */
-function kirgo_scripts() {
-	wp_enqueue_style( 'kirgo-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'kirgo-style', 'rtl', 'replace' );
+function kirgo_scripts()
+{
+	wp_enqueue_style('kirgo-style', get_stylesheet_uri(), array(), _S_VERSION);
+	wp_style_add_data('kirgo-style', 'rtl', 'replace');
 
 	// wp_enqueue_script( 'kirgo-navigation', get_template_directory_uri() . '/assets/dist/js/navigation.js', array(), _S_VERSION, true );
 
 	// app js
-	wp_enqueue_script( 'kirgo-appjs', get_template_directory_uri() . '/assets/dist/js/app.js', array(), _S_VERSION, true );
+	wp_enqueue_script('kirgo-appjs', get_template_directory_uri() . '/assets/dist/js/app.js', array(), _S_VERSION, true);
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	if (is_singular() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
 	}
 }
-add_action( 'wp_enqueue_scripts', 'kirgo_scripts' );
+add_action('wp_enqueue_scripts', 'kirgo_scripts');
 
 /**
  * Implement the Custom Header feature.
@@ -175,14 +179,14 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
+if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
 /**
  * Load WooCommerce compatibility file.
  */
-if ( class_exists( 'WooCommerce' ) ) {
+if (class_exists('WooCommerce')) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
 
@@ -214,13 +218,15 @@ if ( class_exists( 'WooCommerce' ) ) {
 require get_template_directory() . '/inc/woocommerce/single-product.php';
 
 // Show Buttons on Cart quantity input
-add_action( 'woocommerce_after_quantity_input_field', 'display_quantity_plus' );
-function display_quantity_plus() {
-   echo '<button type="button" class="plus" >+</button>';
+add_action('woocommerce_after_quantity_input_field', 'display_quantity_plus');
+function display_quantity_plus()
+{
+	echo '<button type="button" class="plus" >+</button>';
 }
-add_action( 'woocommerce_before_quantity_input_field', 'display_quantity_minus' );
-function display_quantity_minus() {
-   echo '<button type="button" class="minus" >-</button>';
+add_action('woocommerce_before_quantity_input_field', 'display_quantity_minus');
+function display_quantity_minus()
+{
+	echo '<button type="button" class="minus" >-</button>';
 }
 
 
@@ -229,13 +235,14 @@ function display_quantity_minus() {
  ***********************/
 
 // Chnaged the cart total title text
-add_filter( 'gettext', 'custom_cart_totals_title', 10, 3 );
+add_filter('gettext', 'custom_cart_totals_title', 10, 3);
 
-function custom_cart_totals_title( $translated_text, $text, $domain ) {
-    if ( $text == 'Cart totals' && $domain == 'woocommerce' ) {
-        $translated_text = __( 'your receipt', $domain );
-    }
-    return $translated_text;
+function custom_cart_totals_title($translated_text, $text, $domain)
+{
+	if ($text == 'Cart totals' && $domain == 'woocommerce') {
+		$translated_text = __('your receipt', $domain);
+	}
+	return $translated_text;
 }
 
 /***********************
@@ -243,67 +250,70 @@ function custom_cart_totals_title( $translated_text, $text, $domain ) {
  ***********************/
 
 // Changed the checkout order title text
-add_filter( 'gettext', 'woocommerce_checkout_before_order_review_heading', 10, 3 );
+add_filter('gettext', 'woocommerce_checkout_before_order_review_heading', 10, 3);
 
-function woocommerce_checkout_before_order_review_heading( $translated_text, $text, $domain ) {
-    if ( $text == 'Your order' && $domain == 'woocommerce' ) {
-        $translated_text = __( 'your receipt', $domain );
-    }
-    return $translated_text;
+function woocommerce_checkout_before_order_review_heading($translated_text, $text, $domain)
+{
+	if ($text == 'Your order' && $domain == 'woocommerce') {
+		$translated_text = __('your receipt', $domain);
+	}
+	return $translated_text;
 }
 
-add_action( 'woocommerce_single_product_summary', 'add_duplicate_content', 25 );
+add_action('woocommerce_single_product_summary', 'add_duplicate_content', 25);
 
-function add_duplicate_content() {
-   global $product;
-   
-   echo '<div class="wow animate__animated animate__fadeInUp duplicate-elements">';
-  
-	   // Product Image
-	   echo '<div class="product-image-side">';
-	   echo $product->get_image();
-	   echo '</div>';
+function add_duplicate_content()
+{
+	global $product;
 
-	   echo '<div class="product-details-side">';
-	
-		   echo '<div class="product-text-content">';
+	echo '<div class="wow animate__animated animate__fadeInUp duplicate-elements">';
 
-			   // Product Title
-			   echo '<div class="product-title-div">';
-			   echo '<h1 class="product_title">'.$product->get_name().'</h1>';
-			   echo '</div>';
-		
-			   // Short Description
-			   echo '<div class="product-short-description">';
-			   echo $product->get_short_description();
-			   echo '</div>';
+	// Product Image
+	echo '<div class="product-image-side">';
+	echo $product->get_image();
+	echo '</div>';
 
-		   echo '</div>';
-	
-		   // Buy Button
-		   echo '<div class="buy-button">';
-		   woocommerce_template_single_add_to_cart();
-		   echo '</div>';
-	
-	   echo '</div>';
+	echo '<div class="product-details-side">';
 
-   echo '</div>';
+	echo '<div class="product-text-content">';
+
+	// Product Title
+	echo '<div class="product-title-div">';
+	echo '<h1 class="product_title">' . $product->get_name() . '</h1>';
+	echo '</div>';
+
+	// Short Description
+	echo '<div class="product-short-description">';
+	echo $product->get_short_description();
+	echo '</div>';
+
+	echo '</div>';
+
+	// Buy Button
+	echo '<div class="buy-button">';
+	woocommerce_template_single_add_to_cart();
+	echo '</div>';
+
+	echo '</div>';
+
+	echo '</div>';
 }
 
 
 // Notify me modal on detail page 
-add_action( 'woocommerce_single_product_summary', 'add_modal_content', 35 );
+add_action('woocommerce_single_product_summary', 'add_modal_content', 35);
 
-function add_modal_content() {
- 	echo "
+function add_modal_content()
+{
+	echo "
 	<div class='modal fade' id='notifyMePopup' tabindex='-1' aria-labelledby='notifyMePopupLabel' aria-hidden='true'>
 		<div class='modal-dialog modal-dialog-centered'>
 			<div class='modal-content'>
 				<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
 				<div class='modal-body'>
 					<p class='model-title'>ReStock Alert</p>";
-					echo do_shortcode("[contact-form-7 id='398' title='Notify me']");
-				echo "</div>
+	echo do_shortcode("[contact-form-7 id='398' title='Notify me']");
+	echo "</div>
 			</div>
 		</div>
 	</div>";
@@ -314,65 +324,68 @@ function add_modal_content() {
 // add_action( 'woocommerce_cart_collaterals', 'display_related_products_on_cart_page' );
 
 // Display related products on the cart page
-add_action( 'woocommerce_cart_collaterals', 'display_related_products_on_cart_page' );
+add_action('woocommerce_cart_collaterals', 'display_related_products_on_cart_page');
 
-function display_related_products_on_cart_page() {
+function display_related_products_on_cart_page()
+{
 	display_related_products();
 }
 
 // Display related products on the checkout page
-add_action( 'woocommerce_after_checkout_form', 'display_related_products_on_checkout_page' );
+add_action('woocommerce_after_checkout_form', 'display_related_products_on_checkout_page');
 
-function display_related_products_on_checkout_page() {
+function display_related_products_on_checkout_page()
+{
 	display_related_products();
 }
 
 
-function display_related_products() {
+function display_related_products()
+{
 	// 1. Analyze Cart
 	$product_ids_in_cart = array();
 	$has_set_product_in_cart = false;
 	$first_single_product_collection = '';
 
-	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+	foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 		$prod_id = $cart_item['product_id'];
 		$product_ids_in_cart[] = $prod_id;
 
-		if ( has_term( 'set-product', 'product_cat', $prod_id ) ) {
+		if (has_term('set-product', 'product_cat', $prod_id)) {
 			$has_set_product_in_cart = true;
 		}
 
 		// Identify the collection of the first single product found in cart
-		if ( empty( $first_single_product_collection ) && has_term( 'single-product', 'product_cat', $prod_id ) ) {
-			if ( has_term( 'core-collection', 'product_cat', $prod_id ) ) {
+		if (empty($first_single_product_collection) && has_term('single-product', 'product_cat', $prod_id)) {
+			if (has_term('core-collection', 'product_cat', $prod_id)) {
 				$first_single_product_collection = 'core-collection';
-			} elseif ( has_term( 'summer-collection', 'product_cat', $prod_id ) ) {
+			} elseif (has_term('summer-collection', 'product_cat', $prod_id)) {
 				$first_single_product_collection = 'summer-collection';
-			} elseif ( has_term( 'classic-collection', 'product_cat', $prod_id ) ) {
+			} elseif (has_term('classic-collection', 'product_cat', $prod_id)) {
 				$first_single_product_collection = 'classic-collection';
 			}
 		}
 	}
 
 	// Exit early if a set product is already in the cart AND there is no single product to upsell against
-	if ( $has_set_product_in_cart && empty( $first_single_product_collection ) ) {
+	if ($has_set_product_in_cart && empty($first_single_product_collection)) {
 		return;
 	}
 
 	// 2. Determine Query Arguments
-	$collection_slugs = array( 'core-collection', 'summer-collection', 'classic-collection' );
+	$collection_slugs = array('core-collection', 'summer-collection', 'classic-collection');
 	$target_collection = '';
 
 	// Strategy A: Try to complete the set (Same Collection)
-	if ( ! empty( $first_single_product_collection ) ) {
+	if (!empty($first_single_product_collection)) {
 		$target_collection = $first_single_product_collection;
 	} else {
 		// Fallback: Pick a random collection if no specific single product context
-		$target_collection = $collection_slugs[ array_rand( $collection_slugs ) ];
+		$target_collection = $collection_slugs[array_rand($collection_slugs)];
 	}
 
 	// Helper function into array args
-	$get_related_args = function( $collection, $exclude_ids ) {
+	$get_related_args = function ($collection, $exclude_ids) {
 		return array(
 			'post_type' => 'product',
 			'posts_per_page' => 1,
@@ -407,40 +420,40 @@ function display_related_products() {
 	};
 
 	// Attempt Query 1: Same Collection (Upsell matching piece)
-	$related_args = $get_related_args( $target_collection, $product_ids_in_cart );
-	$related_query = new WP_Query( $related_args );
+	$related_args = $get_related_args($target_collection, $product_ids_in_cart);
+	$related_query = new WP_Query($related_args);
 
 	// Strategy B: If user has the full set (no posts found in same collection), try Different Collection
-	if ( ! $related_query->have_posts() && ! empty( $first_single_product_collection ) ) {
-		$other_collections = array_diff( $collection_slugs, array( $first_single_product_collection ) );
-		if ( ! empty( $other_collections ) ) {
+	if (!$related_query->have_posts() && !empty($first_single_product_collection)) {
+		$other_collections = array_diff($collection_slugs, array($first_single_product_collection));
+		if (!empty($other_collections)) {
 			// Select a random different collection
-			$target_collection = $other_collections[ array_rand( $other_collections ) ];
-			$related_args = $get_related_args( $target_collection, $product_ids_in_cart );
-			$related_query = new WP_Query( $related_args );
+			$target_collection = $other_collections[array_rand($other_collections)];
+			$related_args = $get_related_args($target_collection, $product_ids_in_cart);
+			$related_query = new WP_Query($related_args);
 		}
 	}
 
 	// Display the related products
-	if ( $related_query->have_posts() ) {
+	if ($related_query->have_posts()) {
 
 		// Logic for Title Display
 		$cart_total = WC()->cart->get_cart_contents_total(); // Pre-tax, pre-shipping total usually used for thresholds
 		// If needed, use WC()->cart->get_total( 'edit' ); for final total. 
 		// Assuming free shipping is based on subtotal.
-		
+
 		$free_shipping_threshold = 3000; // Constant as requested
 		$show_title = true;
 		$title_html = '<h2 class="cart-product-set-text">make it a set and</br> <span>get free shipping</span></h2>';
 
 		// Priority 1: Strategies Switch (Collection Complete) -> Hide Title
-		if ( ! empty( $first_single_product_collection ) && $target_collection !== $first_single_product_collection ) {
+		if (!empty($first_single_product_collection) && $target_collection !== $first_single_product_collection) {
 			$show_title = false;
-		} elseif ( $has_set_product_in_cart && ! empty( $first_single_product_collection ) ) {
+		} elseif ($has_set_product_in_cart && !empty($first_single_product_collection)) {
 			// Priority 2 (Use Case 3): Set + Single -> Show "make it a set"
 			// This overrides the 3000 check because "Make it a set" is still relevant
 			$title_html = '<h2 class="cart-product-set-text">make it a set</h2>';
-		} elseif ( $cart_total > $free_shipping_threshold ) {
+		} elseif ($cart_total > $free_shipping_threshold) {
 			// Priority 3 (Rule 1): If price is above 3K, Hide Title
 			// This now primarily applies to Use Case 1 (Single Product Only)
 			$show_title = false;
@@ -448,44 +461,44 @@ function display_related_products() {
 		// Default (Use Case 1): Single only -> Show full title (already set)
 
 		echo '<div class="alternate-cart-products">';
-			
-			if ( $show_title ) {
-				echo $title_html;
-				echo '<p class="add-alternate-product-to-cart-text">Add to your cart for a complete kirgo experience</p>';
-			}
-			
-			echo '<ul class="products">';
 
-			while ( $related_query->have_posts() ) {
+		if ($show_title) {
+			echo $title_html;
+			echo '<p class="add-alternate-product-to-cart-text">Add to your cart for a complete kirgo experience</p>';
+		}
 
-				$related_query->the_post();
-				global $product;
-				echo '<li class="product">';
-					echo '<a href="' . esc_url( get_permalink() ) . '" class="cart-product-img">' . $product->get_image() . '</a>';
-					echo '<div class="cart-product-details">';
-						echo '<h3 class="cart-product-title"><a href="' . esc_url( get_permalink() ) . '">' . get_the_title() . '</a></h3>';
-						echo '<div class="woocommerce-product-details__short-description">' . get_the_excerpt() . '</div>';
-					echo '</div>';
-					echo '<button href="#" class="product-size-modal-button" data-bs-toggle="modal" data-bs-target="#product-size-modal-' . get_the_ID() . '">Add for&nbsp;' . $product->get_price_html() . '</button>';
-				echo '</li>';
-				// Product size modal
-				echo '<div class="modal fade cart-product-size-modal" id="product-size-modal-' . get_the_ID() . '" tabindex="-1" role="dialog" aria-labelledby="product-size-modal-label-' . get_the_ID() . '" aria-hidden="true">';
-					echo '<div class="modal-dialog modal-dialog-centered" role="document">';
-						echo '<div class="modal-content">';
-							
-							echo '<div class="modal-body">';
-								echo '<p class="modal-title">select</br> <span>' . get_the_title() . ' size</span></p>';
-									
-								// Buy Button
-								echo '<div class="buy-button">';
-									woocommerce_template_single_add_to_cart();
-								echo '</div>';
-							echo '</div>';
-						echo '</div>';
-					echo '</div>';
-				echo '</div>';
-			}
-			echo '</ul>';
+		echo '<ul class="products">';
+
+		while ($related_query->have_posts()) {
+
+			$related_query->the_post();
+			global $product;
+			echo '<li class="product">';
+			echo '<a href="' . esc_url(get_permalink()) . '" class="cart-product-img">' . $product->get_image() . '</a>';
+			echo '<div class="cart-product-details">';
+			echo '<h3 class="cart-product-title"><a href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></h3>';
+			echo '<div class="woocommerce-product-details__short-description">' . get_the_excerpt() . '</div>';
+			echo '</div>';
+			echo '<button href="#" class="product-size-modal-button" data-bs-toggle="modal" data-bs-target="#product-size-modal-' . get_the_ID() . '">Add for&nbsp;' . $product->get_price_html() . '</button>';
+			echo '</li>';
+			// Product size modal
+			echo '<div class="modal fade cart-product-size-modal" id="product-size-modal-' . get_the_ID() . '" tabindex="-1" role="dialog" aria-labelledby="product-size-modal-label-' . get_the_ID() . '" aria-hidden="true">';
+			echo '<div class="modal-dialog modal-dialog-centered" role="document">';
+			echo '<div class="modal-content">';
+
+			echo '<div class="modal-body">';
+			echo '<p class="modal-title">select</br> <span>' . get_the_title() . ' size</span></p>';
+
+			// Buy Button
+			echo '<div class="buy-button">';
+			woocommerce_template_single_add_to_cart();
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
+		echo '</ul>';
 		echo '</div>';
 	}
 
@@ -494,17 +507,19 @@ function display_related_products() {
 
 }
 
-function get_variation_price( $variation_id ) {
-	$variation = wc_get_product( $variation_id );
+function get_variation_price($variation_id)
+{
+	$variation = wc_get_product($variation_id);
 	return $variation->get_price_html();
 }
 
 
 // share icons modal on detail page 
-add_action( 'woocommerce_single_product_summary', 'add_share_icons_modal', 5 );
+add_action('woocommerce_single_product_summary', 'add_share_icons_modal', 5);
 
-function add_share_icons_modal() {
- 	echo "
+function add_share_icons_modal()
+{
+	echo "
 	<button class='product-share-modal-button' data-bs-toggle='modal' data-bs-target='#productShareIcons'>
 		<img class='share-icon' src='" . get_template_directory_uri() . "/assets/images/icons/share.svg' alt='Share Icon'>
 	</button>
@@ -520,9 +535,10 @@ function add_share_icons_modal() {
 }
 
 // Redirect to home page after WooCommerce logout
-function redirect_after_woocommerce_logout() {
-    wp_redirect(home_url());
-    exit;
+function redirect_after_woocommerce_logout()
+{
+	wp_redirect(home_url());
+	exit;
 }
 add_action('wp_logout', 'redirect_after_woocommerce_logout');
 
@@ -530,27 +546,29 @@ add_action('wp_logout', 'redirect_after_woocommerce_logout');
  * Hide shipping rates when free shipping is available.
  * Updated to support WooCommerce 2.6 Shipping Zones.
  */
-function my_hide_shipping_when_free_is_available( $rates ) {
+function my_hide_shipping_when_free_is_available($rates)
+{
 	$free = array();
 
-	foreach ( $rates as $rate_id => $rate ) {
-		if ( 'free_shipping' === $rate->method_id ) {
-			$free[ $rate_id ] = $rate;
+	foreach ($rates as $rate_id => $rate) {
+		if ('free_shipping' === $rate->method_id) {
+			$free[$rate_id] = $rate;
 			break;
 		}
 	}
 
-	return ! empty( $free ) ? $free : $rates;
+	return !empty($free) ? $free : $rates;
 }
 
-add_filter( 'woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100 );
+add_filter('woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100);
 
 // Add a class to the body tag if cart is empty
-function add_class_if_cart_empty($classes) {
-    if (WC()->cart->is_empty()) {
-        $classes[] = 'cart-empty';
-    }
-    return $classes;
+function add_class_if_cart_empty($classes)
+{
+	if (WC()->cart->is_empty()) {
+		$classes[] = 'cart-empty';
+	}
+	return $classes;
 }
 add_filter('body_class', 'add_class_if_cart_empty');
 
@@ -566,68 +584,72 @@ add_filter('body_class', 'add_class_if_cart_empty');
 
 // Avoid blur images
 add_filter(
-    'wp_calculate_image_sizes',
-    function( $sizes ) {
-        $sizes = '(max-width: 960px) 50vw, 430px';
+	'wp_calculate_image_sizes',
+	function ($sizes) {
+		$sizes = '(max-width: 960px) 50vw, 430px';
 
-        return $sizes;
-    }
+		return $sizes;
+	}
 );
 
 
-function custom_update_cart_button_text($translated_text, $text, $domain) {
-    // Check if the text domain is "woocommerce"
-    if ($domain === 'woocommerce') {
-        // Check if the original text is "Update Cart"
-        if ($text === 'Update cart') {
-            // Replace it with your desired text
-            $translated_text = 'Update receipt';
-        }
-    }
-    return $translated_text;
+function custom_update_cart_button_text($translated_text, $text, $domain)
+{
+	// Check if the text domain is "woocommerce"
+	if ($domain === 'woocommerce') {
+		// Check if the original text is "Update Cart"
+		if ($text === 'Update cart') {
+			// Replace it with your desired text
+			$translated_text = 'Update receipt';
+		}
+	}
+	return $translated_text;
 }
 
 add_filter('gettext', 'custom_update_cart_button_text', 20, 3);
 
 
 // Added Poppins font
-function enqueue_custom_fonts() {
-    wp_enqueue_style('custom-font', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null);
+function enqueue_custom_fonts()
+{
+	wp_enqueue_style('custom-font', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null);
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_fonts');
 
 
 // Rename buttons
-function custom_woocommerce_messages( $message, $text, $domain ) {
-    if ( $domain === 'woocommerce' ) {
-        // Change "Browse Products" text
-        if ( $text === 'Browse products' ) {
-            $message = 'Shop now'; 
-        }
+function custom_woocommerce_messages($message, $text, $domain)
+{
+	if ($domain === 'woocommerce') {
+		// Change "Browse Products" text
+		if ($text === 'Browse products') {
+			$message = 'Shop now';
+		}
 
-        // Change "No orders found." message
-        if ( $text === 'No order has been made yet.' ) {
-            $message = 'No orders yet'; 
-        }
-    }
-    return $message;
+		// Change "No orders found." message
+		if ($text === 'No order has been made yet.') {
+			$message = 'No orders yet';
+		}
+	}
+	return $message;
 }
-add_filter( 'gettext', 'custom_woocommerce_messages', 20, 3 );
+add_filter('gettext', 'custom_woocommerce_messages', 20, 3);
 
 
-function ajay_add_summer_collection_body_class( $classes ) {
-    if ( is_product() ) { 
-        global $post;
-        
-        $product = wc_get_product( $post->ID ); 
+function ajay_add_summer_collection_body_class($classes)
+{
+	if (is_product()) {
+		global $post;
 
-        if ( $product && has_term( 'summer-collection', 'product_cat', $product->get_id() ) ) {
-            $classes[] = 'summer-collection-product';
-        }
-    }
-    return $classes;
+		$product = wc_get_product($post->ID);
+
+		if ($product && has_term('summer-collection', 'product_cat', $product->get_id())) {
+			$classes[] = 'summer-collection-product';
+		}
+	}
+	return $classes;
 }
-add_filter( 'body_class', 'ajay_add_summer_collection_body_class' );
+add_filter('body_class', 'ajay_add_summer_collection_body_class');
 
 // function custom_add_to_cart_redirect($url) {
 //     return wc_get_cart_url(); // Redirects to cart page
@@ -642,40 +664,42 @@ add_filter( 'body_class', 'ajay_add_summer_collection_body_class' );
 // function custom_add_to_cart_redirect($url) {
 //     if (isset($_REQUEST['add-to-cart']) && !empty($_REQUEST['add-to-cart'])) {
 //         $product_id = $_REQUEST['add-to-cart'];
-        
+
 //         // Check if the product was actually added to cart
 //         $was_added = wc_get_notices('success');
-        
+
 //         if (!empty($was_added)) {
 //             return wc_get_cart_url(); // Redirect to cart only if product was added successfully
 //         }
 //     }
-    
+
 //     return $url; // Otherwise return the default URL
 // }
 // add_filter('woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect');
 
-function my_custom_function() {
-    // Get the WooCommerce cart URL
-    $cart_url = wc_get_cart_url();
-    
-    // This will modify the AJAX response to include a redirect instruction
-    add_filter('xoo_wsc_add_to_cart_data', function($data) use ($cart_url) {
-        $data['redirect'] = $cart_url;
-        return $data;
-    });
+function my_custom_function()
+{
+	// Get the WooCommerce cart URL
+	$cart_url = wc_get_cart_url();
+
+	// This will modify the AJAX response to include a redirect instruction
+	add_filter('xoo_wsc_add_to_cart_data', function ($data) use ($cart_url) {
+		$data['redirect'] = $cart_url;
+		return $data;
+	});
 }
 
 // Hook into the appropriate action
 add_action('wp_ajax_xoo_wsc_add_to_cart', 'my_custom_function', 5); // For logged-in users
 add_action('wp_ajax_nopriv_xoo_wsc_add_to_cart', 'my_custom_function', 5); // For
 
-add_filter( 'woocommerce_coupons_enabled', 'disable_coupon_field_on_cart' );
-function disable_coupon_field_on_cart( $enabled ) {
-    if ( is_cart() ) {
-        $enabled = false;
-    }
-    return $enabled;
+add_filter('woocommerce_coupons_enabled', 'disable_coupon_field_on_cart');
+function disable_coupon_field_on_cart($enabled)
+{
+	if (is_cart()) {
+		$enabled = false;
+	}
+	return $enabled;
 }
 
 /**
@@ -689,10 +713,10 @@ function disable_coupon_field_on_cart( $enabled ) {
  *   'collection-slug' => [ product_id_1, product_id_2, ... ]
  */
 $kirgo_collection_pin_order = [
-    'core-collection' => [
-        2091, // Core Flare Leggings
-        2111, // Core Sports Bra and Flare Leggings
-    ],
+	'core-collection' => [
+		2100, // Core Flare Leggings
+		2113, // Core Sports Bra and Flare Leggings
+	],
 ];
 
 /**
@@ -702,89 +726,93 @@ $kirgo_collection_pin_order = [
  * If a pin-order map exists for the requested collection slug, pinned products
  * are surfaced first in the defined sequence; all other products follow.
  */
-function kirgo_prioritize_collection_sorting( $clauses, $query ) {
-    if ( is_admin() || ! $query->is_main_query() || ! function_exists('is_shop') || ! is_shop() ) {
-        return $clauses;
-    }
+function kirgo_prioritize_collection_sorting($clauses, $query)
+{
+	if (is_admin() || !$query->is_main_query() || !function_exists('is_shop') || !is_shop()) {
+		return $clauses;
+	}
 
-    if ( isset( $_GET['prioritize_collection'] ) ) {
-        global $wpdb, $kirgo_collection_pin_order;
+	if (isset($_GET['prioritize_collection'])) {
+		global $wpdb, $kirgo_collection_pin_order;
 
-        $collection_slug = sanitize_text_field( $_GET['prioritize_collection'] );
-        $term            = get_term_by( 'slug', $collection_slug, 'product_cat' );
+		$collection_slug = sanitize_text_field($_GET['prioritize_collection']);
+		$term = get_term_by('slug', $collection_slug, 'product_cat');
 
-        if ( $term ) {
-            // Join term_relationships to identify products in the category.
-            $clauses['join'] .= " LEFT JOIN {$wpdb->term_relationships} AS priority_cat ON ({$wpdb->posts}.ID = priority_cat.object_id AND priority_cat.term_taxonomy_id = " . absint( $term->term_taxonomy_id ) . ") ";
+		if ($term) {
+			// Join term_relationships to identify products in the category.
+			$clauses['join'] .= " LEFT JOIN {$wpdb->term_relationships} AS priority_cat ON ({$wpdb->posts}.ID = priority_cat.object_id AND priority_cat.term_taxonomy_id = " . absint($term->term_taxonomy_id) . ") ";
 
-            // Check if a pinned ordering map exists for this collection.
-            $pinned_ids = isset( $kirgo_collection_pin_order[ $collection_slug ] )
-                ? array_map( 'absint', $kirgo_collection_pin_order[ $collection_slug ] )
-                : [];
+			// Check if a pinned ordering map exists for this collection.
+			$pinned_ids = isset($kirgo_collection_pin_order[$collection_slug])
+				? array_map('absint', $kirgo_collection_pin_order[$collection_slug])
+				: [];
 
-            if ( ! empty( $pinned_ids ) ) {
-                // Build a FIELD() expression so pinned IDs sort in the exact map order.
-                // Non-pinned products get FIELD() = 0 (MySQL behaviour) and fall to the end.
-                $ids_csv      = implode( ',', $pinned_ids );
-                $field_expr   = "FIELD({$wpdb->posts}.ID, {$ids_csv})";
+			if (!empty($pinned_ids)) {
+				// Build a FIELD() expression so pinned IDs sort in the exact map order.
+				// Non-pinned products get FIELD() = 0 (MySQL behaviour) and fall to the end.
+				$ids_csv = implode(',', $pinned_ids);
+				$field_expr = "FIELD({$wpdb->posts}.ID, {$ids_csv})";
 
-                // Pinned products first (FIELD > 0 DESC), then in map sequence (FIELD ASC),
-                // then the rest of the category, then default ordering.
-                $clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, ({$field_expr} = 0) ASC, {$field_expr} ASC, " . $clauses['orderby'];
-            } else {
-                // No pin map – fall back to simple category-first ordering.
-                $clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, " . $clauses['orderby'];
-            }
-        }
-    }
+				// Pinned products first (FIELD > 0 DESC), then in map sequence (FIELD ASC),
+				// then the rest of the category, then default ordering.
+				$clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, ({$field_expr} = 0) ASC, {$field_expr} ASC, " . $clauses['orderby'];
+			} else {
+				// No pin map – fall back to simple category-first ordering.
+				$clauses['orderby'] = " (priority_cat.term_taxonomy_id IS NOT NULL) DESC, " . $clauses['orderby'];
+			}
+		}
+	}
 
-    return $clauses;
+	return $clauses;
 }
-add_filter( 'posts_clauses', 'kirgo_prioritize_collection_sorting', 20, 2 );
+add_filter('posts_clauses', 'kirgo_prioritize_collection_sorting', 20, 2);
 
 /**
  * Add cart count to WooCommerce fragments for dynamic AJAX updates
  * This ensures the cart count updates properly even with Cloudflare caching
  */
-function kirgo_add_cart_count_fragment( $fragments ) {
-    $count = WC()->cart->get_cart_contents_count();
+function kirgo_add_cart_count_fragment($fragments)
+{
+	$count = WC()->cart->get_cart_contents_count();
 
-    // Fragment for custom cart-count element
-    ob_start();
-    echo '<span class="cart-count">' . esc_html( $count ) . '</span>';
-    $fragments['span.cart-count'] = ob_get_clean();
+	// Fragment for custom cart-count element
+	ob_start();
+	echo '<span class="cart-count">' . esc_html($count) . '</span>';
+	$fragments['span.cart-count'] = ob_get_clean();
 
-    return $fragments;
+	return $fragments;
 }
-add_filter( 'woocommerce_add_to_cart_fragments', 'kirgo_add_cart_count_fragment' );
+add_filter('woocommerce_add_to_cart_fragments', 'kirgo_add_cart_count_fragment');
 
 /**
  * REST API endpoint for getting cart count
  * Provides a cacheable endpoint that Cloudflare can handle properly
  */
-function kirgo_register_cart_count_endpoint() {
-    register_rest_route( 'kirgo/v1', '/cart-count', array(
-        'methods' => 'GET',
-        'callback' => 'kirgo_get_cart_count_rest',
-        'permission_callback' => '__return_true'
-    ));
+function kirgo_register_cart_count_endpoint()
+{
+	register_rest_route('kirgo/v1', '/cart-count', array(
+		'methods' => 'GET',
+		'callback' => 'kirgo_get_cart_count_rest',
+		'permission_callback' => '__return_true'
+	));
 }
-add_action( 'rest_api_init', 'kirgo_register_cart_count_endpoint' );
+add_action('rest_api_init', 'kirgo_register_cart_count_endpoint');
 
-function kirgo_get_cart_count_rest() {
-    // Set headers to prevent caching of this endpoint
-    header('Cache-Control: no-cache, no-store, must-revalidate');
-    header('Pragma: no-cache');
-    header('Expires: 0');
+function kirgo_get_cart_count_rest()
+{
+	// Set headers to prevent caching of this endpoint
+	header('Cache-Control: no-cache, no-store, must-revalidate');
+	header('Pragma: no-cache');
+	header('Expires: 0');
 
-    if ( ! WC()->cart ) {
-        return new WP_REST_Response( array( 'count' => 0 ), 200 );
-    }
+	if (!WC()->cart) {
+		return new WP_REST_Response(array('count' => 0), 200);
+	}
 
-    $count = WC()->cart->get_cart_contents_count();
+	$count = WC()->cart->get_cart_contents_count();
 
-    return new WP_REST_Response( array(
-        'count' => $count,
-        'hash' => WC()->cart->get_cart_hash()
-    ), 200 );
+	return new WP_REST_Response(array(
+		'count' => $count,
+		'hash' => WC()->cart->get_cart_hash()
+	), 200);
 }
