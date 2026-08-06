@@ -80,7 +80,7 @@
 
                 <div class="nav-product-carousel">
                     <?php
-                    $product_ids = [2091, 1840, 1820, 1375, 1365, 65, 14];
+                    $product_ids = [2100, 1840, 1820, 1375, 1365, 65, 14];
 
                     foreach ($product_ids as $product_id):
                         $product = wc_get_product($product_id);
@@ -111,7 +111,7 @@
                                 </div>
                             </a>
 
-                        <?php
+                            <?php
                         endif;
                     endforeach;
                     ?>
