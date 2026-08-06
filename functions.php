@@ -702,6 +702,9 @@ function disable_coupon_field_on_cart($enabled)
 	return $enabled;
 }
 
+// Disable WordPress big image scaling (removes -scaled suffix)
+add_filter('big_image_size_threshold', '__return_false');
+
 /**
  * Pinned product ordering map per collection slug.
  *
