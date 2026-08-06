@@ -1318,3 +1318,39 @@ body.page-id-436 {
         }
     }
 }
+
+// Root-level disabled variation style (plugin class: woovr-variation-disabled)
+// Applies globally across shop loop, cart, and any page using WooVR swatches
+.woovr-variation.woovr-variation-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.38;
+    align-items: flex-start !important;
+
+    .woovr-variation-name {
+        color: #888;
+        border-color: #555;
+        position: relative;
+        overflow: hidden;
+
+        // Diagonal strikethrough line
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -5%;
+            width: 110%;
+            height: 1.5px;
+            background-color: #888;
+            transform: rotate(-35deg);
+            transform-origin: center;
+        }
+    }
+
+    // Suppress hover and active styles
+    &:hover .woovr-variation-name,
+    &.woovr-variation-active .woovr-variation-name {
+        background-color: transparent;
+        color: #888;
+    }
+}
