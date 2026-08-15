@@ -819,3 +819,5 @@ function kirgo_get_cart_count_rest()
 		'hash' => WC()->cart->get_cart_hash()
 	), 200);
 }
+
+add_filter('woocommerce_single_product_zoom_enabled', '__return_false');
