@@ -820,4 +820,54 @@ function kirgo_get_cart_count_rest()
 	), 200);
 }
 
+// Disable product page zoom
 add_filter('woocommerce_single_product_zoom_enabled', '__return_false');
+
+
+/**
+ * Throttle the WordPress Heartbeat API.
+ *
+ * The admin dashboard was polling admin-ajax.php roughly every 6 seconds,
+ * 24/7 (~10,000 requests/day). Each one is a full WordPress + WooCommerce
+ * bootstrap, so this is the single largest consumer of PHP CPU on the box.
+ *
+ * `minimalInterval` is the right lever: per wp-includes/js/heartbeat.js it
+ * "overrides all other intervals if they are shorter" and "once set at
+ * initialization, cannot be changed/overridden" — so it also defeats the
+ * 5-second "fast" mode that plugins can trigger. Core caps it at 600
+ * seconds but warns that anything above 120 starts breaking post locking
+ * (locks expire after 150s), so 120 is the safe maximum.
+ */
+function kirgo_throttle_heartbeat($settings)
+{
+	global $pagenow;
+
+	// Leave the editor alone — heartbeat drives autosave and post locking
+	// there, and slowing it down widens the window for lost edits.
+	if (is_admin() && in_array($pagenow, array('post.php', 'post-new.php'), true)) {
+		return $settings;
+	}
+
+	$settings['minimalInterval'] = 120;
+	$settings['interval'] = 120;
+
+	return $settings;
+}
+add_filter('heartbeat_settings', 'kirgo_throttle_heartbeat', 99);
+
+
+/**
+ * Stop WordPress spawning wp-cron.php on page loads.
+ *
+ * Requires the system cron from step 1 to already be running, otherwise all
+ * scheduled jobs stop: WooCommerce order emails, Action Scheduler queues,
+ * Google/Facebook feed syncs, scheduled posts.
+ *
+ * This works from the theme because functions.php loads before `init`, and
+ * `_wp_cron()` doesn't check the constant until `shutdown`. wp-config.php is
+ * still the better home for it — it survives a theme switch and applies to
+ * requests that never load the theme.
+ */
+if (!defined('DISABLE_WP_CRON')) {
+	define('DISABLE_WP_CRON', true);
+}
