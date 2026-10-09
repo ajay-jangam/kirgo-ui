@@ -29,13 +29,21 @@
                             </a>
                         </li>
                         
+                        <?php
+                        /*
+                         * TODO: phone number hidden for now (also hidden in the footer, see content-footer.php).
+                         * To show it again, remove this comment wrapper. The number comes from the ACF
+                         * repeater sub field `phone_number` on this page, so confirm it is correct in WP admin first.
+                         *
                         <li class="getInTouch-section__socialLink phone-number">
                             <a href="tel:<?php the_sub_field( 'phone_number' ); ?>">
                                 <?php echo file_get_contents(get_template_directory() .'/assets/images/icons/phone.svg') ?>
                                 <p class="getInTouch-section__socialLinkText"><?php the_sub_field( 'phone_number' ); ?></p>
                             </a>
                         </li>
-                        
+                        */
+                        ?>
+
                         <li class="getInTouch-section__socialLink">
                             <?php echo file_get_contents(get_template_directory() .'/assets/images/icons/insta.svg') ?>
                             <p class="getInTouch-section__socialLinkText"><?php the_sub_field( 'instagram_id' ); ?></p>
