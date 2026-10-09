@@ -31,6 +31,12 @@
                     />
                     hello@kirgostore.com
                 </a>
+                <?php
+                /*
+                 * TODO: phone number hidden for now. To show it again, uncomment the block below
+                 * and confirm the number first: the href was tel:+91-810599596 (invalid, 9 digits)
+                 * while the displayed text was +91 7498437590. They should match, e.g. tel:+917498437590.
+                 *
                 <a href="tel:+91-810599596" class="footer-section__getInTouchLink"
                     >
                     <img
@@ -40,6 +46,8 @@
                     />
                     +91 7498437590</a
                 >
+                */
+                ?>
             </div>
         </div>
         <div class="footer-section__note">
