@@ -26,7 +26,8 @@
     <a href="/cart" class="navbar-cart">
         <?php echo do_shortcode("[xoo_wsc_cart]") ?>
         <?php require get_template_directory() . '/assets/images/icons/cart_dark.svg'; ?>
-        <span class="cart-count"></span>
+        <?php // Rendered server-side so no page-load request is needed. Safe behind Cloudflare: cached copies only reach shoppers without a cart cookie, whose count is 0. ?>
+        <span class="cart-count"><?php echo function_exists('WC') && WC()->cart ? esc_html(WC()->cart->get_cart_contents_count()) : 0; ?></span>
     </a>
     <div class="navbar-hamburger">
         <span></span>

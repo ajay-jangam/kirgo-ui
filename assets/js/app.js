@@ -1,3 +1,20 @@
+/**
+ * Skip the side cart's page-load refresh when the bag is empty.
+ *
+ * WooCommerce sets the woocommerce_items_in_cart cookie when the first item
+ * goes in and removes it when the bag empties, so without it the refresh can
+ * only answer "0", which the cached page already shows. Registered at top
+ * level because the side cart sends its refresh 200 ms after DOM ready.
+ */
+jQuery.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    if (
+        String(options.url).indexOf("wc-ajax=xoo_wsc_refresh_fragments") > -1 &&
+        document.cookie.indexOf("woocommerce_items_in_cart=") === -1
+    ) {
+        jqXHR.abort();
+    }
+});
+
 jQuery(document).ready(function ($) {
     /**
      * Navbar
@@ -531,11 +548,16 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    // Update cart count on page load
-    updateCartCount();
-
-    // Update cart count dynamically when items are added/removed
-    $(document.body).on('added_to_cart removed_from_cart updated_cart_totals wc_fragments_refreshed', function() {
+    // No page-load call here: the side cart's own page-load refresh returns
+    // the same fragments (span.cart-count included). Listening to
+    // wc_fragments_refreshed is also gone, because the side cart fires it
+    // after that refresh and re-asking made a third identical request.
+    // added_to_cart is not listened to either: the side cart already applies
+    // the fragments from its add-to-cart response, and on product pages the
+    // re-ask was cut off by the redirect to the cart.
+    // wc_cart_emptied covers removing the last item on the cart page, where
+    // WooCommerce skips updated_cart_totals and the header kept the old count.
+    $(document.body).on('removed_from_cart updated_cart_totals wc_cart_emptied', function() {
         updateCartCount();
     });
 });
