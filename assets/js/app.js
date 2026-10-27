@@ -369,11 +369,24 @@ jQuery(document).ready(function ($) {
 
     // $(document).off("click", ".single_add_to_cart_button");
 
-    $("body.single-product .single_add_to_cart_button").click(function () {
-        setTimeout(() => {
-            window.location.href = "/cart";
-        }, 2000);
-    });
+    // Go to the cart only once the item is saved. The side cart fires
+    // added_to_cart after its add-to-cart request succeeds; a fixed timer
+    // here used to navigate away mid-request, so a first-time shopper lost
+    // the session cookie and landed on an empty cart.
+    $(document.body).on(
+        "added_to_cart",
+        function (event, fragments, cart_hash, button) {
+            if (
+                $("body").hasClass("single-product") &&
+                $(button).hasClass("single_add_to_cart_button")
+            ) {
+                window.location.href =
+                    (window.wc_add_to_cart_params &&
+                        wc_add_to_cart_params.cart_url) ||
+                    "/cart/";
+            }
+        }
+    );
 
     $(".cart-product-size-modal .wpcbn-btn.single_add_to_cart_button").text(
         "Add to Checkout"
