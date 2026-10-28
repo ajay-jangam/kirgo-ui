@@ -26,8 +26,10 @@
     <a href="/cart" class="navbar-cart">
         <?php echo do_shortcode("[xoo_wsc_cart]") ?>
         <?php require get_template_directory() . '/assets/images/icons/cart_dark.svg'; ?>
-        <?php // Rendered server-side so no page-load request is needed. Safe behind Cloudflare: cached copies only reach shoppers without a cart cookie, whose count is 0. ?>
+        <?php // Browse pages are built as a guest (inc/bag-cache.php), so this prints 0 there and the real count only on cart, checkout and account pages. ?>
         <span class="cart-count"><?php echo function_exists('WC') && WC()->cart ? esc_html(WC()->cart->get_cart_contents_count()) : 0; ?></span>
+        <?php // Cached pages carry no bag, so show the count from the kirgo_bag_count cookie before the page finishes loading. app.js repeats this for back/forward navigation. ?>
+        <script>(function(){var m=document.cookie.match(/(?:^|;\s*)kirgo_bag_count=(\d+)/);if(!m)return;var e=document.querySelectorAll('.navbar-cart .cart-count,.navbar-cart .xoo-wsc-sc-count');for(var i=0;i<e.length;i++)e[i].textContent=m[1];})();</script>
     </a>
     <div class="navbar-hamburger">
         <span></span>

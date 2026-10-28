@@ -1,17 +1,52 @@
 /**
- * Skip the side cart's page-load refresh when the bag is empty.
+ * Bag count from the kirgo_bag_count cookie (set by inc/bag-cache.php).
  *
- * WooCommerce sets the woocommerce_items_in_cart cookie when the first item
- * goes in and removes it when the bag empties, so without it the refresh can
- * only answer "0", which the cached page already shows. Registered at top
+ * Returns null when the count is unknown: WooCommerce says the bag has items
+ * but the count cookie is missing, as for a bag filled before that cookie
+ * existed. The side cart's refresh then runs once and sets the cookie.
+ */
+function kirgoBagCount() {
+    var match = document.cookie.match(/(?:^|;\s*)kirgo_bag_count=(\d+)/);
+    if (match) {
+        return parseInt(match[1], 10);
+    }
+    return document.cookie.indexOf("woocommerce_items_in_cart=") === -1 ? 0 : null;
+}
+
+function kirgoShowBagCount() {
+    var count = kirgoBagCount();
+    if (count !== null) {
+        jQuery(".navbar-cart .cart-count, .navbar-cart .xoo-wsc-sc-count").text(count);
+    }
+}
+
+/**
+ * Skip the side cart's refresh when the cookies already give the count.
+ *
+ * Browse pages are cached and built without the bag, and the side cart
+ * panel never opens on this site (its icon links to /cart), so on those
+ * pages the refresh would only fetch the count. It still runs on the cart
+ * and checkout pages, and when the count is unknown. Registered at top
  * level because the side cart sends its refresh 200 ms after DOM ready.
  */
 jQuery.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-    if (
-        String(options.url).indexOf("wc-ajax=xoo_wsc_refresh_fragments") > -1 &&
-        document.cookie.indexOf("woocommerce_items_in_cart=") === -1
-    ) {
+    if (String(options.url).indexOf("wc-ajax=xoo_wsc_refresh_fragments") === -1) {
+        return;
+    }
+    var onCartOrCheckout =
+        typeof xoo_wsc_params !== "undefined" &&
+        (xoo_wsc_params.isCart == "1" || xoo_wsc_params.isCheckout == "1");
+    var count = kirgoBagCount();
+    if (count === 0 || (count !== null && !onCartOrCheckout)) {
         jqXHR.abort();
+    }
+});
+
+// A page restored by the back button keeps the count it had when the
+// shopper left it, so read the cookie again.
+jQuery(window).on("pageshow", function (e) {
+    if (e.originalEvent && e.originalEvent.persisted) {
+        kirgoShowBagCount();
     }
 });
 

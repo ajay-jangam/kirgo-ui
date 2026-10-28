@@ -9,7 +9,7 @@
 
 if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define('_S_VERSION', '1.4.1');
+	define('_S_VERSION', '1.4.2');
 }
 
 /**
@@ -188,6 +188,11 @@ if (defined('JETPACK__VERSION')) {
  */
 if (class_exists('WooCommerce')) {
 	require get_template_directory() . '/inc/woocommerce.php';
+
+	/**
+	 * Build browse pages as a guest so Cloudflare can cache them for shoppers too.
+	 */
+	require get_template_directory() . '/inc/bag-cache.php';
 }
 
 
