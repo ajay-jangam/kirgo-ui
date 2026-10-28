@@ -40,7 +40,10 @@ function kirgo_is_cacheable_page_request()
 	$path  = (string) wp_parse_url($uri, PHP_URL_PATH);
 	$query = (string) wp_parse_url($uri, PHP_URL_QUERY);
 
-	foreach (array('/cart', '/checkout', '/my-account', '/wp-admin', '/wp-login', '/wp-json', '/wp-cron') as $prefix) {
+	// /register's form code is tied to the shopper's bag, so it needs the real
+	// bag. It is not yet in the Cloudflare bypass list: add it there before the
+	// bag-cookie bypass is removed.
+	foreach (array('/cart', '/checkout', '/my-account', '/register', '/wp-admin', '/wp-login', '/wp-json', '/wp-cron') as $prefix) {
 		if (0 === strpos($path, $prefix)) {
 			return false;
 		}

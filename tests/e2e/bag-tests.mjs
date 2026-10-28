@@ -239,7 +239,7 @@ const edge = { hits: 0, misses: 0 };
 function cacheable(url) {
 	const u = new URL(url);
 	if (u.origin !== new URL(BASE).origin) return false;
-	if (/^\/(cart|checkout|my-account|wp-admin|wp-login|wp-json|wp-cron)/.test(u.pathname)) return false;
+	if (/^\/(cart|checkout|my-account|register|wp-admin|wp-login|wp-json|wp-cron)/.test(u.pathname)) return false;
 	return !/wc-ajax|wc-api|rest_route|add-to-cart|remove_item|undo_item|order-again|pay_for_order|cancel_order/.test(u.search);
 }
 const proxy = http.createServer((req, res) => {
@@ -559,6 +559,44 @@ if (run('M')) {
 	check('M tab 2 empties the bag, tab 1 next page: header shows 0, 0 bag calls', (await header(tab1)) === '0' && tab1.calls.length === 0, `header="${await header(tab1)}" calls=${JSON.stringify(tab1.calls)}`);
 	check('M no JS errors', tab1.errors.length === 0 && tab2.errors.length === 0, [...tab1.errors, ...tab2.errors].join(' | '));
 	await m.context.close();
+}
+
+// --- R. Sign-up page works for a shopper with a bag, and the bag is kept -----
+// The form's security code is tied to the shopper's bag, so a page built as a
+// guest would fail for anyone with a bag. Sign-ups are throwaway customers on
+// the local copy, where email and Mailchimp are switched off.
+async function signUp(page) {
+	const login = `kirgo_e2e_${randomBytes(4).toString('hex')}`;
+	customers.push(login);
+	await open(page, '/register/');
+	await page.fill('#reg_username', login);
+	await page.fill('#reg_email', `${login}@example.test`);
+	await Promise.all([page.waitForNavigation({ timeout: 90000 }), page.click('button[name=register]')]);
+	await page.waitForTimeout(2000);
+	const error = await page.locator('.woocommerce-error, .woocommerce-notices-wrapper .is-error').allInnerTexts();
+	return error.join(' ').trim();
+}
+if (run('R')) {
+	const r = await newShopper(edgeBrowser);
+	await addToBag(r.page, 1842, 1);
+	await open(r.page, '/shop/');
+	const before = { ...edge };
+	const error = await signUp(r.page);
+	check('R shopper with 1 item: sign-up page never comes from the cache', edgeSince(before).hits === 0, JSON.stringify(edgeSince(before)));
+	check('R shopper with 1 item: sign-up shows no error', error === '', error);
+	check('R shopper with 1 item: signed up and logged in', await isLoggedIn(r.page));
+	await open(r.page, PRODUCT);
+	check('R after sign-up: header shows 1', (await header(r.page)) === '1', `header="${await header(r.page)}"`);
+	check('R after sign-up: bag still holds the item', (await bagTotal(r.page)) === 1);
+	check('R no JS errors (with a bag)', r.page.errors.length === 0, r.page.errors.join(' | '));
+	await r.context.close();
+
+	const g = await newShopper(edgeBrowser);
+	const gError = await signUp(g.page);
+	check('R guest with no bag: sign-up shows no error', gError === '', gError);
+	check('R guest with no bag: signed up and logged in', await isLoggedIn(g.page));
+	check('R no JS errors (no bag)', g.page.errors.length === 0, g.page.errors.join(' | '));
+	await g.context.close();
 }
 
 for (const login of customers) execFileSync('php', [new URL('./test-user.php', import.meta.url).pathname, 'delete', login], { env: { ...process.env, BASE } });
